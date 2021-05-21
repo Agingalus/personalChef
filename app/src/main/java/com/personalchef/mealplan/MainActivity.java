@@ -7,6 +7,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private double MagnitudePrevious = 0;
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //sensor instances used to get accelerometer to read steps
         SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         SensorEventListener stepDetector = new SensorEventListener() {
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
                         stepCount++;
                         //add an update to a graph or other visual progress function as a stretch goal
                     }
+
                 }
             }
 
