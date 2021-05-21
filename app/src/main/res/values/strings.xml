@@ -1,5 +1,17 @@
 <resources>
     <string name="app_name">PersonalChef_MealPlan</string>
+    <string name="appTitle">Personal Chef</string>
+    <string name="userDetails">User Details</string>
+    <string name="stepDetail">Step-Calorie Details</string>
+    <string name="height">Height</string>
+    <string name="weight">Weight</string>
+    <string name="todaySteps">Today\'s Steps: </string>
+    <string name="calburned">You have burned: </string>
+    <string name="cal">Cal</string>
+    <string name="stepsThisWeek">Total steps this week: </string>
+    <string name="totalCalIntake">Total Calories intake: </string>
+    <string name="totalCalburned">Total Calories burned: </string>
+    <string name="home">Home</string>
     <string name="age">Age</string>
     <string name="height">Height</string>
     <string name="weight">Weight</string>
