@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PersonalChef_MealPlan">
         <activity android:name=".StepCounterActivity"></activity>
+
+        <activity android:name=".UserProfileActivity"></activity>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
