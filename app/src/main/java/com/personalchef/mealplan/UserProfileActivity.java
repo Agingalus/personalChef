@@ -50,6 +50,11 @@ public class UserProfileActivity extends AppCompatActivity {
                 ageInput.setText("");
                 heightInput.setText("");
                 weightInput.setText("");
+
+                //set setEnabled false
+                ageInput.setEnabled(true);
+                heightInput.setEnabled(true);
+                weightInput.setEnabled(true);
             }
         });
 
@@ -65,6 +70,11 @@ public class UserProfileActivity extends AppCompatActivity {
                 ageInput.setText(String.valueOf(age));
                 heightInput.setText(String.valueOf(height));
                 weightInput.setText(String.valueOf(weight));
+
+                //set setEnabled false
+                ageInput.setEnabled(false);
+                heightInput.setEnabled(false);
+                weightInput.setEnabled(false);
 
             }
         });
