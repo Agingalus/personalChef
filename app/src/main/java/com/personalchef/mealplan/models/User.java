@@ -1,33 +1,39 @@
 package com.personalchef.mealplan.models;
 
+import java.io.Serializable;
 
-import java.text.DecimalFormat;
+public class User implements Serializable {
+    public static String EXTRA_USEROBJ = "com.personalchef.mealplan.models.User";
 
-public class User {
     private String userName;
     private String hash;
     private int weight;
-    private int height;
+    private float height;
     private int age;
 
-    //set age
-    public void setAge(int age)
-    {
+    private User() {}
+
+    public User(String uname, String hash, int weight, float height, int age) {
+        this.userName = uname;
+        this.hash = hash;
+        this.weight = weight;
+        this.height = height;
         this.age = age;
     }
 
-    //set height
-    public void setHeight(int height)
-    {
-        this.height = height;
+    public float getHeight() {
+        return height;
+    }
+    public void setHeight(float _height) {
+        this.height = _height;
     }
 
-    //set weight
-    public void setWeight(int weight)
-    {
-        this.weight = weight;
+    public int getWeight() {
+        return this.weight;
     }
-
+    public void setWeight(int _weight) {
+        this.weight = _weight;
+    }
 
     // Functionality
     protected void SaveUserLocally() {
@@ -37,6 +43,5 @@ public class User {
     protected User LoadUser() {
         return new User();
     }
-
 
 }

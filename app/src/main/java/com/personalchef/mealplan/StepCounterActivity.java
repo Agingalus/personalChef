@@ -20,7 +20,7 @@ public class StepCounterActivity extends AppCompatActivity {
 
         Log.i("MP", "Into StepCount activity");
 
-        // gET PARAMETERS PASSEd
+        // GET PARAMETERS PASSEd
         Intent intent = getIntent();
         User user = (User) intent.getSerializableExtra(User.EXTRA_USEROBJ);
         StepCalorieDetails scDetail = (StepCalorieDetails) intent.getSerializableExtra(StepCalorieDetails.EXTRA_STEPCALDETAIL_OBJ);
@@ -58,3 +58,4 @@ public class StepCounterActivity extends AppCompatActivity {
         onBackPressed();
     }
 }
+
