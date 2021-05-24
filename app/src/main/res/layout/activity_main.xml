@@ -1,10 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
+
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView"-->
+<!--        android:layout_width="215dp"-->
+<!--        android:layout_height="168dp"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:srcCompat="@drawable/ic_launcher_background" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/textView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="35dp"-->
+<!--        android:text="@string/appTitle"-->
+<!--        android:textSize="24sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/imageView" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/button2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="40dp"-->
+<!--        android:onClick="onButtonClick"-->
+<!--        android:text="@string/home"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/textView" />-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/imageView"-->
+<!--        tools:layout_editor_absoluteX="130dp" />-->
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        tools:context=".Example1">
+        <ImageView
+            android:id="@+id/imagev1"
+            android:layout_width="170dp"
+            android:layout_height="150dp"
+            android:scaleType="fitXY"
+            android:layout_margin="30dp"
+
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/main_logo"/>
+
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/mealbutton"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imagev1"
+            android:text="View Meal"
+            android:background="@android:color/holo_green_light"
+            android:textAllCaps="false"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp"
+            android:padding="20dp"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/getmealplan"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mealbutton"
+            android:text="Get Meal Plan"
+            android:background="@color/myorange"
+            android:textAllCaps="false"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:padding="20dp"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Joke of the day"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="30dp"
+            android:textStyle="bold"
+            android:id="@+id/textjoke"
+            android:padding="30dp"
+            android:background="@drawable/rounded_rectangle"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+
+
+            />
+
+
+
+    </RelativeLayout>
+</RelativeLayout>
 
     <ImageView
         android:id="@+id/imageView"
