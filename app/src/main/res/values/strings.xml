@@ -11,10 +11,17 @@
     <string name="totalCalIntake">Total Calories intake: </string>
     <string name="totalCalburned">Total Calories burned: </string>
     <string name="home">Home</string>
+
     <string name="todaySteps">Today Steps</string>
     <string name="weight">Weight</string>
     <string name="age">Age</string>
 
 
     <string name="submit">Submit</string>
+
+    <string name="age">Age</string>
+    <string name="submit">Submit</string>
+    <string name="personalChef">Personal Chef</string>
+    <string name="reset">Reset</string>
+
 </resources>
