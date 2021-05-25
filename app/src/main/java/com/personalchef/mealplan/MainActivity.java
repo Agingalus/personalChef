@@ -20,8 +20,8 @@ import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
-//    private double MagnitudePrevious = 0;
-//    public Integer stepCount = 0;
+    private double MagnitudePrevious = 0;
+    public Integer stepCount = 0;
 
 AppCompatButton btnmeal,btngetmeal;
 TextView textViewjoke;
@@ -34,6 +34,34 @@ TextView textViewjoke;
         btnmeal=findViewById(R.id.mealbutton);
         btngetmeal=findViewById(R.id.getmealplan);
         textViewjoke=findViewById(R.id.textjoke);
+
+        //sensor instances used to get accelerometer to read steps
+        SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        SensorEventListener stepDetector = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent sensorEvent) {
+                if (sensorEvent != null) {
+                    float x_acceleration = sensorEvent.values[0];
+                    float y_acceleration = sensorEvent.values[1];
+                    float z_acceleration = sensorEvent.values[2];
+                    double Magnitude = Math.sqrt(x_acceleration * x_acceleration + y_acceleration * y_acceleration + z_acceleration * z_acceleration);
+                    double MagnitudeDelta = Magnitude - MagnitudePrevious;
+                    MagnitudePrevious = Magnitude;
+
+                    if (MagnitudeDelta > 4) {
+                        stepCount++;
+                        //add an update to a graph or other visual progress function as a stretch goal
+                    }
+
+                }
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int i) {
+            }
+        };
+        sensorManager.registerListener(stepDetector, sensor, SensorManager.SENSOR_DELAY_NORMAL);
 
         ///when activity is  created user gets the text for the joke of the day here
         textViewjoke.setText("i saw a man flying like bird");
@@ -53,51 +81,10 @@ TextView textViewjoke;
          }
      });
 
-        //sensor instances used to get accelerometer to read steps
-//        SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-//        Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-//        SensorEventListener stepDetector = new SensorEventListener() {
-//            @Override
-//            public void onSensorChanged(SensorEvent sensorEvent) {
-//                if (sensorEvent != null) {
-//                    float x_acceleration = sensorEvent.values[0];
-//                    float y_acceleration = sensorEvent.values[1];
-//                    float z_acceleration = sensorEvent.values[2];
-//                    double Magnitude = Math.sqrt(x_acceleration * x_acceleration + y_acceleration * y_acceleration + z_acceleration * z_acceleration);
-//                    double MagnitudeDelta = Magnitude - MagnitudePrevious;
-//                    MagnitudePrevious = Magnitude;
-//
-//                    if (MagnitudeDelta > 4) {
-//                        stepCount++;
-//                        //add an update to a graph or other visual progress function as a stretch goal
-//                    }
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onAccuracyChanged(Sensor sensor, int i) {
-//            }
-//        };
-//        sensorManager.registerListener(stepDetector, sensor, SensorManager.SENSOR_DELAY_NORMAL);
 
 
     }
 
-
-
-    //    public void onButtonClick(View view) {
-//
-//        User user = new User("john", "ASDFRED", 150, 5.4f, 38);
-//        StepCalorieDetails sc = new StepCalorieDetails(150, 300, 1000, 2500, 1900);
-//
-//        Log.i("MP", "About to start activity");
-//        Intent intent = new Intent(getApplicationContext(), StepCounterActivity.class);
-//        intent.putExtra(User.EXTRA_USEROBJ, user);
-//        intent.putExtra(StepCalorieDetails.EXTRA_STEPCALDETAIL_OBJ, sc);
-//        startActivity(intent);
-//
-//    }
 
     public void onButtonClick(View view) {
     /*
