@@ -76,6 +76,8 @@ public class UserProfileActivity extends AppCompatActivity {
                 heightInput.setEnabled(false);
                 weightInput.setEnabled(false);
 
+                // Create/update user object
+                // save it to the Utilities
             }
         });
     }

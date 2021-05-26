@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.personalchef.mealplan.models.StepCalorieDetails;
 import com.personalchef.mealplan.models.User;
+import com.personalchef.mealplan.models.Utilities;
 
 public class StepCounterActivity extends AppCompatActivity {
 
@@ -22,7 +23,7 @@ public class StepCounterActivity extends AppCompatActivity {
 
         // GET PARAMETERS PASSEd
         Intent intent = getIntent();
-        User user = (User) intent.getSerializableExtra(User.EXTRA_USEROBJ);
+        User user = Utilities.getUser(); // (User) intent.getSerializableExtra(User.EXTRA_USEROBJ);
         StepCalorieDetails scDetail = (StepCalorieDetails) intent.getSerializableExtra(StepCalorieDetails.EXTRA_STEPCALDETAIL_OBJ);
 
         populateTextViews(user, scDetail);
