@@ -2,38 +2,25 @@ package com.personalchef.mealplan;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
-
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-
-import com.personalchef.mealplan.models.StepCalorieDetails;
-import com.personalchef.mealplan.models.User;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.Bundle;
 import android.widget.TextView;
 
+import com.personalchef.mealplan.models.Utilities;
 
 public class MainActivity extends AppCompatActivity {
     private double MagnitudePrevious = 0;
     public Integer stepCount = 0;
 
-AppCompatButton btnmeal,btngetmeal;
-TextView textViewjoke;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btnmeal=findViewById(R.id.mealbutton);
-        btngetmeal=findViewById(R.id.getmealplan);
-        textViewjoke=findViewById(R.id.textjoke);
 
         //sensor instances used to get accelerometer to read steps
         SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -64,27 +51,19 @@ TextView textViewjoke;
         sensorManager.registerListener(stepDetector, sensor, SensorManager.SENSOR_DELAY_NORMAL);
 
         ///when activity is  created user gets the text for the joke of the day here
-        textViewjoke.setText("i saw a man flying like bird");
+        TextView textViewjoke=findViewById(R.id.tv_textJoke);
+        textViewjoke.setText(Utilities.GetJoke());
+    }
 
-        btnmeal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ///takes the user to the View Meal plan page
-
-            }
-        });
-
-     btngetmeal.setOnClickListener(new View.OnClickListener() {
-         @Override
-         public void onClick(View view) {
-             // takes the user to the Generate Meal Plan Page
-         }
-     });
-
-
+    // View Meal btn click
+    public void onViewMealButton(View view) {
 
     }
 
+    // Get Meal Plan btn click
+    public void onGetMealPlanButton(View view) {
+
+    }
 
     public void onButtonClick(View view) {
     /*
