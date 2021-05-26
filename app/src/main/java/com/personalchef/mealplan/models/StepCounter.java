@@ -28,15 +28,14 @@ public class StepCounter extends AppCompatActivity {
     private Integer caloriesBurned = 0;
 
 
-
     // Functionality
-    public int GetStepCount(int stepCount) {
-        // Get step count from sensor, &/or Db
-        // Return sum of all
-        return stepCount;
+    public int GetStepCount() {
+        MainActivity mainActivity = new MainActivity();
+        return mainActivity.stepCount;
     }
 
-    public int  CalculateCaloriesBurnt(int stepCount) {
+    public int  CalculateCaloriesBurnt() {
+        int stepCount = GetStepCount();
         StepCalorieDetails scDetail = new StepCalorieDetails();
         // Get step count
         // Get calories from all day/week meals
