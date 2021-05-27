@@ -11,11 +11,15 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.widget.TextView;
 
+import com.personalchef.mealplan.models.StepCalorieDetails;
+import com.personalchef.mealplan.models.StepCounter;
 import com.personalchef.mealplan.models.Utilities;
 
 public class MainActivity extends AppCompatActivity {
     private double MagnitudePrevious = 0;
-    public Integer stepCount = 0;
+    public static Integer stepCount = 0;
+    public  static StepCounter stepCounter= new StepCounter();
+    private boolean first = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +40,18 @@ public class MainActivity extends AppCompatActivity {
                     double MagnitudeDelta = Magnitude - MagnitudePrevious;
                     MagnitudePrevious = Magnitude;
 
-                    if (MagnitudeDelta > 4) {
+                    if (MagnitudeDelta > 2) {
                         stepCount++;
                         //add an update to a graph or other visual progress function as a stretch goal
+
                     }
 
+                }
+                if(stepCount ==3 && first){
+                    //StepCounter stepCounter= new StepCounter();
+                    first = false;
+                    System.out.println("from main\n ***************************");
+                    System.out.println(stepCounter.GetStepCount());
                 }
             }
 
