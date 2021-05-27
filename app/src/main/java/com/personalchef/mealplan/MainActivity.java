@@ -11,6 +11,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.widget.TextView;
 
+import com.personalchef.mealplan.models.DatabaseHelper;
 import com.personalchef.mealplan.models.StepCalorieDetails;
 import com.personalchef.mealplan.models.StepCounter;
 import com.personalchef.mealplan.models.Utilities;
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     public static Integer stepCount = 0;
     public  static StepCounter stepCounter= new StepCounter();
     private boolean first = true;
+    private final DatabaseHelper helper = new DatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,15 +45,19 @@ public class MainActivity extends AppCompatActivity {
                     if (MagnitudeDelta > 2) {
                         stepCount++;
                         //add an update to a graph or other visual progress function as a stretch goal
-
+                        System.out.println(stepCounter.GetStepCount());
                     }
 
                 }
                 if(stepCount ==3 && first){
                     //StepCounter stepCounter= new StepCounter();
                     first = false;
-                    System.out.println("from main\n ***************************");
-                    System.out.println(stepCounter.GetStepCount());
+                    helper.insert(41, 51, 61, 71, 81);
+                }
+                if (stepCount == 5 && !first){
+                    first = true;
+                    StepCalorieDetails stepCalorieDetails = helper.getStepDetails();
+                    System.out.println(stepCalorieDetails.getCalBurnt() + " This is from the DB. YAY!!!!!");
                 }
             }
 
