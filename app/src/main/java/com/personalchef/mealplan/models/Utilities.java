@@ -1,25 +1,29 @@
 package com.personalchef.mealplan.models;
 
-public class Utilities {
+import android.app.Application;
 
-    private static User user;
-    private static StepCalorieDetails stepCalorieDetails;
+// 
+public class Utilities extends Application {
+
+    private static User user = null;
+    private static StepCalorieDetails stepCalorieDetails = null;
 
     public static User getUser() {
         return user;
     }
 
     public static void setUser(User user) {
-        Utilities.user = user;
+        user = user;
     }
 
-    public static void ReadUserFromFS() {
-        //
+    public static void SetStepCalorieDetails(StepCalorieDetails sc) {
+        stepCalorieDetails = sc;
     }
 
-    public  static void SaveUserToFS() {
-        // Save obj to file sys
+    public static StepCalorieDetails getStepCalorieDetails() {
+        return stepCalorieDetails;
     }
+
 
     public static String GetJoke() {
         return "Joke of the Day :-).";
