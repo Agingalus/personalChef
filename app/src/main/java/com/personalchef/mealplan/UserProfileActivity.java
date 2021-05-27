@@ -2,15 +2,21 @@ package com.personalchef.mealplan;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.personalchef.mealplan.models.User;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class UserProfileActivity extends AppCompatActivity {
 
@@ -78,6 +84,8 @@ public class UserProfileActivity extends AppCompatActivity {
 
                 // Create/update user object
                 // save it to the Utilities
+                User user = new User("chefUser", "HASH", weight, height, age);
+                IOHelper.SaveUserToFile(getApplicationContext(), user);
             }
         });
     }
@@ -97,4 +105,6 @@ public class UserProfileActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+
 }

@@ -1,7 +1,6 @@
 package com.personalchef.mealplan;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +10,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.widget.TextView;
 
+import com.personalchef.mealplan.models.User;
 import com.personalchef.mealplan.models.Utilities;
 
 public class MainActivity extends AppCompatActivity {
@@ -50,9 +50,12 @@ public class MainActivity extends AppCompatActivity {
         };
         sensorManager.registerListener(stepDetector, sensor, SensorManager.SENSOR_DELAY_NORMAL);
 
+        // Load user from file
+        User u = IOHelper.loadUserFromFile(getApplicationContext()) ;
+
         ///when activity is  created user gets the text for the joke of the day here
         TextView textViewjoke=findViewById(R.id.tv_textJoke);
-        textViewjoke.setText(Utilities.GetJoke());
+        textViewjoke.setText(Utilities.GetJoke() + "\n" + u.toString());
     }
 
     // View Meal btn click
