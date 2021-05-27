@@ -23,8 +23,9 @@ public class StepCounterActivity extends AppCompatActivity {
 
         // GET PARAMETERS PASSEd
         Intent intent = getIntent();
+
         User user = Utilities.getUser(); // (User) intent.getSerializableExtra(User.EXTRA_USEROBJ);
-        StepCalorieDetails scDetail = (StepCalorieDetails) intent.getSerializableExtra(StepCalorieDetails.EXTRA_STEPCALDETAIL_OBJ);
+        StepCalorieDetails scDetail = Utilities.getStepCalorieDetails(); // (StepCalorieDetails) intent.getSerializableExtra(StepCalorieDetails.EXTRA_STEPCALDETAIL_OBJ);
 
         populateTextViews(user, scDetail);
     }
