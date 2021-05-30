@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.personalchef.mealplan.models.StepCalorieDetails;
 import com.personalchef.mealplan.models.User;
 
 import org.json.JSONException;
@@ -67,6 +66,7 @@ public class IOHelper {
         return;
     }
 
+    /** StepCalorieDetails JSON read/write
     // Load StepCalorieDetails from file
     public static StepCalorieDetails loadStepDetails(Context context) {
         String json;
@@ -105,6 +105,6 @@ public class IOHelper {
 
         return;
     }
-
+*/
 
 }

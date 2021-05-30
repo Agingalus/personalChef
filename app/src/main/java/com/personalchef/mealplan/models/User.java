@@ -1,11 +1,5 @@
 package com.personalchef.mealplan.models;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.Serializable;
 
 public class User implements Serializable {
@@ -17,11 +11,14 @@ public class User implements Serializable {
     private float height;
     private int age;
 
-    public User() {}
+    public User() {
+        hash = "4b5v4398573406";
+    }
 
     public User(String uname, String hash, int weight, float height, int age) {
+        this();
         this.userName = uname;
-        this.hash = hash;
+        //this.hash = hash;
         this.weight = weight;
         this.height = height;
         this.age = age;
