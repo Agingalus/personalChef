@@ -10,13 +10,11 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.widget.TextView;
 
-
 import com.personalchef.mealplan.models.DatabaseHelper;
 import com.personalchef.mealplan.models.StepCalorieDetails;
 import com.personalchef.mealplan.models.StepCounter;
 
 import com.personalchef.mealplan.models.User;
-
 import com.personalchef.mealplan.models.Utilities;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,6 +28,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Load user from file
+        User u = IOHelper.loadUserFromFile(getApplicationContext()) ;
+        if (u == null) {
+
+        }
 
         //sensor instances used to get accelerometer to read steps
         SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -70,12 +74,12 @@ public class MainActivity extends AppCompatActivity {
         };
         sensorManager.registerListener(stepDetector, sensor, SensorManager.SENSOR_DELAY_NORMAL);
 
-        // Load user from file
-        User u = IOHelper.loadUserFromFile(getApplicationContext()) ;
+
 
         ///when activity is  created user gets the text for the joke of the day here
         TextView textViewjoke=findViewById(R.id.tv_textJoke);
-        textViewjoke.setText(Utilities.GetJoke() + "\n" + u.toString());
+        // If at all user is null, we don't want to crash the app right now
+        textViewjoke.setText(Utilities.GetJoke() + "\n" + (u != null ? u.toString() : ""));
     }
 
     // View Meal btn click
