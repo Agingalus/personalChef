@@ -2,6 +2,7 @@
     <string name="app_name">PersonalChef_MealPlan</string>
     <string name="appTitle">Personal Chef</string>
     <string name="userDetails">User Details</string>
+    <string name="userProfile">User Profile</string>
     <string name="stepDetail">Step-Calorie Details</string>
     <string name="height">Height</string>
 
