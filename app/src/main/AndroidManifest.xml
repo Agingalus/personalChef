@@ -33,8 +33,7 @@
 
         <activity android:name=".StepCounterActivity" />
 
-        <activity android:name=".UserProfileActivity" android:label="@string/userProfile"
-            android:parentActivityName=".MainActivity" />
+        <activity android:name=".UserProfileActivity" android:label="@string/userProfile"  />
 
         <activity android:name=".MainActivity">
             <!--

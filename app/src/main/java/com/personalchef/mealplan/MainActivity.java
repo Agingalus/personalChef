@@ -37,9 +37,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Load user from file
         User u = IOHelper.loadUserFromFile(getApplicationContext()) ;
-        if (u == null) {
-
-        }
 
         //sensor instances used to get accelerometer to read steps
         SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);

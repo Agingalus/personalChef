@@ -12,13 +12,12 @@ public class User implements Serializable {
     private int age;
 
     public User() {
+        userName = "chefUser";
         hash = "4b5v4398573406";
     }
 
-    public User(String uname, String hash, int weight, float height, int age) {
+    public User(int weight, float height, int age) {
         this();
-        this.userName = uname;
-        //this.hash = hash;
         this.weight = weight;
         this.height = height;
         this.age = age;
