@@ -23,7 +23,7 @@ public class LaunchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_launch);
+        setContentView(R.layout.activity_launch);
 
         biometricPrompt = createBiometricPrompt();
 
@@ -122,7 +122,7 @@ public class LaunchActivity extends AppCompatActivity {
     private void loadAppropriateActivity() {
         // Load user from file
         User u = IOHelper.loadUserFromFile(getApplicationContext()) ;
-        Log.i("PC", "User = " + u.toString());
+        //Log.i("PC", "User = " + u.toString());
         if (u == null) {
             Intent intent = new Intent(this, UserProfileActivity.class);
             startActivity(intent);
