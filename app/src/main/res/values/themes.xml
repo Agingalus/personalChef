@@ -15,7 +15,7 @@
     </style>
 
     <style name="LaunchTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@drawable/main_logo</item>
+        <!-- <item name="android:windowBackground">@drawable/main_logo</item> -->
     </style>
 
 </resources>
