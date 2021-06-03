@@ -20,9 +20,15 @@ import com.personalchef.mealplan.models.Utilities;
 public class MainActivity extends AppCompatActivity {
     private double MagnitudePrevious = 0;
     public static Integer stepCount = 0;
-    public  static StepCounter stepCounter= new StepCounter();
+    public  static StepCounter stepCounter;
     private boolean first = true;
-    private final DatabaseHelper helper = new DatabaseHelper(this);
+    private DatabaseHelper helper = null;
+
+    public MainActivity() {
+        // With final init, error of SQL not closing was generated. Init in constructor
+        helper = new DatabaseHelper(this);
+        stepCounter = new StepCounter();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +37,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Load user from file
         User u = IOHelper.loadUserFromFile(getApplicationContext()) ;
-        if (u == null) {
-
-        }
 
         //sensor instances used to get accelerometer to read steps
         SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -74,8 +77,6 @@ public class MainActivity extends AppCompatActivity {
         };
         sensorManager.registerListener(stepDetector, sensor, SensorManager.SENSOR_DELAY_NORMAL);
 
-
-
         ///when activity is  created user gets the text for the joke of the day here
         TextView textViewjoke=findViewById(R.id.tv_textJoke);
         // If at all user is null, we don't want to crash the app right now
@@ -111,4 +112,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Close the SQL
+        helper.close();
+    }
 }
