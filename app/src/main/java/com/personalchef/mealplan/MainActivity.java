@@ -3,12 +3,14 @@ package com.personalchef.mealplan;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.widget.TextView;
+import androidx.appcompat.widget.Toolbar;
 
 import com.personalchef.mealplan.models.DatabaseHelper;
 import com.personalchef.mealplan.models.StepCalorieDetails;
@@ -16,6 +18,8 @@ import com.personalchef.mealplan.models.StepCounter;
 
 import com.personalchef.mealplan.models.User;
 import com.personalchef.mealplan.models.Utilities;
+import android.view.Menu;
+
 
 public class MainActivity extends AppCompatActivity {
     private double MagnitudePrevious = 0;
@@ -24,16 +28,41 @@ public class MainActivity extends AppCompatActivity {
     private boolean first = true;
     private final DatabaseHelper helper = new DatabaseHelper(this);
 
+    //get the activity to display the toolbar
+    @Override
+    public boolean onCreateOptionsMenu (Menu menu){
+        //inflate the menu. this adds the items to the app bar
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    //method runs whenever an action gets clicked. It takes one parameter, a MenuItem object that represents the action on the app bar that was clicked
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.action_go_to_user_profile:
+                //Code to run when the user profile button is clicked
+                Intent intent = new Intent(getApplicationContext(), UserProfileActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //get ref to toolbar and set it as the activity app bar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         // Load user from file
-        User u = IOHelper.loadUserFromFile(getApplicationContext()) ;
+        /*User u = IOHelper.loadUserFromFile(getApplicationContext()) ;
         if (u == null) {
 
-        }
+        }*/
 
         //sensor instances used to get accelerometer to read steps
         SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -75,22 +104,8 @@ public class MainActivity extends AppCompatActivity {
         sensorManager.registerListener(stepDetector, sensor, SensorManager.SENSOR_DELAY_NORMAL);
 
 
-
-        ///when activity is  created user gets the text for the joke of the day here
-        TextView textViewjoke=findViewById(R.id.tv_textJoke);
-        // If at all user is null, we don't want to crash the app right now
-        textViewjoke.setText(Utilities.GetJoke() + "\n" + (u != null ? u.toString() : ""));
     }
 
-    // View Meal btn click
-    public void onViewMealButton(View view) {
-
-    }
-
-    // Get Meal Plan btn click
-    public void onGetMealPlanButton(View view) {
-
-    }
 
     public void onButtonClick(View view) {
     /*
@@ -105,9 +120,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
      */
-
-        Intent intent = new Intent(getApplicationContext(), UserProfileActivity.class);
-        startActivity(intent);
 
     }
 

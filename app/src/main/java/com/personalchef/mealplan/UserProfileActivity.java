@@ -1,11 +1,14 @@
 package com.personalchef.mealplan;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,17 +20,15 @@ import org.json.JSONObject;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import androidx.appcompat.app.ActionBar;
+
 
 public class UserProfileActivity extends AppCompatActivity {
 
-    //private String uname;
-    //private String hash;
+
     private int weight;
     private float height;
     private int age;
-
-    //import user model
-    //private User user = new User(uname, hash, weight, height, age);
 
     EditText ageInput, heightInput, weightInput;
     Button submitButton, resetButton;
@@ -36,6 +37,14 @@ public class UserProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
+
+        //get ref to toolbar and set it as the activity app bar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        //Enable Home Up feature
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         if (savedInstanceState != null){
             age = savedInstanceState.getInt("age");
             height = savedInstanceState.getFloat("height");
@@ -86,6 +95,9 @@ public class UserProfileActivity extends AppCompatActivity {
                 // save it to the Utilities
                 User user = new User("chefUser", "HASH", weight, height, age);
                 IOHelper.SaveUserToFile(getApplicationContext(), user);
+
+                Intent intent = new Intent(getApplicationContext(), UserProfileSubmitted.class);
+                startActivity(intent);
             }
         });
     }
@@ -101,10 +113,14 @@ public class UserProfileActivity extends AppCompatActivity {
     //nav button for testing
     public void onHomeButtonClick(View view) {
 
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(intent);
+
 
     }
+
+    //private String uname;
+    //private String hash;
+    //import user model
+    //private User user = new User(uname, hash, weight, height, age);
 
 
 }

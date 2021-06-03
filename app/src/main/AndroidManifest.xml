@@ -3,13 +3,16 @@
     package="com.personalchef.mealplan">
 
     <uses-sdk android:minSdkVersion="20" />
-
     <!-- Hardware features that the app uses -->
-    <uses-feature android:name="android.permission.USE_FINGERPRINT" android:required="false" />
-    <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true" />
-    <uses-feature android:name="android.hardware.location.gps" android:required="false" />
-
-    <!-- Permissions asked to user -->
+    <uses-feature
+        android:name="android.permission.USE_FINGERPRINT"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.sensor.accelerometer"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.location.gps"
+        android:required="false" /> <!-- Permissions asked to user -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
@@ -18,11 +21,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.PersonalChef_MealPlan"  >
-
+        android:theme="@style/Theme.PersonalChef_MealPlan">
+        <activity
+            android:name=".UserProfileSubmitted"
+            android:label="@string/title_activity_step_goal"
+            android:theme="@style/Theme.PersonalChef_MealPlan.NoActionBar"></activity>
         <activity android:name=".StepCounterActivity" />
-        <activity android:name=".UserProfileActivity" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".UserProfileActivity"
+            android:label="@string/userProfile"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".MainActivity" android:label="@string/home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,5 +39,7 @@
             </intent-filter>
         </activity>
     </application>
+
+
 
 </manifest>

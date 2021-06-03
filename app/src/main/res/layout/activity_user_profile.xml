@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".UserProfileActivity">
 
+    <include
+        layout="@layout/toolbar_main"
+        android:id="@+id/toolbar"/>
+
     <TextView
         android:id="@+id/ageTextView"
         android:layout_width="wrap_content"
@@ -41,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="451dp"
-        android:layout_marginEnd="82dp"
+        android:layout_marginEnd="100dp"
         android:layout_marginBottom="232dp"
         android:text="@string/submit"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -92,29 +96,17 @@
         android:id="@+id/resetButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="138dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="451dp"
-        android:layout_marginEnd="185dp"
+        android:layout_marginEnd="100dp"
         android:layout_marginBottom="232dp"
         android:text="@string/reset"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/homeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="451dp"
-        android:layout_marginEnd="291dp"
-        android:layout_marginBottom="232dp"
-        android:onClick="onHomeButtonClick"
-        android:text="@string/home"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
