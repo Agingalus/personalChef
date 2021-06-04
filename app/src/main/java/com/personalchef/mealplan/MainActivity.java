@@ -79,8 +79,8 @@ public class MainActivity extends AppCompatActivity {
 
         ///when activity is  created user gets the text for the joke of the day here
         TextView textViewjoke=findViewById(R.id.tv_textJoke);
-        // If at all user is null, we don't want to crash the app right now
-        textViewjoke.setText(Utilities.GetJoke() + "\n" + (u != null ? u.toString() : ""));
+        textViewjoke.setText(IOHelper.getJokeOfTheDay(this));
+        System.out.println((u != null ? u.toString() : ""));
     }
 
     // View Meal btn click
