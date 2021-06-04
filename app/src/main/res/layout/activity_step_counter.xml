@@ -28,7 +28,7 @@
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/textView17"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
-
+<!--
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -81,6 +81,7 @@
         android:hint="@string/weight"
         app:layout_constraintStart_toStartOf="@+id/tvHeight"
         app:layout_constraintTop_toBottomOf="@+id/tvHeight" />
+    -->
 
     <TextView
         android:id="@+id/textView7"
@@ -90,8 +91,8 @@
         android:text="@string/todaySteps"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView8"
@@ -192,6 +193,70 @@
         android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/tvBurnedCals"
         app:layout_constraintTop_toTopOf="@+id/tvBurnedCals" />
+    <!-- New code for progress bar to be implemented and evaluated -->
+
+
+    <!-- Title above the chart -->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calories Burned vs. Calories Consumed"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Doughnut chart starts here -->
+
+    <!-- ProgressBar that represents a total of 100% -->
+
+    <!-- ProgressBar that represents a chart slice, where "android:progress" is the % value of the slice -->
+
+    <!-- The text that goes in a center of the chart -->
+    <ProgressBar
+        android:id="@+id/background_progressbar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="100"
+        android:progressDrawable="@drawable/stats_full"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_TotalCalsBurned" />
+
+    <!-- Doughnut chart ends here -->
+
+
+    <!-- end of new code -->
+    <ProgressBar
+        android:id="@+id/stats_progressbar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="25"
+        android:progressDrawable="@drawable/stats_progress"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_TotalCalsBurned" />
+
+    <TextView
+        android:id="@+id/number_of_calories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1500/2000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/background_progressbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/background_progressbar" />
 
     <Button
         android:id="@+id/button"
@@ -203,4 +268,5 @@
         android:text="@string/home"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

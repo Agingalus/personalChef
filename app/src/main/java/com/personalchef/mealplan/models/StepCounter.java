@@ -1,14 +1,11 @@
 package com.personalchef.mealplan.models;
 
 import android.content.SharedPreferences;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.personalchef.mealplan.MainActivity;
+import com.personalchef.mealplan.StepCounterActivity;
 
 import java.util.Date;
 
@@ -33,8 +30,8 @@ public class StepCounter extends AppCompatActivity {
     public int GetStepCount() {
         MainActivity mainActivity = new MainActivity();
         System.out.println("From GetStepCounter\n_____________________________");
-        System.out.println(mainActivity.stepCount);
-        return mainActivity.stepCount;
+        System.out.println(StepCounterActivity.stepCount);
+        return StepCounterActivity.stepCount;
     }
 
     public int  CalculateCaloriesBurnt() {
@@ -46,6 +43,16 @@ public class StepCounter extends AppCompatActivity {
         caloriesBurned = (int) Math.floor((caloriePerMile / stepsPerMile) * stepCount * 100); // 91.2 / 2138 = cal per step then multiply by stepCount. 100 only used for testing purposes
 
         return caloriesBurned;
+    }
+    public String  CalculateCaloriesBurntString() {
+        int stepCount = GetStepCount();
+        StepCalorieDetails scDetail = new StepCalorieDetails();
+        // Get step count
+        // Get calories from all day/week meals
+        // Calculates calorie details
+        caloriesBurned = (int) Math.floor((caloriePerMile / stepsPerMile) * stepCount * 100); // 91.2 / 2138 = cal per step then multiply by stepCount. 100 only used for testing purposes
+
+        return caloriesBurned.toString();
     }
     protected void onPause(int stepCount) {
         super.onPause();
