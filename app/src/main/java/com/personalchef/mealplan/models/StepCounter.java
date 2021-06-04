@@ -44,6 +44,16 @@ public class StepCounter extends AppCompatActivity {
 
         return caloriesBurned;
     }
+    public String  CalculateCaloriesBurntString() {
+        int stepCount = GetStepCount();
+        StepCalorieDetails scDetail = new StepCalorieDetails();
+        // Get step count
+        // Get calories from all day/week meals
+        // Calculates calorie details
+        caloriesBurned = (int) Math.floor((caloriePerMile / stepsPerMile) * stepCount * 100); // 91.2 / 2138 = cal per step then multiply by stepCount. 100 only used for testing purposes
+
+        return caloriesBurned.toString();
+    }
     protected void onPause(int stepCount) {
         super.onPause();
 

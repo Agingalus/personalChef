@@ -120,9 +120,22 @@ public class StepCounterActivity extends AppCompatActivity {
         stepCountV.setText(stepCount.toString() + " / 20" );//goal.toString());
         // Calculate the slice size and update the pie chart:
         ProgressBar pieChart = findViewById(R.id.stats_progressbar);
-//        double d = stepCount / 20; //2000
-//        int progress = (int) (d * 100);
-//        pieChart.setProgress(progress);
+        double d = (double)stepCount / 20 * 100; //2000
+        int progress = (int) d ;
+        pieChart.setProgress(progress);
+        TextView tvTodaysSteps = findViewById(R.id.tvTodaysSteps);
+        tvTodaysSteps.setText(stepCount.toString());
+
+        TextView tvBurnedCals = findViewById(R.id.tvBurnedCals);
+        tvBurnedCals.setText(stepCounter.CalculateCaloriesBurntString());
+
+        TextView tv_TotalStepsThisWeek = findViewById(R.id.tv_TotalStepsThisWeek);
+        StepCalorieDetails scDetail = helper.getStepDetails();
+        tv_TotalStepsThisWeek.setText(String.valueOf(scDetail.getTotalSteps_Week() + stepCount));
+
+
+        TextView tv_TotalCalsBurned = findViewById(R.id.tv_TotalCalsBurned);
+        tv_TotalCalsBurned.setText(String.valueOf(scDetail.getTotalCal_Burned() +stepCounter.CalculateCaloriesBurnt()));
     }
     public void onHomeClicked(View view) {
         onBackPressed();
