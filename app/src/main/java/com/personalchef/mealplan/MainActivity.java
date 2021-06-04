@@ -1,33 +1,24 @@
 package com.personalchef.mealplan;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.widget.TextView;
 
-import com.personalchef.mealplan.models.DatabaseHelper;
-import com.personalchef.mealplan.models.StepCalorieDetails;
-import com.personalchef.mealplan.models.StepCounter;
+import androidx.appcompat.app.AppCompatActivity;
 
+import com.personalchef.mealplan.models.DatabaseHelper;
 import com.personalchef.mealplan.models.User;
 import com.personalchef.mealplan.models.Utilities;
 
 public class MainActivity extends AppCompatActivity {
-    private double MagnitudePrevious = 0;
-    public static Integer stepCount = 0;
-    public  static StepCounter stepCounter;
-    private boolean first = true;
     private DatabaseHelper helper = null;
+    private StepCounterActivity sc = new StepCounterActivity();
+
 
     public MainActivity() {
         // With final init, error of SQL not closing was generated. Init in constructor
         helper = new DatabaseHelper(this);
-        stepCounter = new StepCounter();
     }
 
     @Override
@@ -37,45 +28,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Load user from file
         User u = IOHelper.loadUserFromFile(getApplicationContext()) ;
-
-        //sensor instances used to get accelerometer to read steps
-        SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        SensorEventListener stepDetector = new SensorEventListener() {
-            @Override
-            public void onSensorChanged(SensorEvent sensorEvent) {
-                if (sensorEvent != null) {
-                    float x_acceleration = sensorEvent.values[0];
-                    float y_acceleration = sensorEvent.values[1];
-                    float z_acceleration = sensorEvent.values[2];
-                    double Magnitude = Math.sqrt(x_acceleration * x_acceleration + y_acceleration * y_acceleration + z_acceleration * z_acceleration);
-                    double MagnitudeDelta = Magnitude - MagnitudePrevious;
-                    MagnitudePrevious = Magnitude;
-
-                    if (MagnitudeDelta > 2) {
-                        stepCount++;
-                        //add an update to a graph or other visual progress function as a stretch goal
-                        System.out.println(stepCounter.GetStepCount());
-                    }
-
-                }
-                if(stepCount ==3 && first){
-                    //StepCounter stepCounter= new StepCounter();
-                    first = false;
-                    helper.insert(41, 51, 61, 71, 81);
-                }
-                if (stepCount == 5 && !first){
-                    first = true;
-                    StepCalorieDetails stepCalorieDetails = helper.getStepDetails();
-                    System.out.println(stepCalorieDetails.getCalBurnt() + " This is from the DB. YAY!!!!!");
-                }
-            }
-
-            @Override
-            public void onAccuracyChanged(Sensor sensor, int i) {
-            }
-        };
-        sensorManager.registerListener(stepDetector, sensor, SensorManager.SENSOR_DELAY_NORMAL);
 
         ///when activity is  created user gets the text for the joke of the day here
         TextView textViewjoke=findViewById(R.id.tv_textJoke);
@@ -117,5 +69,10 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         // Close the SQL
         helper.close();
+    }
+
+    public void stepCounterDisplay(View view) {
+        Intent intent = new Intent(getApplicationContext(), StepCounterActivity.class);
+        startActivity(intent);
     }
 }

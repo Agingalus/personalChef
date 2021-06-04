@@ -1,40 +1,97 @@
 package com.personalchef.mealplan;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.personalchef.mealplan.models.DatabaseHelper;
 import com.personalchef.mealplan.models.StepCalorieDetails;
+import com.personalchef.mealplan.models.StepCounter;
 import com.personalchef.mealplan.models.User;
-import com.personalchef.mealplan.models.Utilities;
 
 public class StepCounterActivity extends AppCompatActivity {
+    private DatabaseHelper helper = null;
+    private double MagnitudePrevious = 0;
+    public static Integer stepCount = 0;
+    public  static StepCounter stepCounter;
+    private boolean first = true;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        stepCounter = new StepCounter();
         setContentView(R.layout.activity_step_counter);
 
-        Log.i("MP", "Into StepCount activity");
+        //Log.i("MP", "Into StepCount activity");
+
+        //sensor instances used to get accelerometer to read steps
+        SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        SensorEventListener stepDetector = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent sensorEvent) {
+                if (sensorEvent != null) {
+                    float x_acceleration = sensorEvent.values[0];
+                    float y_acceleration = sensorEvent.values[1];
+                    float z_acceleration = sensorEvent.values[2];
+                    double Magnitude = Math.sqrt(x_acceleration * x_acceleration + y_acceleration * y_acceleration + z_acceleration * z_acceleration);
+                    double MagnitudeDelta = Magnitude - MagnitudePrevious;
+                    MagnitudePrevious = Magnitude;
+
+                    if (MagnitudeDelta > 2) {
+                        stepCount++;
+                        update();
+                        //add an update to a graph or other visual progress function as a stretch goal
+                        System.out.println(stepCounter.GetStepCount());
+                    }
+
+                }
+                if(stepCount ==3 && first){
+                    //StepCounter stepCounter= new StepCounter();
+                    first = false;
+                    helper.insert(41, 51, 61, 71, 81);
+                }
+                if (stepCount == 5 && !first){
+                    first = true;
+                    StepCalorieDetails stepCalorieDetails = helper.getStepDetails();
+                    System.out.println(stepCalorieDetails.getCalBurnt() + " This is from the DB. YAY!!!!!");
+                }
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int i) {
+            }
+        };
+        sensorManager.registerListener(stepDetector, sensor, SensorManager.SENSOR_DELAY_NORMAL);
+
+
+
 
         // GET PARAMETERS PASSEd
         Intent intent = getIntent();
 
-        User user = Utilities.getUser(); // (User) intent.getSerializableExtra(User.EXTRA_USEROBJ);
-        StepCalorieDetails scDetail = Utilities.getStepCalorieDetails(); // (StepCalorieDetails) intent.getSerializableExtra(StepCalorieDetails.EXTRA_STEPCALDETAIL_OBJ);
+        //User user = Utilities.getUser(); // (User) intent.getSerializableExtra(User.EXTRA_USEROBJ);
+        User u = IOHelper.loadUserFromFile(getApplicationContext()) ;
+        helper = new DatabaseHelper(this);
+        StepCalorieDetails scDetail = helper.getStepDetails(); // (StepCalorieDetails) intent.getSerializableExtra(StepCalorieDetails.EXTRA_STEPCALDETAIL_OBJ);
 
-        populateTextViews(user, scDetail);
+        populateTextViews(u, scDetail);
     }
 
-    private void populateTextViews(User user, StepCalorieDetails scDetail) {
+    private void populateTextViews(User u, StepCalorieDetails scDetail) {
         // Retrieve Views
         // User
-        TextView tvHeight = findViewById(R.id.tvHeight);
-        TextView tvWeight = findViewById(R.id.tvWeight);
+//        TextView tvHeight = findViewById(R.id.tvHeight);
+//        TextView tvWeight = findViewById(R.id.tvWeight);
 
         // Step-Calorie
         TextView tvTodaysSteps = findViewById(R.id.tvTodaysSteps);
@@ -42,10 +99,13 @@ public class StepCounterActivity extends AppCompatActivity {
         TextView tv_TotalStepsThisWeek = findViewById(R.id.tv_TotalStepsThisWeek);
         TextView tv_TotalCalsIntake = findViewById(R.id.tv_TotalCalsIntake);
         TextView tv_TotalCalsBurned = findViewById(R.id.tv_TotalCalsBurned);
+        TextView stepCountV = findViewById(R.id.number_of_calories);
 
+
+        stepCountV.setText(stepCount.toString());
         // Set Values to text views
-        tvHeight.setText(Float.toString(user.getHeight()));
-        tvWeight.setText(String.valueOf(user.getWeight()));
+//        tvHeight.setText(Float.toString(user.getHeight()));
+//        tvWeight.setText(String.valueOf(user.getWeight()));
 
         tvTodaysSteps.setText(String.valueOf(scDetail.getTotalSteps()));
         tvBurnedCals.setText(String.valueOf(scDetail.getCalBurnt()));
@@ -55,9 +115,18 @@ public class StepCounterActivity extends AppCompatActivity {
 
         return;
     }
-
+    public void update(){
+        TextView stepCountV = findViewById(R.id.number_of_calories);
+        stepCountV.setText(stepCount.toString() + " / 20" );//goal.toString());
+        // Calculate the slice size and update the pie chart:
+        ProgressBar pieChart = findViewById(R.id.stats_progressbar);
+//        double d = stepCount / 20; //2000
+//        int progress = (int) (d * 100);
+//        pieChart.setProgress(progress);
+    }
     public void onHomeClicked(View view) {
         onBackPressed();
     }
+
 }
 
