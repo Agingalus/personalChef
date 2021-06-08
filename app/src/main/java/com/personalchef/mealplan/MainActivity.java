@@ -2,18 +2,23 @@ package com.personalchef.mealplan;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.personalchef.mealplan.models.DatabaseHelper;
 import com.personalchef.mealplan.models.User;
-import com.personalchef.mealplan.models.Utilities;
 
 public class MainActivity extends AppCompatActivity {
     private DatabaseHelper helper = null;
     private StepCounterActivity sc = new StepCounterActivity();
+    public DrawerLayout drawerLayout;
+    public ActionBarDrawerToggle actionBarDrawerToggle;
 
 
     public MainActivity() {
@@ -29,35 +34,36 @@ public class MainActivity extends AppCompatActivity {
         // Load user from file
         User u = IOHelper.loadUserFromFile(getApplicationContext()) ;
 
-        ///when activity is  created user gets the text for the joke of the day here
-        TextView textViewjoke=findViewById(R.id.tv_textJoke);
-        textViewjoke.setText(IOHelper.getJokeOfTheDay(this));
-        System.out.println((u != null ? u.toString() : ""));
+        // drawer layout instance to toggle the menu icon to open
+        // drawer and back button to close drawer
+        drawerLayout = findViewById(R.id.my_drawer_layout);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
+
+        // pass the Open and Close toggle for the drawer layout listener
+        // to toggle the button
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+
+        // to make the Navigation drawer icon always appear on the action bar
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+    }
+    // override the onOptionsItemSelected()
+    // function to implement
+    // the item click listener callback
+    // to open and close the navigation
+    // drawer when the icon is clicked
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
-    // View Meal btn click
-    public void onViewMealButton(View view) {
-
-    }
-
-    // Get Meal Plan btn click
-    public void onGetMealPlanButton(View view) {
-
-    }
 
     public void onButtonClick(View view) {
-    /*
-        User user = new User("john", "ASDFRED", 150, 5.4f, 38);
-        StepCalorieDetails sc = new StepCalorieDetails(150, 300, 1000, 2500, 1900);
-
-        Log.i("MP", "About to start activity");
-
-        Intent intent = new Intent(getApplicationContext(), StepCounterActivity.class);
-        intent.putExtra(User.EXTRA_USEROBJ, user);
-        intent.putExtra(StepCalorieDetails.EXTRA_STEPCALDETAIL_OBJ, sc);
-        startActivity(intent);
-
-     */
 
         Intent intent = new Intent(getApplicationContext(), UserProfileActivity.class);
         startActivity(intent);
@@ -71,7 +77,14 @@ public class MainActivity extends AppCompatActivity {
         helper.close();
     }
 
+
+
     public void stepCounterDisplay(View view) {
+        Intent intent = new Intent(getApplicationContext(), StepCounterActivity.class);
+        startActivity(intent);
+    }
+
+    public void stepGoalSubmitted(View view) {
         Intent intent = new Intent(getApplicationContext(), StepCounterActivity.class);
         startActivity(intent);
     }

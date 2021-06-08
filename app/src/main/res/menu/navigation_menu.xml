@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/userProfile"
+        android:title="@string/userProfile"/>
+
+    <item
+        android:id="@+id/setStepGoal"
+        android:title="@string/stepGoal"/>
+
+    <!--<item
+        android:id="@+id/stepCounter"
+        android:title="@string/stepDetail"/>-->
+
+
+</menu>

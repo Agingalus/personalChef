@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.biometric.*;
@@ -31,6 +32,11 @@ public class LaunchActivity extends AppCompatActivity {
         promptInfo = createPromptInfo();
 
         canAuthenticate();
+
+        ///when activity is  created user gets the text for the joke of the day here
+        TextView textViewjoke=findViewById(R.id.tv_textJoke);
+        textViewjoke.setText(IOHelper.getJokeOfTheDay(this));
+        //System.out.println((u != null ? u.toString() : ""));
     }
 
     private BiometricPrompt createBiometricPrompt() {

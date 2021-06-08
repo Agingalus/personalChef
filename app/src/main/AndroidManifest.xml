@@ -14,8 +14,7 @@
         android:name="android.hardware.location.gps"
         android:required="false" /> <!-- Permissions asked to user -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
-    <!-- Fingerprint is deprecated - might be required for previous versions -->
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" /> <!-- Fingerprint is deprecated - might be required for previous versions -->
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
 
     <application
@@ -25,20 +24,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PersonalChef_MealPlan">
-
-        <activity android:name=".LaunchActivity" android:theme="@style/LaunchTheme">
+        <activity android:name=".SetStepGoal" />
+        <activity
+            android:name=".LaunchActivity"
+            android:theme="@style/LaunchTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".StepCounterActivity" />
-
-        <activity android:name=".UserProfileActivity" android:label="@string/userProfile"  />
-
+        <activity
+            android:name=".StepCounterActivity"
+            android:label="@string/stepCounterSummary" />
+        <activity
+            android:name=".UserProfileActivity"
+            android:label="@string/userProfile" />
         <activity android:name=".MainActivity">
+
             <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

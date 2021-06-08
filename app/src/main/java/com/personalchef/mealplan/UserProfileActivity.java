@@ -81,7 +81,8 @@ public class UserProfileActivity extends AppCompatActivity {
             User user = new User(weight, height, age);
             IOHelper.SaveUserToFile(getApplicationContext(), user);
 
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            Intent intent = new Intent(getApplicationContext(), SetStepGoal.class);
             startActivity(intent);
 
             finish();
