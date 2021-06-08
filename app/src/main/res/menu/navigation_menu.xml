@@ -3,11 +3,14 @@
 
     <item
         android:id="@+id/userProfile"
-        android:title="@string/userProfile"/>
+        android:title="@string/userProfile"
+        android:icon="@drawable/user"/>
 
     <item
         android:id="@+id/setStepGoal"
-        android:title="@string/stepGoal"/>
+        android:title="@string/stepGoal"
+        android:icon="@drawable/goal"
+        />
 
     <!--<item
         android:id="@+id/stepCounter"

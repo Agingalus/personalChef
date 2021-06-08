@@ -82,9 +82,9 @@ public class StepCounterActivity extends AppCompatActivity {
         //User user = Utilities.getUser(); // (User) intent.getSerializableExtra(User.EXTRA_USEROBJ);
         User u = IOHelper.loadUserFromFile(getApplicationContext()) ;
         helper = new DatabaseHelper(this);
-        StepCalorieDetails scDetail = helper.getStepDetails(); // (StepCalorieDetails) intent.getSerializableExtra(StepCalorieDetails.EXTRA_STEPCALDETAIL_OBJ);
+        //StepCalorieDetails scDetail = helper.getStepDetails(); // (StepCalorieDetails) intent.getSerializableExtra(StepCalorieDetails.EXTRA_STEPCALDETAIL_OBJ);
 
-        populateTextViews(u, scDetail);
+        //populateTextViews(u, scDetail);
     }
 
     private void populateTextViews(User u, StepCalorieDetails scDetail) {
