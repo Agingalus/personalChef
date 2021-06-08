@@ -33,10 +33,7 @@ public class LaunchActivity extends AppCompatActivity {
 
         canAuthenticate();
 
-        ///when activity is  created user gets the text for the joke of the day here
-        TextView textViewjoke=findViewById(R.id.tv_textJoke);
-        textViewjoke.setText(IOHelper.getJokeOfTheDay(this));
-        //System.out.println((u != null ? u.toString() : ""));
+
     }
 
     private BiometricPrompt createBiometricPrompt() {

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -46,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
 
         // to make the Navigation drawer icon always appear on the action bar
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        ///when activity is  created user gets the text for the joke of the day here
+        TextView textViewjoke=findViewById(R.id.tv_textJoke);
+        textViewjoke.setText(IOHelper.getJokeOfTheDay(this));
+        System.out.println((u != null ? u.toString() : ""));
 
     }
     // override the onOptionsItemSelected()
