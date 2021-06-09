@@ -52,6 +52,7 @@ public class LaunchActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),
                             "Authentication error: " + errString, Toast.LENGTH_SHORT)
                             .show();
+                    finish();
                 }
             }
 

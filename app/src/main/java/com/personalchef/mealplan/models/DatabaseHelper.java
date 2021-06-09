@@ -73,7 +73,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 array_list.add(res.getInt(res.getColumnIndex("totalCal_Burned")));
             res.moveToNext();
         }
-        System.out.println(array_list.get(1) + " attempt to get array list to work for us");
+       // System.out.println(array_list.get(1) + " attempt to get array list to work for us");
         StepCalorieDetails stepCalorieDetails = new StepCalorieDetails(array_list.get(0), array_list.get(1), array_list.get(2), array_list.get(3), array_list.get(4) );
         System.out.println("part3*********************************************************************************************************");
         return stepCalorieDetails;
