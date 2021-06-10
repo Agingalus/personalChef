@@ -24,10 +24,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PersonalChef_MealPlan">
-        <activity
-            android:name=".NavigationDrawer"
-            android:label="@string/title_activity_navigation_drawer"
-            android:theme="@style/Theme.PersonalChef_MealPlan.NoActionBar"></activity>
         <activity android:name=".SetStepGoal" />
         <activity
             android:name=".LaunchActivity"
@@ -43,8 +39,11 @@
             android:label="@string/stepCounterSummary" />
         <activity
             android:name=".UserProfileActivity"
-            android:label="@string/userProfile" />
-        <activity android:name=".MainActivity">
+            android:label="@string/userProfile"
+            android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme">
 
             <!--
             <intent-filter>

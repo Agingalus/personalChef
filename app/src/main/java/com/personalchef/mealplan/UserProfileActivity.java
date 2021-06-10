@@ -1,6 +1,7 @@
 package com.personalchef.mealplan;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,6 +26,8 @@ public class UserProfileActivity extends AppCompatActivity {
             height = savedInstanceState.getFloat("height");
             weight = savedInstanceState.getInt("weight");
         }
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
     @Override
