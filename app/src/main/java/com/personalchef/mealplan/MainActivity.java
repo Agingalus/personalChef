@@ -64,12 +64,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-    public void onButtonClick(View view) {
-
-        Intent intent = new Intent(getApplicationContext(), UserProfileActivity.class);
-        startActivity(intent);
-
-    }
 
     @Override
     protected void onDestroy() {
@@ -79,16 +73,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
+    public void onButtonClick(View view) {
 
-    public void stepCounterDisplay(View view) {
-        Intent intent = new Intent(getApplicationContext(), StepCounterActivity.class);
+        Intent intent = new Intent(getApplicationContext(), UserProfileActivity.class);
         startActivity(intent);
+
     }
 
-    public void stepGoalSubmitted(View view) {
+    /*public void stepCounterDisplay(View view) {
         Intent intent = new Intent(getApplicationContext(), StepCounterActivity.class);
         startActivity(intent);
-    }
+    }*/
+
+    /*public void stepGoalSubmitted(View view) {
+        Intent intent = new Intent(getApplicationContext(), StepCounterActivity.class);
+        startActivity(intent);
+    }*/
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (id)
         {
             case R.id.userProfile:
-                intent = new Intent(getApplicationContext(), UserProfileActivity.class);
+                fragment = new TopFragment();
                 break;
 
             case R.id.setStepGoal:
@@ -109,8 +109,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.stepCounter:
                 intent = new Intent(getApplicationContext(), StepCounterActivity.class);
                 break;
+            default:
+                intent = new Intent(getApplicationContext(), MainActivity.class);
         }
-        startActivity(intent);
+        if (fragment != null){
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_frame, fragment);
+            ft.commit();
+        } else {
+            startActivity(intent);
+        }
+
+        //Close drawer when user selects option
+        drawer = (DrawerLayout) findViewById(R.id.my_drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
         return false;
     }
 }
