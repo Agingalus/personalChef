@@ -5,19 +5,33 @@ import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.material.navigation.NavigationView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.core.view.GravityCompat;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import android.view.Menu;
+import android.view.MenuItem;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import com.personalchef.mealplan.models.DatabaseHelper;
 import com.personalchef.mealplan.models.User;
 import com.personalchef.mealplan.models.Utilities;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DatabaseHelper helper = null;
     private StepCounterActivity sc = new StepCounterActivity();
-
+    public DrawerLayout drawer;
+    public ActionBarDrawerToggle toggle;
+    public NavigationView navView;
 
     public MainActivity() {
         // With final init, error of SQL not closing was generated. Init in constructor
@@ -32,6 +46,15 @@ public class MainActivity extends AppCompatActivity {
         // Register Notification Channel
         createNotificationChannel();
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        drawer = (DrawerLayout) findViewById(R.id.my_drawer_layout);
+        toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.nav_open, R.string.nav_close);
+
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
         // Load user from file
         User u = IOHelper.loadUserFromFile(getApplicationContext()) ;
 
@@ -41,30 +64,8 @@ public class MainActivity extends AppCompatActivity {
         System.out.println((u != null ? u.toString() : ""));
     }
 
-    // View Meal btn click
-    public void onViewMealButton(View view) {
-
-    }
-
-    // Get Meal Plan btn click
-    public void onGetMealPlanButton(View view) {
-
-    }
-
+    
     public void onButtonClick(View view) {
-    /*
-        User user = new User("john", "ASDFRED", 150, 5.4f, 38);
-        StepCalorieDetails sc = new StepCalorieDetails(150, 300, 1000, 2500, 1900);
-
-        Log.i("MP", "About to start activity");
-
-        Intent intent = new Intent(getApplicationContext(), StepCounterActivity.class);
-        intent.putExtra(User.EXTRA_USEROBJ, user);
-        intent.putExtra(StepCalorieDetails.EXTRA_STEPCALDETAIL_OBJ, sc);
-        startActivity(intent);
-
-     */
-
         showSummaryNotification();
 
         Intent intent = new Intent(getApplicationContext(), UserProfileActivity.class);
@@ -104,8 +105,55 @@ public class MainActivity extends AppCompatActivity {
         helper.close();
     }
 
-    public void stepCounterDisplay(View view) {
+
+
+    /*public void stepCounterDisplay(View view) {
         Intent intent = new Intent(getApplicationContext(), StepCounterActivity.class);
         startActivity(intent);
+    }*/
+
+    /*public void stepGoalSubmitted(View view) {
+        Intent intent = new Intent(getApplicationContext(), StepCounterActivity.class);
+        startActivity(intent);
+    }*/
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        Fragment fragment = null;
+        Intent intent = null;
+
+        switch (id)
+        {
+            case R.id.userProfile:
+                fragment = new TopFragment();
+                break;
+
+            case R.id.setStepGoal:
+                intent = new Intent(getApplicationContext(), SetStepGoal.class);
+                break;
+
+            case R.id.stepCounter:
+                intent = new Intent(getApplicationContext(), StepCounterActivity.class);
+                break;
+            default:
+                intent = new Intent(getApplicationContext(), MainActivity.class);
+        }
+        if (fragment != null){
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_frame, fragment);
+            ft.commit();
+        } else {
+            startActivity(intent);
+        }
+
+        //Close drawer when user selects option
+        drawer = (DrawerLayout) findViewById(R.id.my_drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+        return false;
     }
 }
