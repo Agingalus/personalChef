@@ -26,5 +26,10 @@
     <string name="getMealPlan">Get Meal Plan</string>
     <string name="viewMeal">View Meal</string>
 
+    <string name="notifChannelId">SC_Channel_Id_01</string>
+    <string name="notifChannel_name">SC_Channel</string>
+    <string name="notifChannel_description">SC_Ch_Desc</string>
+
+
 
 </resources>

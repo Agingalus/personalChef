@@ -121,6 +121,7 @@ public class StepCounterActivity extends AppCompatActivity {
 
         return;
     }
+
     public void update(){
         TextView stepCountV = findViewById(R.id.number_of_calories);
         // Calculate the slice size and update the pie chart:
