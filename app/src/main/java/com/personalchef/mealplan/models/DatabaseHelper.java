@@ -6,9 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+
 import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -47,15 +46,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean insert(int ts, int cb, int tsw, int tci, int tcb) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        delete();
-        contentValues.put("totalSteps", ts);
-        contentValues.put("calBurnt", cb);
-        contentValues.put("totalSteps_Week", tsw);
-        contentValues.put("totalCal_Intake", tci);
-        contentValues.put("totalCal_Burned", tcb);
-        db.replace(STEPS_TABLE_NAME, null, contentValues);
+        try {
+            System.out.println("I am inserting???");
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
+            delete();
+            contentValues.put("totalSteps", ts);
+            contentValues.put("calBurnt", cb);
+            contentValues.put("totalSteps_Week", tsw);
+            contentValues.put("totalCal_Intake", tci);
+            contentValues.put("totalCal_Burned", tcb);
+            db.replace(STEPS_TABLE_NAME, null, contentValues);
+
+        } catch (SQLiteException e){
+            System.out.println("insert failed :" + e.toString());
+        }
+
         return true;
     }
 
@@ -73,9 +79,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 array_list.add(res.getInt(res.getColumnIndex("totalCal_Burned")));
             res.moveToNext();
         }
-        System.out.println(array_list.get(1) + " attempt to get array list to work for us");
-        StepCalorieDetails stepCalorieDetails = new StepCalorieDetails(array_list.get(0), array_list.get(1), array_list.get(2), array_list.get(3), array_list.get(4) );
-        System.out.println("part3*********************************************************************************************************");
+        //System.out.println(array_list.get(1) + " attempt to get array list to work for us");
+        StepCalorieDetails stepCalorieDetails = null;
+        if (array_list.isEmpty()){
+            insert(0,0,0,0,0);
+            stepCalorieDetails = new StepCalorieDetails(0,0,0,0,0);
+        } else {
+            stepCalorieDetails = new StepCalorieDetails(array_list.get(0), array_list.get(1), array_list.get(2), array_list.get(3), array_list.get(4));
+        }
         return stepCalorieDetails;
     }
 

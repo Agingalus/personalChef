@@ -20,9 +20,11 @@ import com.personalchef.mealplan.models.User;
 public class StepCounterActivity extends AppCompatActivity {
     private DatabaseHelper helper = null;
     private double MagnitudePrevious = 0;
-    public static Integer stepCount = 0;
-    public  static StepCounter stepCounter;
-    private boolean first = true;
+    public static Integer stepCount;
+    public static StepCounter stepCounter;
+    public static StepCalorieDetails scDetail;
+    public static boolean saved = false;
+    public static double goal = 20;
 
 
     @Override
@@ -31,6 +33,15 @@ public class StepCounterActivity extends AppCompatActivity {
         stepCounter = new StepCounter();
         setContentView(R.layout.activity_step_counter);
 
+
+        User u = IOHelper.loadUserFromFile(getApplicationContext()) ;
+        helper = new DatabaseHelper(this);
+        scDetail = helper.getStepDetails(); // (StepCalorieDetails) intent.getSerializableExtra(StepCalorieDetails.EXTRA_STEPCALDETAIL_OBJ);
+
+        populateTextViews(u, scDetail);
+
+
+        stepCount = scDetail.getTotalSteps();
         //Log.i("MP", "Into StepCount activity");
 
         //sensor instances used to get accelerometer to read steps
@@ -51,19 +62,18 @@ public class StepCounterActivity extends AppCompatActivity {
                         stepCount++;
                         update();
                         //add an update to a graph or other visual progress function as a stretch goal
-                        System.out.println(stepCounter.GetStepCount());
+                        System.out.println(stepCounter.GetStepCount() + "I am called even when not stepping");
+                    }
+                    if (stepCount%10 == 0 && !saved){
+                        //saves data every 10 steps. 10 used for testing purposes, will be much higher for actual app
+                        helper.insert(stepCount, stepCounter.CalculateCaloriesBurnt(), scDetail.getTotalSteps_Week(), scDetail.getTotalCal_Intake(), scDetail.getTotalCal_Burned());
+                        System.out.println("mutiple of 10 saved data");
+                        saved = true;
+                    }
+                    if (stepCount%10 == 1 || stepCount%10 == 2){
+                        saved = false;
                     }
 
-                }
-                if(stepCount ==3 && first){
-                    //StepCounter stepCounter= new StepCounter();
-                    first = false;
-                    helper.insert(41, 51, 61, 71, 81);
-                }
-                if (stepCount == 5 && !first){
-                    first = true;
-                    StepCalorieDetails stepCalorieDetails = helper.getStepDetails();
-                    System.out.println(stepCalorieDetails.getCalBurnt() + " This is from the DB. YAY!!!!!");
                 }
             }
 
@@ -80,11 +90,7 @@ public class StepCounterActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         //User user = Utilities.getUser(); // (User) intent.getSerializableExtra(User.EXTRA_USEROBJ);
-        User u = IOHelper.loadUserFromFile(getApplicationContext()) ;
-        helper = new DatabaseHelper(this);
-        StepCalorieDetails scDetail = helper.getStepDetails(); // (StepCalorieDetails) intent.getSerializableExtra(StepCalorieDetails.EXTRA_STEPCALDETAIL_OBJ);
 
-        populateTextViews(u, scDetail);
     }
 
     private void populateTextViews(User u, StepCalorieDetails scDetail) {
@@ -101,11 +107,11 @@ public class StepCounterActivity extends AppCompatActivity {
         TextView tv_TotalCalsBurned = findViewById(R.id.tv_TotalCalsBurned);
         TextView stepCountV = findViewById(R.id.number_of_calories);
 
-
-        stepCountV.setText(stepCount.toString());
         // Set Values to text views
 //        tvHeight.setText(Float.toString(user.getHeight()));
 //        tvWeight.setText(String.valueOf(user.getWeight()));
+
+        System.out.println(scDetail.getTotalSteps());
 
         tvTodaysSteps.setText(String.valueOf(scDetail.getTotalSteps()));
         tvBurnedCals.setText(String.valueOf(scDetail.getCalBurnt()));
@@ -117,11 +123,18 @@ public class StepCounterActivity extends AppCompatActivity {
     }
     public void update(){
         TextView stepCountV = findViewById(R.id.number_of_calories);
-        stepCountV.setText(stepCount.toString() + " / 20" );//goal.toString());
         // Calculate the slice size and update the pie chart:
         ProgressBar pieChart = findViewById(R.id.stats_progressbar);
-        double d = (double)stepCount / 20 * 100; //2000
+        double d = (double)stepCount / goal * 100; //2000
+        while (d >= 100){ // this WHILE statement is for testing purposes so that the diagram is never stuck being full
+            goal += 10;
+            d = (double)stepCount / goal * 100;
+        }
         int progress = (int) d ;
+
+
+        stepCountV.setText(stepCount.toString() + " / " + (int)goal );//goal.toString());
+
         pieChart.setProgress(progress);
         TextView tvTodaysSteps = findViewById(R.id.tvTodaysSteps);
         tvTodaysSteps.setText(stepCount.toString());
@@ -140,6 +153,14 @@ public class StepCounterActivity extends AppCompatActivity {
     public void onHomeClicked(View view) {
         onBackPressed();
     }
+    protected void onDestroy() {
+        System.out.println("app is destroyed and saved data");
+        System.out.println("im a stepCounter " + stepCounter.GetStepCount());
 
+        helper.insert(stepCount, stepCounter.CalculateCaloriesBurnt(), scDetail.getTotalSteps_Week(), scDetail.getTotalCal_Intake(), scDetail.getTotalCal_Burned());
+
+        helper.close();
+        super.onDestroy();
+    }
 }
 

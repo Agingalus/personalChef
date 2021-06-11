@@ -8,18 +8,17 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.personalchef.mealplan.models.DatabaseHelper;
+import com.personalchef.mealplan.models.StepCalorieDetails;
+import com.personalchef.mealplan.models.StepCounter;
 import com.personalchef.mealplan.models.User;
-import com.personalchef.mealplan.models.Utilities;
 
 public class MainActivity extends AppCompatActivity {
-    private DatabaseHelper helper = null;
     private StepCounterActivity sc = new StepCounterActivity();
+    public StepCalorieDetails scDetail;
+    public StepCounter stepCounter;
+    private DatabaseHelper helper = null;
 
 
-    public MainActivity() {
-        // With final init, error of SQL not closing was generated. Init in constructor
-        helper = new DatabaseHelper(this);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Load user from file
         User u = IOHelper.loadUserFromFile(getApplicationContext()) ;
+
 
         ///when activity is  created user gets the text for the joke of the day here
         TextView textViewjoke=findViewById(R.id.tv_textJoke);
@@ -64,12 +64,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        // Close the SQL
-        helper.close();
-    }
+//    @Override
+//    protected void onDestroy() {
+//        System.out.println("im a stepCounter" + stepCounter.GetStepCount());
+//        helper.insert(stepCounter.GetStepCount(),stepCounter.CalculateCaloriesBurnt(),scDetail.getTotalSteps_Week(),scDetail.getTotalCal_Intake(),scDetail.getTotalCal_Burned());
+//        helper.close();
+//        super.onDestroy();
+//    }
 
     public void stepCounterDisplay(View view) {
         Intent intent = new Intent(getApplicationContext(), StepCounterActivity.class);
