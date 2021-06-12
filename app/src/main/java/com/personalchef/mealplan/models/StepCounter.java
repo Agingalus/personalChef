@@ -21,7 +21,7 @@ public class StepCounter extends AppCompatActivity {
     private int height = 72; //inches
     private double stepLength = height*.42/12; //used to get user's stepLength
     private double caloriePerMile = weight*.57; //based on causal walking speed
-    private double stepsPerMile = 5280/stepLength;
+    public double stepsPerMile = 5280/stepLength;
     private Integer caloriesBurned = 0;
 
 
