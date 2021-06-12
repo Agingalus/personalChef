@@ -138,9 +138,9 @@ public class StepCounterActivity extends AppCompatActivity {
         TextView tv_TotalCalsBurned = findViewById(R.id.tv_TotalCalsBurned);
         tv_TotalCalsBurned.setText(String.valueOf(scDetail.getTotalCal_Burned() +stepCounter.CalculateCaloriesBurnt()));
     }
-    public void onHomeClicked(View view) {
+    /*public void onHomeClicked(View view) {
         onBackPressed();
-    }
+    }*/
 
 }
 

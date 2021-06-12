@@ -25,7 +25,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.PersonalChef_MealPlan">
+        android:theme="@style/AppTheme">
         <service
             android:name=".NotificationService"
             android:exported="false"></service>
@@ -42,7 +42,8 @@
         </activity>
         <activity
             android:name=".StepCounterActivity"
-            android:label="@string/stepCounterSummary" />
+            android:label="@string/stepCounterSummary"
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".UserProfileActivity"
             android:label="@string/userProfile"

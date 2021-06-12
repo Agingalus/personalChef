@@ -50,9 +50,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
         drawer = (DrawerLayout) findViewById(R.id.my_drawer_layout);
+        navView = findViewById(R.id.nav_view);
+        navView.setItemIconTintList(null);
         toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.nav_open, R.string.nav_close);
 
         drawer.addDrawerListener(toggle);
+        toggle.setDrawerIndicatorEnabled(true);
+        navView.setNavigationItemSelectedListener(this);
         toggle.syncState();
 
         // Load user from file
@@ -126,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (id)
         {
             case R.id.userProfile:
-                fragment = new TopFragment();
+                intent = new Intent(MainActivity.this, UserProfileActivity.class);
                 break;
 
             case R.id.setStepGoal:
@@ -136,16 +140,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.stepCounter:
                 intent = new Intent(getApplicationContext(), StepCounterActivity.class);
                 break;
-            default:
-                intent = new Intent(getApplicationContext(), MainActivity.class);
         }
-        if (fragment != null){
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.content_frame, fragment);
-            ft.commit();
-        } else {
-            startActivity(intent);
-        }
+        startActivity(intent);
+
 
         //Close drawer when user selects option
         drawer = (DrawerLayout) findViewById(R.id.my_drawer_layout);
@@ -154,6 +151,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else {
             super.onBackPressed();
         }
-        return false;
+        return true;
     }
 }
