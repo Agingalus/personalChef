@@ -2,19 +2,43 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
-    app:startDestination="@id/TopFragment">
+    android:id="@+id/nav_graph">
 
-    <fragment
+    <!--<fragment
+        android:id="@+id/nav_userProfile"
+        android:label="@string/userProfile"
+        android:name="com.personalchef.mealplan.UserProfileFragment"
+        tools:layout="@layout/fragment_user_profile">
+
+        <action
+            android:id="@+id/action_nav_userProfile_to_nav_stepGoal"
+            app:destination="@id/nav_stepGoal" />
+    </fragment>-->
+
+    <activity
+        android:id="@+id/nav_stepGoal"
+        android:label="@string/userProfile"
+        android:name="com.personalchef.mealplan.SetStepGoal"
+        tools:layout="@layout/activity_set_step_goal"/>
+
+
+    <activity
+        android:id="@+id/nav_stepSummary"
+        android:label="@string/userProfile"
+        android:name="com.personalchef.mealplan.StepCounterActivity"
+        tools:layout="@layout/activity_step_counter"/>
+
+
+   <!-- <fragment
         android:id="@+id/TopFragment"
         android:name="com.personalchef.mealplan.TopFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_top">
 
-        <!--<action
+        <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />-->
-    </fragment>
+            app:destination="@id/SecondFragment" />&ndash;&gt;
+    </fragment>-->
     <!--<fragment
         android:id="@+id/SecondFragment"
         android:name="com.personalchef.mealplan.SecondFragment"

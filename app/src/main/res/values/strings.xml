@@ -57,7 +57,8 @@
     <string name="notifChannelId">SC_Channel_Id_01</string>
     <string name="notifChannel_name">SC_Channel</string>
     <string name="notifChannel_description">SC_Ch_Desc</string>
-
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
