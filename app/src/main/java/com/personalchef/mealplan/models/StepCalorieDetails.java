@@ -14,15 +14,17 @@ public class StepCalorieDetails implements Serializable {
     private int totalSteps_Week;
     private int totalCal_Intake;
     private int totalCal_Burned;
+    private int avgSteps;
 
     public StepCalorieDetails() { }
 
-    public StepCalorieDetails(int tsteps, int cburn, int stepsWeek, int calintake, int calburn) {
+    public StepCalorieDetails(int tsteps, int cburn, int stepsWeek, int calintake, int calburn, int aSteps) {
         this.totalSteps = tsteps;
         this.calBurnt = cburn;
         this.totalSteps_Week = stepsWeek;
         this.totalCal_Intake = calintake;
         this.totalCal_Burned = calburn;
+        this.avgSteps = aSteps;
     }
 
     public int getTotalSteps() {
@@ -43,5 +45,9 @@ public class StepCalorieDetails implements Serializable {
 
     public int getTotalCal_Burned() {
         return totalCal_Burned;
+    }
+
+    public int getAvgSteps() {
+        return avgSteps;
     }
 }
