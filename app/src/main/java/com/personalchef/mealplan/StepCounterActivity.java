@@ -147,6 +147,16 @@ public class StepCounterActivity extends AppCompatActivity {
             d = (double)stepCount / goal * 100;
         }
         int progress = (int) d ;
+        if (progress == 25 || progress == 50 || progress == 75 || progress == 100) {
+            String str = "Great! Completed " + progress + "% of your goal. Keep it up.";
+            Intent intent = new Intent(this, NotificationService.class);
+            intent.putExtra(NotificationService.EXTRA_TITLE, "Congratulations!");
+            intent.putExtra(NotificationService.EXTRA_TEXT, str);
+            intent.setAction(NotificationService.ACTION_SUMMARY);
+
+            startService(intent);
+        }
+
         TextView tvMiles = findViewById(R.id.tvMiles);
 
         miles = stepCount / stepCounter.stepsPerMile;

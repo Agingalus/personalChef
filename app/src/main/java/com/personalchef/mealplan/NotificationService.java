@@ -4,6 +4,8 @@ import android.app.IntentService;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -69,7 +71,7 @@ public class NotificationService extends IntentService {
 
         // Create Notification builder
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, getString(R.string.notifChannelId))
-                .setSmallIcon(R.drawable.main_logo)
+                .setSmallIcon(R.drawable.ic_stat_run)
                 .setContentTitle(title)
                 .setContentText(text)
                 .setPriority(NotificationCompat.PRIORITY_MAX)
@@ -77,6 +79,9 @@ public class NotificationService extends IntentService {
                 .setStyle(bigText)
                 .setVibrate(new long[] {0, 1000})
                 .setAutoCancel(true);
+
+        Bitmap largeIconBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.main_logo);
+        builder.setLargeIcon(largeIconBitmap);
 
         // Create an action
         return builder.build();
