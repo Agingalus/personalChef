@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
      */
 
-        showSummaryNotification();
+        //showSummaryNotification();
 
         Intent intent = new Intent(getApplicationContext(), UserProfileActivity.class);
         startActivity(intent);
