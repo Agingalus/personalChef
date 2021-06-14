@@ -51,6 +51,7 @@ public class StepCounterActivity extends AppCompatActivity {
         stepCount = scDetail.getTotalSteps();
         //Log.i("MP", "Into StepCount activity");
 
+/*
         //sensor instances used to get accelerometer to read steps
         SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -82,7 +83,6 @@ public class StepCounterActivity extends AppCompatActivity {
                     if (stepCount%5 == 1 || stepCount%5 == 2){
                         saved = false;
                     }
-
                 }
             }
 
@@ -91,15 +91,7 @@ public class StepCounterActivity extends AppCompatActivity {
             }
         };
         sensorManager.registerListener(stepDetector, sensor, SensorManager.SENSOR_DELAY_NORMAL);
-
-
-
-
-        // GET PARAMETERS PASSEd
-        Intent intent = getIntent();
-
-        //User user = Utilities.getUser(); // (User) intent.getSerializableExtra(User.EXTRA_USEROBJ);
-
+*/
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)

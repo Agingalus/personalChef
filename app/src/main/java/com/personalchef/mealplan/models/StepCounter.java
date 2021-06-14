@@ -28,7 +28,7 @@ public class StepCounter extends AppCompatActivity {
 
     // Functionality
     public int GetStepCount() {
-        MainActivity mainActivity = new MainActivity();
+        //MainActivity mainActivity = new MainActivity();
         System.out.println("From GetStepCounter\n_____________________________");
         System.out.println(StepCounterActivity.stepCount);
         return StepCounterActivity.stepCount;

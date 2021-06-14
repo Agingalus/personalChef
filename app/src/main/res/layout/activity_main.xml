@@ -78,6 +78,17 @@
         android:onClick="stepCounterDisplay"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/stopFgService"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="15dp"
+        android:onClick="stopForegroundService"
+        android:text="Stop FG SErvice"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="parent" />
     <!--
     app:layout_constraintTop_toBottomOf="@+id/imageView"
         tools:layout_editor_absoluteX="130dp" />

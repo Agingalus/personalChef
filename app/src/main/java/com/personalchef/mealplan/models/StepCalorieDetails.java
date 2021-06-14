@@ -15,6 +15,8 @@ public class StepCalorieDetails implements Serializable {
     private int totalCal_Intake;
     private int totalCal_Burned;
     private int avgSteps;
+    private double milesWalked;
+    private int progress;
 
     public StepCalorieDetails() { }
 
@@ -49,5 +51,25 @@ public class StepCalorieDetails implements Serializable {
 
     public int getAvgSteps() {
         return avgSteps;
+    }
+
+    public double getMilesWaled() {
+        return this.milesWalked;
+    }
+
+    public int getProgress() {
+        return this.progress;
+    }
+
+    public void setAvgSteps(int avgSteps) {
+        this.avgSteps = avgSteps;
+    }
+
+    public void setMilesWalked(double milesWalked) {
+        this.milesWalked = milesWalked;
+    }
+
+    public void setProgress(int progress) {
+        this.progress = progress;
     }
 }

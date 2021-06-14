@@ -9,19 +9,20 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.personalchef.mealplan.models.DatabaseHelper;
 import com.personalchef.mealplan.models.StepCalorieDetails;
 import com.personalchef.mealplan.models.StepCounter;
 import com.personalchef.mealplan.models.User;
+import com.personalchef.mealplan.services.NotificationService;
+import com.personalchef.mealplan.services.StepsCalculatorService;
 
 public class MainActivity extends AppCompatActivity {
     private StepCounterActivity sc = new StepCounterActivity();
     public StepCalorieDetails scDetail;
     public StepCounter stepCounter;
     private DatabaseHelper helper = null;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         // Load user from file
         User u = IOHelper.loadUserFromFile(getApplicationContext()) ;
 
+        // Start counting steps
+        startStepsCalculatorService();
 
         ///when activity is  created user gets the text for the joke of the day here
         TextView textViewjoke=findViewById(R.id.tv_textJoke);
@@ -80,7 +83,8 @@ public class MainActivity extends AppCompatActivity {
             String description = getString(R.string.notifChannel_description);
             NotificationChannel channel = new NotificationChannel(id, name,
                     NotificationManager.IMPORTANCE_HIGH);
-            channel.setDescription(description);
+            //channel.setDescription(description);
+
             // Register the channel with the system; you can't change the importance
             // or other notification behaviors after this
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
@@ -97,16 +101,37 @@ public class MainActivity extends AppCompatActivity {
         startService(intent);
     }
 
-//    @Override
-//    protected void onDestroy() {
-//        System.out.println("im a stepCounter" + stepCounter.GetStepCount());
-//        helper.insert(stepCounter.GetStepCount(),stepCounter.CalculateCaloriesBurnt(),scDetail.getTotalSteps_Week(),scDetail.getTotalCal_Intake(),scDetail.getTotalCal_Burned());
-//        helper.close();
-//        super.onDestroy();
-//    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 
     public void stepCounterDisplay(View view) {
         Intent intent = new Intent(getApplicationContext(), StepCounterActivity.class);
         startActivity(intent);
+    }
+
+    // Start StepsCalculatorService
+    public void startStepsCalculatorService() {
+        Intent serviceIntent = new Intent(this, StepsCalculatorService.class);
+        serviceIntent.putExtra(Constants.EXTRA_TEXT, "Text for Calc Service.");
+        serviceIntent.setAction(StepsCalculatorService.ACTION_START_FOREGROUND_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            ContextCompat.startForegroundService(this, serviceIntent);
+        } else {
+            startService(serviceIntent);
+        }
+    }
+
+    public void stopForegroundService(View view) {
+        Intent serviceIntent = new Intent(this, StepsCalculatorService.class);
+        serviceIntent.setAction(StepsCalculatorService.ACTION_STOP_FOREGROUND_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            ContextCompat.startForegroundService(this, serviceIntent);
+        } else {
+            startService(serviceIntent);
+        }
     }
 }
