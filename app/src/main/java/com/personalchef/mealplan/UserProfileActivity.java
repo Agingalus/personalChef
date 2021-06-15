@@ -155,8 +155,6 @@ public class UserProfileActivity extends AppCompatActivity implements Navigation
         drawer = (DrawerLayout) findViewById(R.id.my_drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
         }
         return true;
     }
