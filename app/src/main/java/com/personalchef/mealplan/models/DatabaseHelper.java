@@ -80,8 +80,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             if ((res != null) && (res.getCount() > 0))
                 //array_list.add(res.getInt(res.getColumnIndex("weekDay")));
                 array_list.add(res.getInt(res.getColumnIndex("totalSteps")));
-                array_list.add(res.getInt(res.getColumnIndex("calBurnt")));
-                array_list.add(res.getInt(res.getColumnIndex("totalCal_Intake")));
+            array_list.add(res.getInt(res.getColumnIndex("calBurnt")));
+            array_list.add(res.getInt(res.getColumnIndex("totalCal_Intake")));
             res.moveToNext();
         }
 
@@ -152,7 +152,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 if(res.getInt(res.getColumnIndex("weekDay")) == day){
                     return res.getInt(res.getColumnIndex("id"));
                 }
-                res.moveToNext();
+            res.moveToNext();
         }
         return id;
     }
@@ -162,4 +162,3 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 }
-

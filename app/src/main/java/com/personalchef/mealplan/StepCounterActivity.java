@@ -196,10 +196,9 @@ public class StepCounterActivity extends AppCompatActivity {
         System.out.println("app is destroyed and saved data");
         System.out.println("im a stepCounter " + stepCounter.GetStepCount());
 
-       //helper.insert(stepCount, stepCounter.CalculateCaloriesBurnt(), scDetail.getTotalSteps_Week(), scDetail.getTotalCal_Intake(), scDetail.getTotalCal_Burned());
+        //helper.insert(stepCount, stepCounter.CalculateCaloriesBurnt(), scDetail.getTotalSteps_Week(), scDetail.getTotalCal_Intake(), scDetail.getTotalCal_Burned());
 
         //helper.close();
         super.onDestroy();
     }
 }
-
