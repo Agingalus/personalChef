@@ -38,6 +38,8 @@ public class UserProfileActivity extends AppCompatActivity implements Navigation
             height = savedInstanceState.getFloat("height");
             weight = savedInstanceState.getInt("weight");
         }
+
+        //Toolbar and Nav Drawer set up
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

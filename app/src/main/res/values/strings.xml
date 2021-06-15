@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PersonalChef_MealPlan</string>
+    <string name="app_name">Step Counter</string>
     <string name="appTitle">Personal Chef</string>
     <string name="userDetails">User Details</string>
 
@@ -51,14 +51,11 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="menu">Menu</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="title_top">Top fragment</string>
 
     <string name="notifChannelId">SC_Channel_Id_01</string>
     <string name="notifChannel_name">SC_Channel</string>
     <string name="notifChannel_description">SC_Ch_Desc</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 
 </resources>

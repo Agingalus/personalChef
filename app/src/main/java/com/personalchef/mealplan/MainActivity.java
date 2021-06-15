@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Register Notification Channel
         createNotificationChannel();
 
+        //Toolbar and Nav Drawer set up
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

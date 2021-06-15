@@ -24,6 +24,7 @@ public class SetStepGoal extends AppCompatActivity implements NavigationView.OnN
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_step_goal);
 
+        //Toolbar and Nav Drawer set up 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

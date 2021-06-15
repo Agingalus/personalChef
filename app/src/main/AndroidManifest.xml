@@ -30,7 +30,9 @@
             android:name=".NotificationService"
             android:exported="false"></service>
 
-        <activity android:name=".SetStepGoal" />
+        <activity
+            android:name=".SetStepGoal"
+            android:label="@string/stepGoal"/>
         <activity
             android:name=".LaunchActivity"
             android:theme="@style/LaunchTheme">
@@ -42,24 +44,14 @@
         </activity>
         <activity
             android:name=".StepCounterActivity"
-            android:label="@string/stepCounterSummary"
-            android:theme="@style/AppTheme"/>
+            android:label="@string/stepCounterSummary"/>
         <activity
             android:name=".UserProfileActivity"
-            android:label="@string/userProfile"
-            android:theme="@style/AppTheme"/>
+            android:label="@string/userProfile"/>
+
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme">
-
-            <!--
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            -->
-        </activity>
+            android:label="@string/home"/>
     </application>
 
 </manifest>
