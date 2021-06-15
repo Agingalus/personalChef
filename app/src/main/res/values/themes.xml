@@ -12,10 +12,27 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+    </style>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
     </style>
 
     <style name="LaunchTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- <item name="android:windowBackground">@drawable/main_logo</item> -->
     </style>
+
+    <style name="Theme.PersonalChef_MealPlan.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.PersonalChef_MealPlan.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.PersonalChef_MealPlan.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

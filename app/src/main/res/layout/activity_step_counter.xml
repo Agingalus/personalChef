@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StepCounterActivity">
+    tools:context=".StepCounterActivity"
+    android:id="@+id/stepCounter">
 
     <TextView
         android:id="@+id/textView19"
@@ -261,7 +262,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/background_progressbar" />
-
+<!--
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
@@ -271,6 +272,6 @@
         android:onClick="onHomeClicked"
         android:text="@string/home"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

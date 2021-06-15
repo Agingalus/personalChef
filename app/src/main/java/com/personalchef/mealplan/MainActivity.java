@@ -5,21 +5,38 @@ import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.material.navigation.NavigationView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.core.view.GravityCompat;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import android.view.Menu;
+import android.view.MenuItem;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import com.personalchef.mealplan.models.DatabaseHelper;
 import com.personalchef.mealplan.models.StepCalorieDetails;
 import com.personalchef.mealplan.models.StepCounter;
 import com.personalchef.mealplan.models.User;
+import com.personalchef.mealplan.models.Utilities;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private DatabaseHelper helper = null;
     private StepCounterActivity sc = new StepCounterActivity();
+    public DrawerLayout drawer;
+    public ActionBarDrawerToggle toggle;
+    public NavigationView navView;
     public StepCalorieDetails scDetail;
     public StepCounter stepCounter;
-    private DatabaseHelper helper = null;
+
 
 
 
@@ -31,6 +48,19 @@ public class MainActivity extends AppCompatActivity {
         // Register Notification Channel
         createNotificationChannel();
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        drawer = (DrawerLayout) findViewById(R.id.my_drawer_layout);
+        navView = findViewById(R.id.nav_view);
+        navView.setItemIconTintList(null);
+        toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.nav_open, R.string.nav_close);
+
+        drawer.addDrawerListener(toggle);
+        toggle.setDrawerIndicatorEnabled(true);
+        navView.setNavigationItemSelectedListener(this);
+        toggle.syncState();
+
         // Load user from file
         User u = IOHelper.loadUserFromFile(getApplicationContext()) ;
 
@@ -41,15 +71,6 @@ public class MainActivity extends AppCompatActivity {
         System.out.println((u != null ? u.toString() : ""));
     }
 
-    // View Meal btn click
-    public void onViewMealButton(View view) {
-
-    }
-
-    // Get Meal Plan btn click
-    public void onGetMealPlanButton(View view) {
-
-    }
 
     public void onButtonClick(View view) {
     /*
@@ -105,8 +126,48 @@ public class MainActivity extends AppCompatActivity {
 //        super.onDestroy();
 //    }
 
-    public void stepCounterDisplay(View view) {
+
+
+    /*public void stepCounterDisplay(View view) {
         Intent intent = new Intent(getApplicationContext(), StepCounterActivity.class);
         startActivity(intent);
+    }*/
+
+    /*public void stepGoalSubmitted(View view) {
+        Intent intent = new Intent(getApplicationContext(), StepCounterActivity.class);
+        startActivity(intent);
+    }*/
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        Fragment fragment = null;
+        Intent intent = null;
+
+        switch (id)
+        {
+            case R.id.userProfile:
+                intent = new Intent(MainActivity.this, UserProfileActivity.class);
+                break;
+
+            case R.id.setStepGoal:
+                intent = new Intent(getApplicationContext(), SetStepGoal.class);
+                break;
+
+            case R.id.stepCounter:
+                intent = new Intent(getApplicationContext(), StepCounterActivity.class);
+                break;
+        }
+        startActivity(intent);
+
+
+        //Close drawer when user selects option
+        drawer = (DrawerLayout) findViewById(R.id.my_drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+        return true;
     }
 }
