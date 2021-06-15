@@ -7,13 +7,14 @@ public class Utilities extends Application {
 
     private static User user = null;
     private static StepCalorieDetails stepCalorieDetails = null;
+    public static String NotificationString = "";
 
     public static User getUser() {
         return user;
     }
 
-    public static void setUser(User user) {
-        user = user;
+    public static void setUser(User u) {
+        user = u;
     }
 
     public static void SetStepCalorieDetails(StepCalorieDetails sc) {

@@ -15,6 +15,7 @@ import com.personalchef.mealplan.models.DatabaseHelper;
 import com.personalchef.mealplan.models.StepCalorieDetails;
 import com.personalchef.mealplan.models.StepCounter;
 import com.personalchef.mealplan.models.User;
+import com.personalchef.mealplan.models.Utilities;
 import com.personalchef.mealplan.services.NotificationService;
 import com.personalchef.mealplan.services.StepsCalculatorService;
 
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Load user from file
         User u = IOHelper.loadUserFromFile(getApplicationContext()) ;
+        Utilities.setUser(u);
 
         // Start counting steps
         startStepsCalculatorService();
@@ -114,7 +116,8 @@ public class MainActivity extends AppCompatActivity {
     // Start StepsCalculatorService
     public void startStepsCalculatorService() {
         Intent serviceIntent = new Intent(this, StepsCalculatorService.class);
-        serviceIntent.putExtra(Constants.EXTRA_TEXT, "Text for Calc Service.");
+        Utilities.NotificationString = "Text for Calc Service.";
+        //serviceIntent.putExtra(Constants.EXTRA_TEXT, "Text for Calc Service.");
         serviceIntent.setAction(StepsCalculatorService.ACTION_START_FOREGROUND_SERVICE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

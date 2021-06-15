@@ -163,7 +163,7 @@ public class StepCounterActivity extends AppCompatActivity {
 
 
         TextView tv_TotalCalsBurned = findViewById(R.id.tv_TotalCalsBurned);
-        tv_TotalCalsBurned.setText(String.valueOf(scDetail.getTotalCal_Burned() +stepCounter.CalculateCaloriesBurnt()));
+        tv_TotalCalsBurned.setText(String.valueOf(scDetail.getTotalCal_Burned() +stepCounter.CalculateCaloriesBurnt(stepCount)));
 
         TextView tv_aSteps = findViewById(R.id.avgSteps);
         avg = (scDetail.getTotalSteps_Week() + stepCount) / scDetail.getAvgSteps();

@@ -13,6 +13,9 @@ import androidx.annotation.RequiresApi;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "personalStuff";
@@ -57,7 +60,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             contentValues.put("calBurnt", cb);
             contentValues.put("totalCal_Intake", tci);
             db.replace(STEPS_TABLE_NAME, null, contentValues);
-
+            //System.out.println("INSERTED To DB Successfully");
         } catch (SQLiteException e){
             System.out.println("insert failed :" + e.toString());
         }
@@ -65,9 +68,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+    //@RequiresApi(api = Build.VERSION_CODES.O)
     public StepCalorieDetails getStepDetails() {
-        int currentDay = LocalDate.now().getDayOfWeek().getValue();
+        //int currentDay = LocalDate.now().getDayOfWeek().getValue();
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+        Date date = calendar.getTime();
+        int currentDay = calendar.get(Calendar.DAY_OF_WEEK);
+
         int totSteps;
         int totCalBurned;
         int avgSteps;
@@ -137,6 +144,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     "calBurnt = "+ cb +"," +
                     "totalCal_Intake = "+ tci + " " +
                     "WHERE weekDay ="+ wd);
+            //System.out.println("UPDATED To DB Successfully");
         } catch (SQLiteException e){
             System.out.println("update failed :" + e.toString());
         }
