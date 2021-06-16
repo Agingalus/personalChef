@@ -1,14 +1,21 @@
-package com.personalchef.mealplan;
+package com.personalchef.mealplan.services;
 
 import android.app.IntentService;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Intent;
+<<<<<<< HEAD:app/src/main/java/com/personalchef/mealplan/services/NotificationService.java
+import android.util.Log;
+=======
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+>>>>>>> main:app/src/main/java/com/personalchef/mealplan/NotificationService.java
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+
+import com.personalchef.mealplan.R;
+import com.personalchef.mealplan.StepCounterActivity;
 
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
@@ -45,6 +52,7 @@ public class NotificationService extends IntentService {
 
     private void showNotification(String title, String text, Class<?> cls) {
 
+        Log.i("PC", "Main: Into showNotification - Title:  "+ title + " Text: " + text + "  Cls: " + cls.getName());
         // Intent to redirect to an Activity when notification is clicked
         Intent actionIntent = new Intent(this, cls);
         //actionIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

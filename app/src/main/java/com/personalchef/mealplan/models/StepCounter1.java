@@ -15,7 +15,7 @@ import java.util.Date;
  *
  * SensorAdapter updates the StepCount
  */
-public class StepCounter extends AppCompatActivity {
+public class StepCounter1 extends AppCompatActivity {
     private Date date;
     private int weight = 180; //lbs
     private int height = 72; //inches
@@ -28,15 +28,15 @@ public class StepCounter extends AppCompatActivity {
 
     // Functionality
     public int GetStepCount() {
-        MainActivity mainActivity = new MainActivity();
+        //????MainActivity mainActivity = new MainActivity();
         System.out.println("From GetStepCounter\n_____________________________");
-        System.out.println(StepCounterActivity.stepCount);
-        return StepCounterActivity.stepCount;
+        //System.out.println(StepCounterActivity.stepCount);
+        return 0;// StepCounterActivity.stepCount;
     }
 
-    public int  CalculateCaloriesBurnt() {
-        int stepCount = GetStepCount();
-        StepCalorieDetails scDetail = new StepCalorieDetails();
+    public int  CalculateCaloriesBurnt(int stepCount) {
+        //int stepCount = GetStepCount();
+        //StepCalorieDetails scDetail = new StepCalorieDetails();
         // Get step count
         // Get calories from all day/week meals
         // Calculates calorie details
@@ -44,9 +44,10 @@ public class StepCounter extends AppCompatActivity {
 
         return caloriesBurned;
     }
+
     public String  CalculateCaloriesBurntString() {
         int stepCount = GetStepCount();
-        StepCalorieDetails scDetail = new StepCalorieDetails();
+        //??? StepCalorieDetails scDetail = new StepCalorieDetails();
         // Get step count
         // Get calories from all day/week meals
         // Calculates calorie details

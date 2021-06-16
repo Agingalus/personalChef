@@ -12,33 +12,25 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import androidx.core.content.ContextCompat;
+
+import com.personalchef.mealplan.models.User;
+import com.personalchef.mealplan.models.Utilities;
+import com.personalchef.mealplan.services.NotificationService;
+import com.personalchef.mealplan.services.StepsCalculatorService;
+
 import com.google.android.material.navigation.NavigationView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.core.view.GravityCompat;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import com.personalchef.mealplan.models.DatabaseHelper;
-import com.personalchef.mealplan.models.StepCalorieDetails;
-import com.personalchef.mealplan.models.StepCounter;
-import com.personalchef.mealplan.models.User;
-import com.personalchef.mealplan.models.Utilities;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private DatabaseHelper helper = null;
-    private StepCounterActivity sc = new StepCounterActivity();
     public DrawerLayout drawer;
     public ActionBarDrawerToggle toggle;
     public NavigationView navView;
-    public StepCalorieDetails scDetail;
-    public StepCounter stepCounter;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +56,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // Load user from file
         User u = IOHelper.loadUserFromFile(getApplicationContext()) ;
+        Utilities.setUser(u);
 
+        // Start counting steps
+        startStepsCalculatorService();
 
         ///when activity is  created user gets the text for the joke of the day here
         TextView textViewjoke=findViewById(R.id.tv_textJoke);
@@ -102,7 +97,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             String description = getString(R.string.notifChannel_description);
             NotificationChannel channel = new NotificationChannel(id, name,
                     NotificationManager.IMPORTANCE_HIGH);
-            channel.setDescription(description);
+            //channel.setDescription(description);
+
             // Register the channel with the system; you can't change the importance
             // or other notification behaviors after this
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
@@ -110,6 +106,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    // Show other Notification.
+    // Not required at present, if at all we need it
     private void showSummaryNotification() {
         Intent intent = new Intent(this, NotificationService.class);
         intent.putExtra(NotificationService.EXTRA_TITLE, "Congratulation!");
@@ -119,13 +117,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         startService(intent);
     }
 
-//    @Override
-//    protected void onDestroy() {
-//        System.out.println("im a stepCounter" + stepCounter.GetStepCount());
-//        helper.insert(stepCounter.GetStepCount(),stepCounter.CalculateCaloriesBurnt(),scDetail.getTotalSteps_Week(),scDetail.getTotalCal_Intake(),scDetail.getTotalCal_Burned());
-//        helper.close();
-//        super.onDestroy();
-//    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 
 
 
@@ -159,8 +154,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 intent = new Intent(getApplicationContext(), StepCounterActivity.class);
                 break;
         }
-        startActivity(intent);
-
+        if (intent != null) {
+            startActivity(intent);
+        }
 
         //Close drawer when user selects option
         drawer = (DrawerLayout) findViewById(R.id.my_drawer_layout);
@@ -169,4 +165,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         return true;
     }
+
+    // Start StepsCalculatorService
+    public void startStepsCalculatorService() {
+        Intent serviceIntent = new Intent(this, StepsCalculatorService.class);
+        Utilities.NotificationString = "";
+        serviceIntent.setAction(StepsCalculatorService.ACTION_START_FOREGROUND_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            ContextCompat.startForegroundService(this, serviceIntent);
+        } else {
+            startService(serviceIntent);
+        }
+    }
+
+    // Code to Stop the Service, if we want to
+    // In release version, we would not have this event.
+    public void stopForegroundService(View view) {
+        try {
+            Intent serviceIntent = new Intent(this, StepsCalculatorService.class);
+            serviceIntent.setAction(StepsCalculatorService.ACTION_STOP_FOREGROUND_SERVICE);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                ContextCompat.startForegroundService(this, serviceIntent);
+            } else {
+                startService(serviceIntent);
+            }
+        }catch (Exception ex) {}
+    }
+
 }

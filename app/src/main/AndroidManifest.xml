@@ -18,17 +18,22 @@
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <!-- Fingerprint is deprecated - might be required for previous versions -->
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/> <!-- For API level 28+ i.e. Android 9-->
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/main_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/main_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <service
-            android:name=".NotificationService"
+            android:name=".services.StepsCalculatorService"
+            android:enabled="true"
             android:exported="false"></service>
+        <service
+            android:name=".services.NotificationService"
+            android:exported="false" />
 
         <activity
             android:name=".SetStepGoal"
@@ -47,11 +52,10 @@
             android:label="@string/stepCounterSummary"/>
         <activity
             android:name=".UserProfileActivity"
-            android:label="@string/userProfile"/>
-
-        <activity
-            android:name=".MainActivity"
+            android:label="@string/userProfile" />
+        <activity android:name=".MainActivity"
             android:label="@string/home"/>
+
     </application>
 
 </manifest>

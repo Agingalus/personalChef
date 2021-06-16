@@ -52,8 +52,8 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="menu">Menu</string>
 
-    <string name="notifChannelId">SC_Channel_Id_01</string>
-    <string name="notifChannel_name">SC_Channel</string>
+    <string name="notifChannelId">SC_ServiceChannel</string>
+    <string name="notifChannel_name">SC Service Channel</string>
     <string name="notifChannel_description">SC_Ch_Desc</string>
 
 
