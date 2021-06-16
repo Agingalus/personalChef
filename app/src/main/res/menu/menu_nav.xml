@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="nav_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/userProfile"
+            android:title="@string/userProfile"
+            android:icon="@drawable/user"/>
+
+        <item
+            android:id="@+id/setStepGoal"
+            android:title="@string/stepGoal"
+            android:icon="@drawable/goal" />
+
+        <item
+            android:id="@+id/stepCounter"
+            android:title="@string/stepDetail"
+            android:icon="@drawable/summary"/>
+    </group>
+
+</menu>

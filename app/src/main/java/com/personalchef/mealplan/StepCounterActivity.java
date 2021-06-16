@@ -67,6 +67,7 @@ public class StepCounterActivity extends AppCompatActivity {
         tv_aSteps.setText("Avg Steps: "+ avg);
 
         int progress = scDetail.getProgress();
+
         pieChart.setProgress(progress);
 
         tvMiles.setText("Distance Walked (per Mile): " + String.format("%.2f", scDetail.getMilesWalked()));
@@ -83,7 +84,7 @@ public class StepCounterActivity extends AppCompatActivity {
     protected void onDestroy() {
         System.out.println("app is destroyed and saved data");
         scDetail = null;
+
         super.onDestroy();
     }
 }
-

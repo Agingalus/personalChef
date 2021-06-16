@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">PersonalChef_MealPlan</string>
+    <string name="app_name">Step Counter</string>
     <string name="appTitle">Personal Chef</string>
     <string name="userDetails">User Details</string>
-    <string name="userProfile">User Profile</string>
+
     <string name="stepDetail">Step-Calorie Details</string>
     <string name="height">Height</string>
 
@@ -17,14 +17,40 @@
     <string name="weight">Weight</string>
     <string name="age">Age</string>
     <string name="enterDetails">Enter profile details</string>
-
+    <string name="cont">Continue</string>
     <string name="submit">Submit</string>
     <string name="personalChef">Personal Chef</string>
     <string name="reset">Reset</string>
     <string name="save">Save</string>
 
-    <string name="getMealPlan">Get Meal Plan</string>
-    <string name="viewMeal">View Meal</string>
+
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
+
+
+    <string name="setGoalText">Great! Now let\'s set a daily goal. Don\'t worry this can be changed later.</string>
+    <string name="title_activity_bottom_nav">MainActivity</string>
+
+    <string name="title_dashboard">Dashboard</string>
+
+    <!--Menu Items-->
+    <string name="title_home">Home</string>
+    <string name="userProfile">User Profile</string>
+    <string name="stepGoal">Step Goal</string>
+    <string name="stepCounterSummary">Step Counter Summary</string>
+    <string name="title_notifications">Notifications</string>
+
+
+    <string name="title_activity_navigation_drawer">NavigationDrawer</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="menu">Menu</string>
 
     <string name="notifChannelId">SC_ServiceChannel</string>
     <string name="notifChannel_name">SC Service Channel</string>
