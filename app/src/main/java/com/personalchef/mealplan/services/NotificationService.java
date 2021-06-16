@@ -4,12 +4,11 @@ import android.app.IntentService;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Intent;
-<<<<<<< HEAD:app/src/main/java/com/personalchef/mealplan/services/NotificationService.java
+
 import android.util.Log;
-=======
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
->>>>>>> main:app/src/main/java/com/personalchef/mealplan/NotificationService.java
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
