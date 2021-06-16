@@ -11,19 +11,12 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import com.personalchef.mealplan.models.DatabaseHelper;
-import com.personalchef.mealplan.models.StepCalorieDetails;
-import com.personalchef.mealplan.models.StepCounter;
 import com.personalchef.mealplan.models.User;
 import com.personalchef.mealplan.models.Utilities;
 import com.personalchef.mealplan.services.NotificationService;
 import com.personalchef.mealplan.services.StepsCalculatorService;
 
 public class MainActivity extends AppCompatActivity {
-    private StepCounterActivity sc = new StepCounterActivity();
-    public StepCalorieDetails scDetail;
-    public StepCounter stepCounter;
-    private DatabaseHelper helper = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,8 +63,6 @@ public class MainActivity extends AppCompatActivity {
 
      */
 
-        showSummaryNotification();
-
         Intent intent = new Intent(getApplicationContext(), UserProfileActivity.class);
         startActivity(intent);
     }
@@ -94,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // Show other Notification.
+    // Not required at present, if at all we need it
     private void showSummaryNotification() {
         Intent intent = new Intent(this, NotificationService.class);
         intent.putExtra(NotificationService.EXTRA_TITLE, "Congratulation!");
@@ -116,8 +109,7 @@ public class MainActivity extends AppCompatActivity {
     // Start StepsCalculatorService
     public void startStepsCalculatorService() {
         Intent serviceIntent = new Intent(this, StepsCalculatorService.class);
-        Utilities.NotificationString = "Text for Calc Service.";
-        //serviceIntent.putExtra(Constants.EXTRA_TEXT, "Text for Calc Service.");
+        Utilities.NotificationString = "";
         serviceIntent.setAction(StepsCalculatorService.ACTION_START_FOREGROUND_SERVICE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -127,14 +119,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // Code to Stop the Service, if we want to
+    // In release version, we would not have this event.
     public void stopForegroundService(View view) {
-        Intent serviceIntent = new Intent(this, StepsCalculatorService.class);
-        serviceIntent.setAction(StepsCalculatorService.ACTION_STOP_FOREGROUND_SERVICE);
+        try {
+            Intent serviceIntent = new Intent(this, StepsCalculatorService.class);
+            serviceIntent.setAction(StepsCalculatorService.ACTION_STOP_FOREGROUND_SERVICE);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            ContextCompat.startForegroundService(this, serviceIntent);
-        } else {
-            startService(serviceIntent);
-        }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                ContextCompat.startForegroundService(this, serviceIntent);
+            } else {
+                startService(serviceIntent);
+            }
+        }catch (Exception ex) {}
     }
+
 }

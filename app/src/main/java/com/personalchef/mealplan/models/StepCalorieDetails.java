@@ -1,5 +1,7 @@
 package com.personalchef.mealplan.models;
 
+import com.personalchef.mealplan.IOHelper;
+
 import java.io.Serializable;
 
 /**
@@ -27,6 +29,8 @@ public class StepCalorieDetails implements Serializable {
         this.totalCal_Intake = calintake;
         this.totalCal_Burned = calburn;
         this.avgSteps = aSteps;
+
+        Calculate();
     }
 
     public int getTotalSteps() {
@@ -53,7 +57,7 @@ public class StepCalorieDetails implements Serializable {
         return avgSteps;
     }
 
-    public double getMilesWaled() {
+    public double getMilesWalked() {
         return this.milesWalked;
     }
 
@@ -71,5 +75,28 @@ public class StepCalorieDetails implements Serializable {
 
     public void setProgress(int progress) {
         this.progress = progress;
+    }
+
+    public void setCaloriesBurnt(int calBurnt) {
+        this.calBurnt = calBurnt;
+    }
+
+    public void setTotalSteps(int steps) {
+        this.totalSteps = steps;
+    }
+
+    public void Calculate() {
+        // progress
+        double d = (double)this.totalSteps / Utilities.goal * 100;
+        this.progress = (int) d;
+
+        // miles walked
+        User user = Utilities.getUser();
+        if (user != null) {
+            double stepLength = user.getHeight() * 0.42 / 12;
+            double stepsPerMile = 5280 / stepLength;
+            double miles = this.totalSteps / stepsPerMile;
+            this.milesWalked = miles;
+        }
     }
 }

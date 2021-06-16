@@ -5,9 +5,14 @@ import android.app.Application;
 // 
 public class Utilities extends Application {
 
+    // Keep a single copy of User on start of the program.
+    // So don't have to read User obj often from the disk.
     private static User user = null;
-    private static StepCalorieDetails stepCalorieDetails = null;
+
+    // A string to update the notification text
     public static String NotificationString = "";
+
+    public static int goal = 102;
 
     public static User getUser() {
         return user;
@@ -16,19 +21,5 @@ public class Utilities extends Application {
     public static void setUser(User u) {
         user = u;
     }
-
-    public static void SetStepCalorieDetails(StepCalorieDetails sc) {
-        stepCalorieDetails = sc;
-    }
-
-    public static StepCalorieDetails getStepCalorieDetails() {
-        return stepCalorieDetails;
-    }
-
-
-    public static String GetJoke() {
-        return "Joke of the Day :-).";
-    }
-
 
 }
