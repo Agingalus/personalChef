@@ -12,7 +12,7 @@
         <item
             android:id="@+id/userProfile"
             android:title="@string/userProfile"
-            android:icon="@drawable/user"/>
+            android:icon="@drawable/user1"/>
 
         <item
             android:id="@+id/setStepGoal"
