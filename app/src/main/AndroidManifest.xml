@@ -60,8 +60,7 @@
             android:label="@string/home" />
         <activity android:name=".AboutUsActivity"
             android:label="@string/aboutUsTitle" />
-
-        <activity android:name=".BaseActivity"></activity>
+        
 
 
     </application>
