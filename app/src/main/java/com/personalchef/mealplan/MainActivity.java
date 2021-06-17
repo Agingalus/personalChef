@@ -153,6 +153,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.stepCounter:
                 intent = new Intent(getApplicationContext(), StepCounterActivity.class);
                 break;
+            case R.id.aboutUs:
+                intent = new Intent(getApplicationContext(), AboutUsActivity.class);
+                break;
         }
         if (intent != null) {
             startActivity(intent);

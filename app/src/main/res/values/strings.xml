@@ -23,10 +23,8 @@
     <string name="reset">Reset</string>
     <string name="save">Save</string>
 
-
     <string name="nav_open">Open</string>
     <string name="nav_close">Close</string>
-
 
     <string name="setGoalText">Great! Now let\'s set a daily goal. Don\'t worry this can be changed later.</string>
     <string name="title_activity_bottom_nav">MainActivity</string>
@@ -39,7 +37,6 @@
     <string name="stepGoal">Step Goal</string>
     <string name="stepCounterSummary">Step Counter Summary</string>
     <string name="title_notifications">Notifications</string>
-
 
     <string name="title_activity_navigation_drawer">NavigationDrawer</string>
     <!-- Strings used for fragments for navigation -->
@@ -56,6 +53,10 @@
     <string name="notifChannel_name">SC Service Channel</string>
     <string name="notifChannel_description">SC_Ch_Desc</string>
 
-
+    <string name="aboutUsTitle">About Us</string>
+    <string name="aboutApp">StepItUp helps track steps and calorie intake and calorie burned.......</string>
+    <string name="version">Version: 1.0</string>
+    <string name="team">Team: </string>
+    <string name="teamMembers">Trupti Dalia, Alejandra Valencia, Devon Rice, Aaron Greene, Ganna Tarasiuk</string>
 
 </resources>

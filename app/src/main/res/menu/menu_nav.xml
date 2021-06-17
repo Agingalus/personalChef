@@ -18,6 +18,11 @@
             android:id="@+id/stepCounter"
             android:title="@string/stepDetail"
             android:icon="@drawable/summary"/>
+
+        <item
+            android:id="@+id/aboutUs"
+            android:title="@string/aboutUsTitle"
+            android:icon="@drawable/summary"/>
     </group>
 
 </menu>
