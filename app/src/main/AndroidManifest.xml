@@ -26,6 +26,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <activity android:name=".BaseActivity"/>
+
+
         <service
             android:name=".services.StepsCalculatorService"
             android:enabled="true"
@@ -48,7 +51,7 @@
         </activity>
         <activity
             android:name=".StepCounterActivity"
-            android:label="@string/stepCounterSummary" />
+            android:label="@string/summary" />
         <activity
             android:name=".UserProfileActivity"
             android:label="@string/userProfile" />

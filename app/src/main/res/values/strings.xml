@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Step Counter</string>
+    <string name="app_name">Step It Up</string>
     <string name="appTitle">Personal Chef</string>
     <string name="userDetails">User Details</string>
 
@@ -35,7 +35,7 @@
     <string name="title_home">Home</string>
     <string name="userProfile">User Profile</string>
     <string name="stepGoal">Step Goal</string>
-    <string name="stepCounterSummary">Step Counter Summary</string>
+    <string name="summary">Summary</string>
     <string name="title_notifications">Notifications</string>
 
     <string name="title_activity_navigation_drawer">NavigationDrawer</string>
@@ -45,9 +45,6 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="menu">Menu</string>
 
     <string name="notifChannelId">SC_ServiceChannel</string>
     <string name="notifChannel_name">SC Service Channel</string>
