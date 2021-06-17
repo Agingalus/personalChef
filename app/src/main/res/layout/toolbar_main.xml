@@ -6,11 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     app:titleTextColor="#F8F6F7"
-    android:background="#024968"
+    android:background="#166CBF"
     android:gravity="center"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:fitsSystemWindows="true" />
     <!--app:title="Navigation Drawer"-->
+<!--#024968-->
 
 
 
