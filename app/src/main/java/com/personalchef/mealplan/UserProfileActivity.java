@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -17,13 +18,18 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.personalchef.mealplan.models.User;
+import com.personalchef.mealplan.models.Utilities;
 
-public class UserProfileActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class UserProfileActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
 
     private int weight;
     private float height;
     private int age;
 
+    static String NEW_USER = "true";
+    static String NOT_A_NEW_USER = "false";
+
+    private String newUser = NOT_A_NEW_USER;
 
     public DrawerLayout drawer;
     public ActionBarDrawerToggle toggle;
@@ -37,6 +43,12 @@ public class UserProfileActivity extends AppCompatActivity implements Navigation
             age = savedInstanceState.getInt("age");
             height = savedInstanceState.getFloat("height");
             weight = savedInstanceState.getInt("weight");
+        }
+
+        Intent intent = getIntent();
+        newUser = intent.getStringExtra(Utilities.EXTRA_TEXT);
+        if (newUser == null) {
+            newUser = NOT_A_NEW_USER;
         }
 
         //Toolbar and Nav Drawer set up
@@ -107,12 +119,15 @@ public class UserProfileActivity extends AppCompatActivity implements Navigation
             // Create/update user object
             User user = new User(weight, height, age);
             IOHelper.SaveUserToFile(getApplicationContext(), user);
+            Toast.makeText(this, "Saved.", Toast.LENGTH_SHORT).show();
 
-            //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            /*Intent intent = new Intent(getApplicationContext(), SetStepGoal.class);
-            startActivity(intent);*/
-
-            finish();
+            if (newUser.equals(NEW_USER)) {
+                // Navigate to SetGoal Activity
+                Intent intent = new Intent(getApplicationContext(), SetStepGoal.class);
+                startActivity(intent);
+                // Remove UserProfile from the history
+                finish();
+            }
         }
     }
 
@@ -136,20 +151,25 @@ public class UserProfileActivity extends AppCompatActivity implements Navigation
 
         switch (id)
         {
-            case R.id.userProfile:
-                intent = new Intent(getApplicationContext(), UserProfileActivity.class);
+            case R.id.homeMenu:
+                intent = new Intent(getApplicationContext(), MainActivity.class);
                 break;
-
+            case R.id.userProfile:
+                //intent = new Intent(getApplicationContext(), UserProfileActivity.class);
+                break;
             case R.id.setStepGoal:
                 intent = new Intent(getApplicationContext(), SetStepGoal.class);
                 break;
-
             case R.id.stepCounter:
                 intent = new Intent(getApplicationContext(), StepCounterActivity.class);
                 break;
+            case R.id.aboutUs:
+                intent = new Intent(getApplicationContext(), AboutUsActivity.class);
+                break;
         }
-        startActivity(intent);
-
+        if (intent != null) {
+            startActivity(intent);
+        }
 
         //Close drawer when user selects option
         drawer = (DrawerLayout) findViewById(R.id.my_drawer_layout);

@@ -51,20 +51,25 @@ public class SetStepGoal extends AppCompatActivity implements NavigationView.OnN
 
         switch (id)
         {
+            case R.id.homeMenu:
+                intent = new Intent(getApplicationContext(), MainActivity.class);
+                break;
             case R.id.userProfile:
                 intent = new Intent(getApplicationContext(), UserProfileActivity.class);
                 break;
-
             case R.id.setStepGoal:
-                intent = new Intent(getApplicationContext(), SetStepGoal.class);
+                //intent = new Intent(getApplicationContext(), SetStepGoal.class);
                 break;
-
             case R.id.stepCounter:
                 intent = new Intent(getApplicationContext(), StepCounterActivity.class);
                 break;
+            case R.id.aboutUs:
+                intent = new Intent(getApplicationContext(), AboutUsActivity.class);
+                break;
         }
-        startActivity(intent);
-
+        if (intent != null) {
+            startActivity(intent);
+        }
 
         //Close drawer when user selects option
         drawer = (DrawerLayout) findViewById(R.id.my_drawer_layout);

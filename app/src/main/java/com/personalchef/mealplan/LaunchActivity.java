@@ -13,6 +13,7 @@ import androidx.biometric.*;
 import androidx.core.content.ContextCompat;
 
 import com.personalchef.mealplan.models.User;
+import com.personalchef.mealplan.models.Utilities;
 
 import java.util.concurrent.Executor;
 
@@ -126,6 +127,7 @@ public class LaunchActivity extends AppCompatActivity {
         //Log.i("PC", "User = " + u.toString());
         if (u == null) {
             Intent intent = new Intent(this, UserProfileActivity.class);
+            intent.putExtra(Utilities.EXTRA_TEXT, UserProfileActivity.NEW_USER);
             startActivity(intent);
         } else {
             Intent intent = new Intent(this, MainActivity.class);
