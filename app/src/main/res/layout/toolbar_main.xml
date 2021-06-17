@@ -8,7 +8,8 @@
     app:titleTextColor="#F8F6F7"
     android:background="#020515"
     android:gravity="center"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark"/>
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    android:fitsSystemWindows="true" />
     <!--app:title="Navigation Drawer"-->
 
 

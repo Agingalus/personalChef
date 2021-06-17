@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -27,18 +28,23 @@ import androidx.core.view.GravityCompat;
 
 import androidx.fragment.app.Fragment;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
     public DrawerLayout drawer;
     public ActionBarDrawerToggle toggle;
     public NavigationView navView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected void onStart() {
+        super.onStart();
 
         // Register Notification Channel
         createNotificationChannel();
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
         //Toolbar and Nav Drawer set up
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -134,10 +140,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         startActivity(intent);
     }*/
 
+
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
-        Fragment fragment = null;
         Intent intent = null;
 
         switch (id)
@@ -153,6 +159,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.stepCounter:
                 intent = new Intent(getApplicationContext(), StepCounterActivity.class);
                 break;
+            case R.id.aboutUs:
+                break;
         }
         if (intent != null) {
             startActivity(intent);
@@ -165,6 +173,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         return true;
     }
+
 
     // Start StepsCalculatorService
     public void startStepsCalculatorService() {
