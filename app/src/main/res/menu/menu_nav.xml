@@ -21,7 +21,7 @@
 
         <item
             android:id="@+id/stepCounter"
-            android:title="@string/stepDetail"
+            android:title="@string/summary"
             android:icon="@drawable/summary"/>
     </group>
 

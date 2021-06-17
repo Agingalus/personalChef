@@ -12,6 +12,9 @@
     <color name="gray1">#9E9A9A</color>
     <color name="colorPrimaryDark">#279FC9</color>
     <color name="colorAccent">#F4A14E</color>
-    <color name="colorPrimary">#EF4152</color>
+    <color name="colorPrimary">#020202</color>
     <color name="background">#D6F7E7</color>
+    <color name="colorWhite">#FFFFFF</color>
+
 </resources>
+
