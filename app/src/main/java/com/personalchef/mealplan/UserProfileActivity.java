@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -19,11 +20,12 @@ import com.google.android.material.navigation.NavigationView;
 import com.personalchef.mealplan.models.User;
 import com.personalchef.mealplan.models.Utilities;
 
-public class UserProfileActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class UserProfileActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
 
     private int weight;
     private float height;
     private int age;
+
 
     static String NEW_USER = "true";
     static String NOT_A_NEW_USER = "false";
@@ -150,20 +152,24 @@ public class UserProfileActivity extends AppCompatActivity implements Navigation
 
         switch (id)
         {
-            case R.id.userProfile:
-                intent = new Intent(getApplicationContext(), UserProfileActivity.class);
+            case R.id.homeMenu:
+                intent = new Intent(getApplicationContext(), MainActivity.class);
                 break;
-
+            case R.id.userProfile:
+                //intent = new Intent(getApplicationContext(), UserProfileActivity.class);
+                break;
             case R.id.setStepGoal:
                 intent = new Intent(getApplicationContext(), SetStepGoal.class);
                 break;
-
             case R.id.stepCounter:
                 intent = new Intent(getApplicationContext(), StepCounterActivity.class);
                 break;
+            case R.id.aboutUs:
+                break;
         }
-        startActivity(intent);
-
+        if (intent != null) {
+            startActivity(intent);
+        }
 
         //Close drawer when user selects option
         drawer = (DrawerLayout) findViewById(R.id.my_drawer_layout);

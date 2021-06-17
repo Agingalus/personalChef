@@ -3,7 +3,6 @@
     package="com.personalchef.mealplan">
 
     <uses-sdk android:minSdkVersion="20" />
-
     <!-- Hardware features that the app uses -->
     <uses-feature
         android:name="android.permission.USE_FINGERPRINT"
@@ -15,10 +14,9 @@
         android:name="android.hardware.location.gps"
         android:required="false" /> <!-- Permissions asked to user -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
-    <!-- Fingerprint is deprecated - might be required for previous versions -->
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" /> <!-- Fingerprint is deprecated - might be required for previous versions -->
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/> <!-- For API level 28+ i.e. Android 9-->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -27,17 +25,19 @@
         android:roundIcon="@drawable/main_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".BaseActivity"></activity>
+
         <service
             android:name=".services.StepsCalculatorService"
             android:enabled="true"
-            android:exported="false"></service>
+            android:exported="false" />
         <service
             android:name=".services.NotificationService"
             android:exported="false" />
 
         <activity
             android:name=".SetStepGoal"
-            android:label="@string/stepGoal"/>
+            android:label="@string/stepGoal" />
         <activity
             android:name=".LaunchActivity"
             android:theme="@style/LaunchTheme">
@@ -49,13 +49,13 @@
         </activity>
         <activity
             android:name=".StepCounterActivity"
-            android:label="@string/stepCounterSummary"/>
+            android:label="@string/stepCounterSummary" />
         <activity
             android:name=".UserProfileActivity"
             android:label="@string/userProfile" />
-        <activity android:name=".MainActivity"
-            android:label="@string/home"/>
-
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/home" />
     </application>
 
 </manifest>
