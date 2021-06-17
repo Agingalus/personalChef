@@ -14,6 +14,10 @@ public class Utilities extends Application {
 
     public static int goal = 102;
 
+    // Var to pass text within activities (in the intent.putExtra()
+    public static final String EXTRA_TEXT = "Text";
+
+
     public static User getUser() {
         return user;
     }

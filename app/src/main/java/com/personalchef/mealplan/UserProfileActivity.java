@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.personalchef.mealplan.models.User;
+import com.personalchef.mealplan.models.Utilities;
 
 public class UserProfileActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -24,6 +25,10 @@ public class UserProfileActivity extends AppCompatActivity implements Navigation
     private float height;
     private int age;
 
+    static String NEW_USER = "true";
+    static String NOT_A_NEW_USER = "false";
+
+    private String newUser = NOT_A_NEW_USER;
 
     public DrawerLayout drawer;
     public ActionBarDrawerToggle toggle;
@@ -37,6 +42,12 @@ public class UserProfileActivity extends AppCompatActivity implements Navigation
             age = savedInstanceState.getInt("age");
             height = savedInstanceState.getFloat("height");
             weight = savedInstanceState.getInt("weight");
+        }
+
+        Intent intent = getIntent();
+        newUser = intent.getStringExtra(Utilities.EXTRA_TEXT);
+        if (newUser == null) {
+            newUser = NOT_A_NEW_USER;
         }
 
         //Toolbar and Nav Drawer set up
@@ -107,12 +118,15 @@ public class UserProfileActivity extends AppCompatActivity implements Navigation
             // Create/update user object
             User user = new User(weight, height, age);
             IOHelper.SaveUserToFile(getApplicationContext(), user);
+            Toast.makeText(this, "Saved.", Toast.LENGTH_SHORT).show();
 
-            //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            /*Intent intent = new Intent(getApplicationContext(), SetStepGoal.class);
-            startActivity(intent);*/
-
-            finish();
+            if (newUser.equals(NEW_USER)) {
+                // Navigate to SetGoal Activity
+                Intent intent = new Intent(getApplicationContext(), SetStepGoal.class);
+                startActivity(intent);
+                // Remove UserProfile from the history
+                finish();
+            }
         }
     }
 
