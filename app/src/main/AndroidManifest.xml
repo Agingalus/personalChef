@@ -25,7 +25,6 @@
         android:roundIcon="@drawable/main_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BaseActivity"></activity>
 
         <service
             android:name=".services.StepsCalculatorService"
@@ -56,6 +55,12 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/home" />
+        <activity android:name=".AboutUsActivity"
+            android:label="@string/aboutUsTitle" />
+
+        <activity android:name=".BaseActivity"></activity>
+
+
     </application>
 
 </manifest>

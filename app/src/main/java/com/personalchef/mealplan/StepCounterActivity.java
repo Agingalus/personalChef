@@ -124,6 +124,7 @@ public class StepCounterActivity extends AppCompatActivity implements Navigation
                 //intent = new Intent(getApplicationContext(), StepCounterActivity.class);
                 break;
             case R.id.aboutUs:
+                intent = new Intent(getApplicationContext(), AboutUsActivity.class);
                 break;
         }
         if (intent != null) {

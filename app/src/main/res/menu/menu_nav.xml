@@ -23,6 +23,7 @@
             android:id="@+id/stepCounter"
             android:title="@string/stepDetail"
             android:icon="@drawable/summary"/>
+
     </group>
 
     <item
