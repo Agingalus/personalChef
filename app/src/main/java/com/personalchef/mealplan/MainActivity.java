@@ -124,24 +124,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
-
-
-
-    /*public void stepCounterDisplay(View view) {
-        Intent intent = new Intent(getApplicationContext(), StepCounterActivity.class);
-        startActivity(intent);
-    }*/
-
-    /*public void stepGoalSubmitted(View view) {
-        Intent intent = new Intent(getApplicationContext(), StepCounterActivity.class);
-        startActivity(intent);
-    }*/
-
-
-    @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
         Intent intent = null;
@@ -151,15 +133,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.userProfile:
                 intent = new Intent(MainActivity.this, UserProfileActivity.class);
                 break;
-
             case R.id.setStepGoal:
                 intent = new Intent(getApplicationContext(), SetStepGoal.class);
                 break;
-
             case R.id.stepCounter:
                 intent = new Intent(getApplicationContext(), StepCounterActivity.class);
                 break;
             case R.id.aboutUs:
+                intent = new Intent(getApplicationContext(), AboutUsActivity.class);
                 break;
         }
         if (intent != null) {
@@ -173,7 +154,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         return true;
     }
-
 
     // Start StepsCalculatorService
     public void startStepsCalculatorService() {
@@ -201,6 +181,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startService(serviceIntent);
             }
         }catch (Exception ex) {}
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
 }

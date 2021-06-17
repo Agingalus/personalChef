@@ -26,7 +26,6 @@ public class UserProfileActivity extends AppCompatActivity implements Navigation
     private float height;
     private int age;
 
-
     static String NEW_USER = "true";
     static String NOT_A_NEW_USER = "false";
 
@@ -165,6 +164,7 @@ public class UserProfileActivity extends AppCompatActivity implements Navigation
                 intent = new Intent(getApplicationContext(), StepCounterActivity.class);
                 break;
             case R.id.aboutUs:
+                intent = new Intent(getApplicationContext(), AboutUsActivity.class);
                 break;
         }
         if (intent != null) {
