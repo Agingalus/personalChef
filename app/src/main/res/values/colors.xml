@@ -10,7 +10,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="myorange">#fca103</color>
     <color name="gray1">#9E9A9A</color>
-    <color name="colorPrimaryDark">#9C27B0</color>
-    <color name="colorAccent">#FFEB3B</color>
-    <color name="colorPrimary">#FF009688</color>
+    <color name="colorPrimaryDark">#279FC9</color>
+    <color name="colorAccent">#F4A14E</color>
+    <color name="colorPrimary">#EF4152</color>
+    <color name="background">#D6F7E7</color>
 </resources>
