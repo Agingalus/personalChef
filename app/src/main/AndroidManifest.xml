@@ -26,9 +26,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".BaseActivity"/>
-
-
         <service
             android:name=".services.StepsCalculatorService"
             android:enabled="true"

@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     // Start StepsCalculatorService
     public void startStepsCalculatorService() {
         Intent serviceIntent = new Intent(this, StepsCalculatorService.class);
-        Utilities.NotificationString = "";
+        //Utilities.NotificationString = "";
         serviceIntent.setAction(StepsCalculatorService.ACTION_START_FOREGROUND_SERVICE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
