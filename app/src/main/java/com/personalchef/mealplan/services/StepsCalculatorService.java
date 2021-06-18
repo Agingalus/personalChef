@@ -47,7 +47,7 @@ public class StepsCalculatorService extends Service implements SensorEventListen
     public static final String ACTION_START_FOREGROUND_SERVICE = "ACTION_START_FOREGROUND_SERVICE";
     public static final String ACTION_STOP_FOREGROUND_SERVICE = "ACTION_STOP_FOREGROUND_SERVICE";
     public static final String ACTION_PAUSE = "ACTION_PAUSE";
-    public static final String ACTION_RESUME = "ACTION_RESUME";
+    public static final String ACTION_CONTINUE = "ACTION_CONTINUE";
 
     private StepCalorieDetails scDetails = null;
     private User user = null;
@@ -78,8 +78,6 @@ public class StepsCalculatorService extends Service implements SensorEventListen
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        //Log.i("TAG_FOREGROUND_SERVICE", "onStartCommand foreground service.");
-
         if (intent != null) {
             String action = intent.getAction();
 
@@ -90,9 +88,9 @@ public class StepsCalculatorService extends Service implements SensorEventListen
                 case ACTION_STOP_FOREGROUND_SERVICE:
                     stopForegroundService();
                     break;
-                case ACTION_RESUME:
+                case ACTION_CONTINUE:
                     running = true;
-                    Toast.makeText(getApplicationContext(), "Resumed StepCounter", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Cotinuing StepCounter", Toast.LENGTH_LONG).show();
                     break;
                 case ACTION_PAUSE:
                     running = false;
@@ -106,13 +104,13 @@ public class StepsCalculatorService extends Service implements SensorEventListen
     // Sets notification, sensors, and starts fg service
     private void startForegroundService()
     {
-        //Log.i(TAG_FOREGROUND_SERVICE, "Start foreground service.");
+        if (!running) {
+            // Set Notification
+            Notification notification = getMyNotification();
 
-        // Set Notification
-        Notification notification = getMyNotification();
-
-        // Start foreground service with notification
-        startForeground(ONGOING_NOTIFICATION_ID, notification);
+            // Start foreground service with notification
+            startForeground(ONGOING_NOTIFICATION_ID, notification);
+        }
 
         // set Sensors, Listener, & Register manager
         SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -149,8 +147,7 @@ public class StepsCalculatorService extends Service implements SensorEventListen
                     scDetails.setTotalSteps(stepCount++);
                     update();
 
-                    PrintStepCount();
-                    //Log.i(TAG_FOREGROUND_SERVICE, stepCount + " I am called even when not stepping");
+                    //PrintStepCount();
                 }
                 if (stepCount % 5 == 0 && !saved) {
                     //saves data every 10 steps. 10 used for testing purposes, will be much higher for actual app
@@ -243,13 +240,13 @@ public class StepsCalculatorService extends Service implements SensorEventListen
 
         NotificationCompat.BigTextStyle bigText = new NotificationCompat.BigTextStyle();
         bigText.bigText(Utilities.NotificationString);
-        bigText.setBigContentTitle(getString(R.string.appTitle));
+        bigText.setBigContentTitle(getString(R.string.app_name));
         bigText.setSummaryText("Steps Progress");
 
         // Create Notification builder
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, getString(R.string.notifChannelId))
                 .setSmallIcon(R.drawable.ic_stat_run)
-                .setContentTitle(getString(R.string.appTitle))
+                .setContentTitle(getString(R.string.app_name))
                 .setContentText(Utilities.NotificationString)
                 .setPriority(NotificationCompat.PRIORITY_MAX)
                 .setContentIntent(pendingIntent)
@@ -263,14 +260,14 @@ public class StepsCalculatorService extends Service implements SensorEventListen
         Intent pauseIntent = new Intent(this, StepsCalculatorService.class);
         pauseIntent.setAction(ACTION_PAUSE);
         PendingIntent pendingPrevIntent = PendingIntent.getService(this, 0, pauseIntent, 0);
-        NotificationCompat.Action prevAction = new NotificationCompat.Action(android.R.drawable.ic_media_pause, "Pause", pendingPrevIntent);
+        NotificationCompat.Action prevAction = new NotificationCompat.Action(R.drawable.ic_pause_filled, getString(R.string.pause), pendingPrevIntent);
         builder.addAction(prevAction);
 
         // Add Resume button intent in notification.
         Intent playIntent = new Intent(this, StepsCalculatorService.class);
-        playIntent.setAction(ACTION_RESUME);
+        playIntent.setAction(ACTION_CONTINUE);
         PendingIntent pendingPlayIntent = PendingIntent.getService(this, 0, playIntent, 0);
-        NotificationCompat.Action playAction = new NotificationCompat.Action(android.R.drawable.ic_media_play, "Resume", pendingPlayIntent);
+        NotificationCompat.Action playAction = new NotificationCompat.Action(R.drawable.ic_play_circle_filled, getString(R.string.cont), pendingPlayIntent);
         builder.addAction(playAction);
 
         return builder.build();
@@ -280,8 +277,6 @@ public class StepsCalculatorService extends Service implements SensorEventListen
      * This is the method that can be called to update the Notification
      */
     private void updateNotification() {
-        String text = "Some text that will update the notification";
-
         Notification notification = getMyNotification();
 
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
