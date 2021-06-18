@@ -99,7 +99,16 @@ public class StepCounterActivity extends AppCompatActivity implements Navigation
 
         tvMiles.setText("Distance Walked (per Mile): " + String.format("%.2f", scDetail.getMilesWalked()));
 
-        stepCountV.setText(stepCount + " / " + Utilities.goal);
+        Intent iin= getIntent();
+        Bundle b = iin.getExtras();
+
+        if(b!=null)
+        {
+            String j =(String) b.get("goal");
+            stepCountV.setText(stepCount + " / " + j);
+        }
+
+        //stepCountV.setText(stepCount + " / " + Utilities.goal);
 
         return;
     }

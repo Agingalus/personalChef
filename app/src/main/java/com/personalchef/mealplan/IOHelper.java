@@ -47,7 +47,7 @@ public class IOHelper {
                 user = new Gson().fromJson(obj.toString(), User.class);
             }
         } catch (IOException | JSONException e) {
-            Log.e("PC", "ERror while loading user - " + e.getMessage());
+            Log.e("PC", "Error while loading user - " + e.getMessage());
             e.printStackTrace();
         }
 
@@ -65,7 +65,7 @@ public class IOHelper {
             fos.close();
             //Log.i("PC", "Saved to file ");
         } catch (IOException e) {
-            Log.e("PC", "ERror while saving - " + e.getMessage());
+            Log.e("PC", "Error while saving - " + e.getMessage());
             e.printStackTrace();
         }
 
@@ -95,7 +95,7 @@ public class IOHelper {
             }
             System.out.println("Rand #: " + randomIndex + " Joke: " + jokeText);
         } catch (IOException e) {
-            Log.e("PC", "ERror while loading jokes - " + e.getMessage());
+            Log.e("PC", "Error while loading jokes - " + e.getMessage());
             e.printStackTrace();
         }
 

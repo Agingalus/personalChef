@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,10 +18,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.personalchef.mealplan.models.StepCalorieDetails;
 import com.personalchef.mealplan.models.User;
 import com.personalchef.mealplan.models.Utilities;
 
 public class UserProfileActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
+
+    private User user;
+    private Utilities util;
 
     private int weight;
     private float height;
@@ -64,14 +69,33 @@ public class UserProfileActivity extends AppCompatActivity implements Navigation
         toggle.setDrawerIndicatorEnabled(true);
         navView.setNavigationItemSelectedListener(this);
         toggle.syncState();
+
+        //populateUserProfile();
     }
+
+/*
+
+    private void populateUserProfile(){
+        EditText age = findViewById(R.id.ageInput);
+        EditText height = findViewById(R.id.heightInput);
+        EditText weight = findViewById(R.id.weightInput);
+
+
+        age.setText(String.valueOf((user.getAge())));
+        height.setText(String.valueOf(user.getHeight()));
+        weight.setText(String.valueOf(user.getWeight()));
+
+        return;
+    }
+
+*/
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
         savedInstanceState.putInt("age", age);
         savedInstanceState.putFloat("height", height);
         savedInstanceState.putInt("weight", weight);
+        super.onSaveInstanceState(savedInstanceState);
     }
 
     // Validates the inputs & displays appropriate error messages
@@ -130,6 +154,7 @@ public class UserProfileActivity extends AppCompatActivity implements Navigation
             }
         }
     }
+
 
     /**
      * Parses a String to Integer

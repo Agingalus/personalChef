@@ -12,13 +12,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.google.android.material.navigation.NavigationView;
+import com.personalchef.mealplan.models.Utilities;
 
 public class SetStepGoal extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+
+    public int goal;
     public DrawerLayout drawer;
     public ActionBarDrawerToggle toggle;
     public NavigationView navView;
+    public EditText stepGoal;
+    public Button submit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,10 +45,31 @@ public class SetStepGoal extends AppCompatActivity implements NavigationView.OnN
         toggle.setDrawerIndicatorEnabled(true);
         navView.setNavigationItemSelectedListener(this);
         toggle.syncState();
+
+        stepGoal = findViewById(R.id.stepGoal);
+        submit = findViewById(R.id.stepGoalSubmitBtn);
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String s = stepGoal.getText().toString();
+
+                Intent i = new Intent(SetStepGoal.this, StepCounterActivity.class);
+                i.putExtra("goal", s);
+                startActivity(i);
+            }
+        });
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState){
+        savedInstanceState.putInt("goal", goal);
+        super.onSaveInstanceState(savedInstanceState);
     }
 
     public void stepGoalSubmitted(View view) {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent intent = new Intent(getApplicationContext(), StepCounterActivity.class);
+        String sGoal = null;
+        intent.putExtra("goal", sGoal);
         startActivity(intent);
     }
 
