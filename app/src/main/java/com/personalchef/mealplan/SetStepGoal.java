@@ -14,13 +14,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.personalchef.mealplan.models.User;
 import com.personalchef.mealplan.models.Utilities;
 
 public class SetStepGoal extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
-    public int goal;
+    int goal;
     public DrawerLayout drawer;
     public ActionBarDrawerToggle toggle;
     public NavigationView navView;
@@ -47,17 +49,7 @@ public class SetStepGoal extends AppCompatActivity implements NavigationView.OnN
         toggle.syncState();
 
         stepGoal = findViewById(R.id.stepGoal);
-        submit = findViewById(R.id.stepGoalSubmitBtn);
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String s = stepGoal.getText().toString();
 
-                Intent i = new Intent(SetStepGoal.this, StepCounterActivity.class);
-                i.putExtra("goal", s);
-                startActivity(i);
-            }
-        });
     }
 
     @Override
@@ -67,10 +59,36 @@ public class SetStepGoal extends AppCompatActivity implements NavigationView.OnN
     }
 
     public void stepGoalSubmitted(View view) {
-        Intent intent = new Intent(getApplicationContext(), StepCounterActivity.class);
-        String sGoal = null;
-        intent.putExtra("goal", sGoal);
-        startActivity(intent);
+        int sGoal = 0;
+        boolean isValid = false;
+        try {
+            sGoal = Integer.parseInt(stepGoal.getText().toString());
+            isValid = true;
+        } catch (NumberFormatException e) {
+            isValid = false;
+        }
+
+        //int validation
+        if(isValid){
+            User user = Utilities.getUser();
+            if(user == null) {
+                user = IOHelper.loadUserFromFile(this);
+            }
+            user.setGoal(sGoal);
+            System.out.println(user.toString()); //debug code
+            Utilities.setUser(user);
+            Utilities.goal = sGoal;
+            IOHelper.SaveUserToFile(this, user);
+            user = IOHelper.loadUserFromFile(this);
+            System.out.println("Reloaded user" + user.toString()); //debug code
+            this.goal = sGoal;
+            Intent intent = new Intent(getApplicationContext(), StepCounterActivity.class);
+            startActivity(intent);
+        }else{
+            Toast.makeText(this, "Invalid value.", Toast.LENGTH_LONG).show();
+        }
+
+
     }
 
     @Override
