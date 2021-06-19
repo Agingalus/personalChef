@@ -1,19 +1,17 @@
 package com.personalchef.mealplan;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -26,7 +24,9 @@ public class SetStepGoal extends AppCompatActivity implements NavigationView.OnN
     public DrawerLayout drawer;
     public ActionBarDrawerToggle toggle;
     public NavigationView navView;
-    public EditText stepGoal;
+    public EditText stepGoalET;
+    public TextView stepGoalTV;
+    public User user = Utilities.getUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,10 @@ public class SetStepGoal extends AppCompatActivity implements NavigationView.OnN
         navView.setNavigationItemSelectedListener(this);
         toggle.syncState();
 
-        stepGoal = findViewById(R.id.stepGoal);
+        stepGoalET = findViewById(R.id.stepGoal);
+        stepGoalTV = findViewById(R.id.goalTV);
+
+        stepGoalTV.setText(String.valueOf(user.getGoal()));
     }
 
     @Override
@@ -60,7 +63,7 @@ public class SetStepGoal extends AppCompatActivity implements NavigationView.OnN
         int sGoal = 0;
         boolean isValid = false;
         try {
-            sGoal = Integer.parseInt(stepGoal.getText().toString());
+            sGoal = Integer.parseInt(stepGoalET.getText().toString());
             isValid = true;
         } catch (NumberFormatException e) {
             isValid = false;
@@ -68,7 +71,7 @@ public class SetStepGoal extends AppCompatActivity implements NavigationView.OnN
 
         //int validation
         if(isValid){
-            User user = Utilities.getUser();
+            //User user = Utilities.getUser();
             if(user == null) {
                 user = IOHelper.loadUserFromFile(this);
             }
