@@ -17,6 +17,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.personalchef.mealplan.models.DatabaseHelper;
 import com.personalchef.mealplan.models.StepCalorieDetails;
+import com.personalchef.mealplan.models.User;
+import com.personalchef.mealplan.models.Utilities;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -63,6 +65,7 @@ public class StepCounterActivity extends AppCompatActivity implements Navigation
     //@RequiresApi(api = Build.VERSION_CODES.O)
     private void populateTextViews() {
         int avg = 0;
+        User user = Utilities.getUser();
 
         // Retrieve Views
         TextView tvDate = findViewById(R.id.tvDate);
@@ -99,26 +102,13 @@ public class StepCounterActivity extends AppCompatActivity implements Navigation
 
         tvMiles.setText("Distance Walked (per Mile): " + String.format("%.2f", scDetail.getMilesWalked()));
 
-        Intent iin= getIntent();
-        Bundle b = iin.getExtras();
 
+        int goal = user.getGoal();
         double percent;
-        if(b!=null)
-        {
-            String j =(String) b.get("goal");
-            stepCountV.setText(stepCount + " / " + j);
-            int goal = Integer.parseInt(j);
-            percent = (double)stepCount/(double)goal;
-            percentV.setText(percent + "%");
 
-
-        }else{
-            stepCountV.setText(stepCount + " / " + 200);
-            percent = (double)stepCount/200;
-            percentV.setText(String.format("%.1f",percent) + "%");
-        }
-
-        //stepCountV.setText(stepCount + " / " + Utilities.goal);
+        stepCountV.setText(stepCount + " / " + goal);
+        percent = (double)stepCount/(double)goal;
+        percentV.setText(percent + "%");
 
         return;
     }

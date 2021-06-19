@@ -27,7 +27,6 @@ public class SetStepGoal extends AppCompatActivity implements NavigationView.OnN
     public ActionBarDrawerToggle toggle;
     public NavigationView navView;
     public EditText stepGoal;
-    public Button submit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +37,7 @@ public class SetStepGoal extends AppCompatActivity implements NavigationView.OnN
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        drawer = (DrawerLayout) findViewById(R.id.my_drawer_layout);
+        drawer = findViewById(R.id.my_drawer_layout);
         navView = findViewById(R.id.nav_view);
         navView.setItemIconTintList(null);
         toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.nav_open, R.string.nav_close);
@@ -49,7 +48,6 @@ public class SetStepGoal extends AppCompatActivity implements NavigationView.OnN
         toggle.syncState();
 
         stepGoal = findViewById(R.id.stepGoal);
-
     }
 
     @Override
@@ -80,8 +78,8 @@ public class SetStepGoal extends AppCompatActivity implements NavigationView.OnN
             Utilities.goal = sGoal;
             IOHelper.SaveUserToFile(this, user);
             user = IOHelper.loadUserFromFile(this);
-            System.out.println("Reloaded user" + user.toString()); //debug code
             this.goal = sGoal;
+
             Intent intent = new Intent(getApplicationContext(), StepCounterActivity.class);
             startActivity(intent);
         }else{
