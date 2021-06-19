@@ -290,7 +290,7 @@
             android:id="@+id/number_of_calories"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1500/2000"
+            android:text="/2000"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/background_progressbar"
             app:layout_constraintEnd_toEndOf="parent"
@@ -307,6 +307,21 @@
             android:text="@string/home"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />-->
+        <TextView
+            android:id="@+id/percent"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+
+            android:layout_marginTop="150dp"
+            android:layout_marginBottom="108dp"
+            android:text="0%"
+            app:layout_constraintBottom_toBottomOf="@+id/background_progressbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toTopOf="@+id/background_progressbar"
+            app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

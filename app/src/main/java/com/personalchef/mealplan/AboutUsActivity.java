@@ -45,11 +45,11 @@ public class AboutUsActivity extends AppCompatActivity implements NavigationView
 
         switch (id)
         {
-            //case R.id.homeMenu:
-            //    intent = new Intent(getApplicationContext(), MainActivity.class);
-            //    break;
+            case R.id.homeMenu:
+                intent = new Intent(getApplicationContext(), MainActivity.class);
+                break;
             case R.id.userProfile:
-                //intent = new Intent(getApplicationContext(), UserProfileActivity.class);
+                intent = new Intent(getApplicationContext(), UserProfileActivity.class);
                 break;
             case R.id.setStepGoal:
                 intent = new Intent(getApplicationContext(), SetStepGoal.class);

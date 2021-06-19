@@ -5,33 +5,33 @@ import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.google.android.material.navigation.NavigationView;
+import com.personalchef.mealplan.models.DatabaseHelper;
+import com.personalchef.mealplan.models.StepCalorieDetails;
 import com.personalchef.mealplan.models.User;
 import com.personalchef.mealplan.models.Utilities;
 import com.personalchef.mealplan.services.NotificationService;
 import com.personalchef.mealplan.services.StepsCalculatorService;
 
-import com.google.android.material.navigation.NavigationView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.core.view.GravityCompat;
-
-import androidx.fragment.app.Fragment;
-
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
     public DrawerLayout drawer;
     public ActionBarDrawerToggle toggle;
     public NavigationView navView;
+    private StepCalorieDetails scDetail;
+    private int stepCount;
+
 
     @Override
     protected void onStart() {
@@ -45,7 +45,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        DatabaseHelper helper = new DatabaseHelper(this);
+        scDetail = helper.getStepDetails();
+        scDetail.Calculate();
+        helper.close();
 
+        stepCount = scDetail.getTotalSteps();
         //Toolbar and Nav Drawer set up
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -71,6 +76,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         TextView textViewjoke=findViewById(R.id.tv_textJoke);
         textViewjoke.setText(IOHelper.getJokeOfTheDay(this));
         System.out.println((u != null ? u.toString() : ""));
+        //makes the progress bar
+        populateProgress();
     }
 
 
@@ -158,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     // Start StepsCalculatorService
     public void startStepsCalculatorService() {
         Intent serviceIntent = new Intent(this, StepsCalculatorService.class);
-        Utilities.NotificationString = "";
+        //Utilities.NotificationString = "";
         serviceIntent.setAction(StepsCalculatorService.ACTION_START_FOREGROUND_SERVICE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -181,6 +188,39 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startService(serviceIntent);
             }
         }catch (Exception ex) {}
+    }
+    public  void populateProgress(){
+
+        // Retrieve Views
+        TextView stepCountV = findViewById(R.id.number_of_calories);
+        ProgressBar pieChart = findViewById(R.id.stats_progressbar);
+        TextView percentV = findViewById(R.id.percent);
+        double percent;
+
+        int progress = scDetail.getProgress();
+
+        pieChart.setProgress(progress);
+
+        Intent iin= getIntent();
+        Bundle b = iin.getExtras();
+        if(b!=null)
+        {
+            String j =(String) b.get("goal");
+            stepCountV.setText(stepCount + " / " + j);
+            int goal = Integer.parseInt(j);
+            percent = (double)stepCount/(double)goal;
+            percentV.setText(percent + "%");
+
+
+        }else{
+            stepCountV.setText(stepCount + " / " + 200);
+            percent = (double)stepCount/200;
+            percentV.setText(String.format("%.1f",percent) + "%");
+        }
+        //stepCountV.setText(stepCount + " / " + Utilities.goal);
+
+        return;
+
     }
 
     @Override
