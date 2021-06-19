@@ -1,60 +1,56 @@
 <resources>
     <string name="app_name">Step It Up</string>
-    <string name="appTitle">Personal Chef</string>
-    <string name="userDetails">User Details</string>
+    <string name="appTitle">Step It Up</string>
 
-    <string name="stepDetail">Step-Calorie Details</string>
-    <string name="height">Height (cm)</string>
-
-    <string name="calburned">You have burned: </string>
+    <!--Calorie & step tracker-->
     <string name="cal">Cal</string>
+    <string name="calburned">You have burned: </string>
     <string name="stepsThisWeek">Total steps this week: </string>
     <string name="totalCalIntake">Total Calories intake: </string>
     <string name="totalCalburned">Total Calories burned: </string>
-    <string name="home">Home</string>
-
     <string name="todaySteps">Today Steps</string>
+    <string name="stepDetail">Step-Calorie Details</string>
+
+    <!--Profile-->
     <string name="weight">Weight (lbs)</string>
     <string name="age">Age</string>
+    <string name="height">Height (cm)</string>
     <string name="enterDetails">Enter profile details</string>
-    <string name="cont">Continue</string>
-    <string name="submit">Submit</string>
-    <string name="personalChef">Personal Chef</string>
+
+
+    <!--Foreground service-->
     <string name="reset">Reset</string>
     <string name="save">Save</string>
     <string name="pause">Pause</string>
 
-    <string name="nav_open">Open</string>
-    <string name="nav_close">Close</string>
-
+    <!--Step goal-->
     <string name="setGoalText">Great! Now let\'s set a daily goal. Don\'t worry this can be changed later.</string>
-    <string name="title_activity_bottom_nav">MainActivity</string>
 
-    <string name="title_dashboard">Dashboard</string>
 
     <!--Menu Items-->
-    <string name="title_home">Home</string>
-    <string name="userProfile">User Profile</string>
+    <string name="home">Home</string>
+    <string name="userProfile">Profile</string>
     <string name="stepGoal">Step Goal</string>
     <string name="summary">Summary</string>
     <string name="title_notifications">Notifications</string>
 
-    <string name="title_activity_navigation_drawer">NavigationDrawer</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
+    <!-- Navigation -->
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
+    <string name="cont">Continue</string>
+    <string name="submit">Submit</string>
 
-
+    <!--notification service -->
     <string name="notifChannelId">SC_ServiceChannel</string>
     <string name="notifChannel_name">SC Service Channel</string>
     <string name="notifChannel_description">SC_Ch_Desc</string>
 
+    <!--About Us-->
     <string name="aboutUsTitle">About Us</string>
     <string name="aboutAppText1">\"Step It Up\" is your best friend when it comes to activity and calories tracking.</string>
     <string name="aboutAppText2">Designed with love by Bellevue College students, \"Step It Up\" is a handy app that brings you closer to your fitness goals.</string>
-        <!--StepItUp helps track steps and calorie intake and calorie burned.......-->
     <string name="version">Version: 1.0</string>
     <string name="team">Team: </string>
     <string name="teamMembers">Trupti Dalia, Alejandra Valencia, Devon Rice, Aaron Greene, Ganna Tarasiuk</string>

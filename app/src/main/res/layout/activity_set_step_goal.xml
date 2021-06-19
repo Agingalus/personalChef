@@ -88,19 +88,7 @@
         //android:text="TextView"
 
 
-    <!--  <com.google.android.material.slider.RangeSlider
-          android:id="@+id/stepGoalSlider"
-          android:layout_width="146dp"
-          android:layout_height="54dp"
-          android:layout_marginStart="133dp"
-          android:layout_marginTop="50dp"
-          android:layout_marginEnd="132dp"
-          android:stepSize="10.0"
-          android:valueFrom="0.0"
-          android:valueTo="10000.0"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/userProfileSubmittedText" />-->
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -88,8 +88,6 @@ public class SetStepGoal extends AppCompatActivity implements NavigationView.OnN
         }else{
             Toast.makeText(this, "Invalid value.", Toast.LENGTH_LONG).show();
         }
-
-
     }
 
     @Override
