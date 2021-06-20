@@ -54,9 +54,10 @@
     <string name="aboutUsTitle">About Us</string>
     <string name="aboutAppText1">\"Step It Up\" is your best friend when it comes to activity and calories tracking.</string>
     <string name="aboutAppText2">Designed with love by Bellevue College students, \"Step It Up\" is a handy app that brings you closer to your fitness goals.</string>
-        <!--StepItUp helps track steps and calorie intake and calorie burned.......-->
+    <!--StepItUp helps track steps and calorie intake and calorie burned.......-->
     <string name="version">Version: 1.0</string>
     <string name="team">Team: </string>
     <string name="teamMembers">Trupti Dalia, Alejandra Valencia, Devon Rice, Aaron Greene, Ganna Tarasiuk</string>
+    <string name="edit">Edit</string>
 
 </resources>

@@ -102,7 +102,7 @@
         app:layout_constraintTop_toBottomOf="@+id/heightInput" />
 
     <Button
-        android:id="@+id/submitButton"
+        android:id="@+id/editButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="163dp"

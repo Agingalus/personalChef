@@ -70,25 +70,8 @@ public class UserProfileActivity extends AppCompatActivity implements Navigation
         navView.setNavigationItemSelectedListener(this);
         toggle.syncState();
 
-        //populateUserProfile();
     }
 
-/*
-
-    private void populateUserProfile(){
-        EditText age = findViewById(R.id.ageInput);
-        EditText height = findViewById(R.id.heightInput);
-        EditText weight = findViewById(R.id.weightInput);
-
-
-        age.setText(String.valueOf((user.getAge())));
-        height.setText(String.valueOf(user.getHeight()));
-        weight.setText(String.valueOf(user.getWeight()));
-
-        return;
-    }
-
-*/
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
