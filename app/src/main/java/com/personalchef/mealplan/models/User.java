@@ -9,12 +9,14 @@ public class User implements Serializable {
     private int weight;
     private float height;
     private int age;
+    private int goal;
 
 
     public User(int weight, float height, int age) {
         this.weight = weight;
         this.height = height;
         this.age = age;
+        this.goal = 0;
     }
 
     public float getHeight() {
@@ -38,13 +40,20 @@ public class User implements Serializable {
         this.age = age;
     }
 
+    public int getGoal() {
+        return goal;
+    }
+    public void setGoal(int goal) {
+        this.goal = goal;
+    }
+
 
 
 
     public String toString() {
         return /*"UserName: " + this.userName + " Hash: " + this.hash +*/
                 " Weight: " + this.weight + " Height: " + this.height +
-                " Age: " + this.age;
+                " Age: " + this.age + " Goal: " + this.goal;
     }
 
 }
