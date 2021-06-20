@@ -49,7 +49,7 @@ public class AboutUsActivity extends AppCompatActivity implements NavigationView
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 break;
             case R.id.userProfile:
-                intent = new Intent(getApplicationContext(), UserProfileActivity.class);
+                intent = new Intent(getApplicationContext(), DisplayProfile.class);
                 break;
             case R.id.setStepGoal:
                 intent = new Intent(getApplicationContext(), SetStepGoal.class);

@@ -50,7 +50,10 @@ public class SetStepGoal extends AppCompatActivity implements NavigationView.OnN
         stepGoalET = findViewById(R.id.stepGoal);
         stepGoalTV = findViewById(R.id.goalTV);
 
-        stepGoalTV.setText(String.valueOf(user.getGoal()));
+        if(user != null){
+            stepGoalTV.setText(String.valueOf(user.getGoal()));
+        }
+
     }
 
     @Override
@@ -76,7 +79,6 @@ public class SetStepGoal extends AppCompatActivity implements NavigationView.OnN
                 user = IOHelper.loadUserFromFile(this);
             }
             user.setGoal(sGoal);
-            System.out.println(user.toString()); //debug code
             Utilities.setUser(user);
             Utilities.goal = sGoal;
             IOHelper.SaveUserToFile(this, user);
@@ -101,11 +103,11 @@ public class SetStepGoal extends AppCompatActivity implements NavigationView.OnN
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 break;
             case R.id.userProfile:
-                intent = new Intent(getApplicationContext(), UserProfileActivity.class);
+                intent = new Intent(getApplicationContext(), DisplayProfile.class);
                 break;
-            case R.id.setStepGoal:
+            /*case R.id.setStepGoal:*/
                 //intent = new Intent(getApplicationContext(), SetStepGoal.class);
-                break;
+                //break;
             case R.id.stepCounter:
                 intent = new Intent(getApplicationContext(), StepCounterActivity.class);
                 break;

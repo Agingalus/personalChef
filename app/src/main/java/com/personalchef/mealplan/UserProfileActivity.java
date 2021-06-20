@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -134,6 +135,13 @@ public class UserProfileActivity extends AppCompatActivity implements Navigation
                 startActivity(intent);
                 // Remove UserProfile from the history
                 finish();
+            }else{
+                Intent intent = new Intent(getApplicationContext(), DisplayProfile.class);
+                /*Bundle extras = new Bundle();
+                extras.putInt("age", age);
+                extras.putFloat("height", height);
+                extras.putInt("weight", weight);*/
+                startActivity(intent);
             }
         }
     }

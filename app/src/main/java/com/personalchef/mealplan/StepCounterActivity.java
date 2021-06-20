@@ -124,14 +124,14 @@ public class StepCounterActivity extends AppCompatActivity implements Navigation
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 break;
             case R.id.userProfile:
-                intent = new Intent(getApplicationContext(), UserProfileActivity.class);
+                intent = new Intent(getApplicationContext(), DisplayProfile.class);
                 break;
             case R.id.setStepGoal:
                 intent = new Intent(getApplicationContext(), SetStepGoal.class);
                 break;
-            case R.id.stepCounter:
+            /*case R.id.stepCounter:
                 //intent = new Intent(getApplicationContext(), StepCounterActivity.class);
-                break;
+                break;*/
             case R.id.aboutUs:
                 intent = new Intent(getApplicationContext(), AboutUsActivity.class);
                 break;

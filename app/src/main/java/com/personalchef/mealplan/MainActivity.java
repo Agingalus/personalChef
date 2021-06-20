@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (id)
         {
             case R.id.userProfile:
-                intent = new Intent(MainActivity.this, UserProfileActivity.class);
+                intent = new Intent(MainActivity.this, DisplayProfile.class);
                 break;
             case R.id.setStepGoal:
                 intent = new Intent(getApplicationContext(), SetStepGoal.class);
