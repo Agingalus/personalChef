@@ -190,34 +190,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }catch (Exception ex) {}
     }
     public  void populateProgress(){
-
+        User user = Utilities.getUser();
         // Retrieve Views
         TextView stepCountV = findViewById(R.id.number_of_calories);
         ProgressBar pieChart = findViewById(R.id.stats_progressbar);
         TextView percentV = findViewById(R.id.percent);
+
+        int goal = user.getGoal();
         double percent;
 
         int progress = scDetail.getProgress();
 
         pieChart.setProgress(progress);
 
-        Intent iin= getIntent();
-        Bundle b = iin.getExtras();
-        if(b!=null)
-        {
-            String j =(String) b.get("goal");
-            stepCountV.setText(stepCount + " / " + j);
-            int goal = Integer.parseInt(j);
-            percent = (double)stepCount/(double)goal;
-            percentV.setText(percent + "%");
-
-
-        }else{
-            stepCountV.setText(stepCount + " / " + 200);
-            percent = (double)stepCount/200;
-            percentV.setText(String.format("%.1f",percent) + "%");
-        }
-        //stepCountV.setText(stepCount + " / " + Utilities.goal);
+        stepCountV.setText(stepCount + " / " + goal);
+        percent = (double)stepCount/(double)goal;
+        percentV.setText(percent + "%");
 
         return;
 
