@@ -67,11 +67,6 @@ public class DisplayProfile extends AppCompatActivity implements NavigationView.
     }
 
     private void populateTextViews(){
-        /*Bundle extras = getIntent().getExtras();
-        age = extras.getInt("age");
-        height = extras.getFloat("height");
-        weight = extras.getInt("weight");*/
-
         TextView ageDisplay = findViewById(R.id.ageDisplay);
         TextView heightDisplay = findViewById(R.id.heightDisplay);
         TextView weightDisplay = findViewById(R.id.weightDisplay);
@@ -99,9 +94,8 @@ public class DisplayProfile extends AppCompatActivity implements NavigationView.
             case R.id.homeMenu:
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 break;
-           /* case R.id.userProfile:
-                intent = new Intent(getApplicationContext(), UserProfileActivity.class);
-                break;*/
+            case R.id.userProfile:
+                break;
             case R.id.setStepGoal:
                 intent = new Intent(getApplicationContext(), SetStepGoal.class);
                 break;

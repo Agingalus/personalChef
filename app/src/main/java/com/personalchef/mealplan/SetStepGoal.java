@@ -75,7 +75,6 @@ public class SetStepGoal extends AppCompatActivity implements NavigationView.OnN
 
         //int validation
         if(isValid){
-            //User user = Utilities.getUser();
             if(user == null) {
                 user = IOHelper.loadUserFromFile(this);
             }
@@ -106,9 +105,8 @@ public class SetStepGoal extends AppCompatActivity implements NavigationView.OnN
             case R.id.userProfile:
                 intent = new Intent(getApplicationContext(), DisplayProfile.class);
                 break;
-            /*case R.id.setStepGoal:*/
-                //intent = new Intent(getApplicationContext(), SetStepGoal.class);
-                //break;
+            case R.id.setStepGoal:
+                break;
             case R.id.stepCounter:
                 intent = new Intent(getApplicationContext(), StepCounterActivity.class);
                 break;
@@ -121,7 +119,7 @@ public class SetStepGoal extends AppCompatActivity implements NavigationView.OnN
         }
 
         //Close drawer when user selects option
-        drawer = (DrawerLayout) findViewById(R.id.my_drawer_layout);
+        drawer = findViewById(R.id.my_drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         }

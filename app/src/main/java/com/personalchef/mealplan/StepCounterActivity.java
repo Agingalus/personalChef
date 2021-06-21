@@ -129,9 +129,8 @@ public class StepCounterActivity extends AppCompatActivity implements Navigation
             case R.id.setStepGoal:
                 intent = new Intent(getApplicationContext(), SetStepGoal.class);
                 break;
-            /*case R.id.stepCounter:
-                //intent = new Intent(getApplicationContext(), StepCounterActivity.class);
-                break;*/
+            case R.id.stepCounter:
+                break;
             case R.id.aboutUs:
                 intent = new Intent(getApplicationContext(), AboutUsActivity.class);
                 break;
@@ -141,16 +140,13 @@ public class StepCounterActivity extends AppCompatActivity implements Navigation
         }
 
         //Close drawer when user selects option
-        drawer = (DrawerLayout) findViewById(R.id.my_drawer_layout);
+        drawer = findViewById(R.id.my_drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         }
         return true;
     }
 
-    public void onHomeClicked(View view) {
-        onBackPressed();
-    }
 
     protected void onDestroy() {
         System.out.println("app is destroyed and saved data");
