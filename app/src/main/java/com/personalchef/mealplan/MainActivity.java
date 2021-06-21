@@ -65,6 +65,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navView.setNavigationItemSelectedListener(this);
         toggle.syncState();
 
+        navView.getMenu().getItem(0).setChecked(true);
+
         // Load user from file
         User u = IOHelper.loadUserFromFile(getApplicationContext()) ;
         Utilities.setUser(u);

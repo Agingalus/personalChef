@@ -71,8 +71,8 @@ public class UserProfileActivity extends AppCompatActivity implements Navigation
         navView.setNavigationItemSelectedListener(this);
         toggle.syncState();
 
+        navView.getMenu().getItem(1).setChecked(true);
     }
-
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {

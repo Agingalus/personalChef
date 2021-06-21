@@ -36,6 +36,7 @@ public class AboutUsActivity extends AppCompatActivity implements NavigationView
         toggle.setDrawerIndicatorEnabled(true);
         navView.setNavigationItemSelectedListener(this);
         toggle.syncState();
+        navView.getMenu().getItem(4).setChecked(true);
     }
 
     @Override

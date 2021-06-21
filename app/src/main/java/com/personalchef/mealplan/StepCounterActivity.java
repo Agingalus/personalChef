@@ -55,7 +55,7 @@ public class StepCounterActivity extends AppCompatActivity implements Navigation
         toggle.setDrawerIndicatorEnabled(true);
         navView.setNavigationItemSelectedListener(this);
         toggle.syncState();
-
+        navView.getMenu().getItem(3).setChecked(true);
 
         stepCount = scDetail.getTotalSteps();
 

@@ -46,6 +46,7 @@ public class SetStepGoal extends AppCompatActivity implements NavigationView.OnN
         toggle.setDrawerIndicatorEnabled(true);
         navView.setNavigationItemSelectedListener(this);
         toggle.syncState();
+        navView.getMenu().getItem(2).setChecked(true);
 
         stepGoalET = findViewById(R.id.stepGoal);
         stepGoalTV = findViewById(R.id.goalTV);

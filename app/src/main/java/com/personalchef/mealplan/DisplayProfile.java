@@ -53,6 +53,7 @@ public class DisplayProfile extends AppCompatActivity implements NavigationView.
         toggle.setDrawerIndicatorEnabled(true);
         navView.setNavigationItemSelectedListener(this);
         toggle.syncState();
+        navView.getMenu().getItem(1).setChecked(true);
 
         populateTextViews();
     }
