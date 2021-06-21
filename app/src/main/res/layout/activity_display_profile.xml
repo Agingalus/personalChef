@@ -18,9 +18,9 @@
             android:layout_width="55dp"
             android:layout_height="80dp"
             android:layout_marginStart="25dp"
-            android:layout_marginTop="115dp"
+            android:layout_marginTop="59dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
             app:srcCompat="@drawable/age1" />
 
         <include
@@ -50,10 +50,10 @@
 
         <TextView
             android:id="@+id/ageDisplay"
-            android:layout_width="231dp"
-            android:layout_height="87dp"
-            android:layout_marginTop="59dp"
-            android:layout_marginEnd="46dp"
+            android:layout_width="170dp"
+            android:layout_height="85dp"
+            android:layout_marginTop="62dp"
+            android:layout_marginEnd="60dp"
             android:hint="@string/age"
             android:textSize="40sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -61,10 +61,10 @@
 
         <TextView
             android:id="@+id/heightDisplay"
-            android:layout_width="229dp"
-            android:layout_height="95dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="46dp"
+            android:layout_width="170dp"
+            android:layout_height="85dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="60dp"
             android:hint="@string/height"
             android:textSize="40sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -72,11 +72,10 @@
 
         <TextView
             android:id="@+id/weightDisplay"
-            android:layout_width="229dp"
-            android:layout_height="89dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="46dp"
-            android:autofillHints=""
+            android:layout_width="170dp"
+            android:layout_height="85dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="60dp"
             android:hint="@string/weight"
             android:textSize="40sp"
             app:layout_constraintEnd_toEndOf="parent"
