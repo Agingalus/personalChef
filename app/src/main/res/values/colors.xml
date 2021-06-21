@@ -15,6 +15,7 @@
     <color name="colorPrimary">#020202</color>
     <color name="background">#D6F7E7</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="toolbarColor">#166CBF</color>
 
 </resources>
 

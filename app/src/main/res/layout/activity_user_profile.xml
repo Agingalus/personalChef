@@ -104,6 +104,7 @@
             app:layout_constraintTop_toBottomOf="@+id/heightInput" />
 
         <Button
+            style="@style/ButtonStyle"
             android:id="@+id/saveUserProfileButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

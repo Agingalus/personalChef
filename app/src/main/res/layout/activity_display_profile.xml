@@ -82,6 +82,7 @@
             app:layout_constraintTop_toBottomOf="@+id/heightDisplay" />
 
         <Button
+            style="@style/ButtonStyle"
             android:id="@+id/editButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
