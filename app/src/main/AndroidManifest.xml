@@ -25,8 +25,6 @@
         android:roundIcon="@drawable/main_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DisplayProfile"></activity>
-
         <service
             android:name=".services.StepsCalculatorService"
             android:enabled="true"
@@ -53,6 +51,9 @@
         <activity
             android:name=".UserProfileActivity"
             android:label="@string/userProfile" />
+        <activity
+            android:name=".DisplayProfile"
+            android:label="@string/userProfile"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/home" />

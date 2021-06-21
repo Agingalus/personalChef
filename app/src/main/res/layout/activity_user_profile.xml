@@ -8,115 +8,138 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".UserProfileActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".UserProfileActivity">
 
-    <include
-        layout="@layout/toolbar_main"
-        android:id="@+id/toolbar"/>
+        <ImageView
+            android:id="@+id/ageImageView"
+            android:layout_width="54dp"
+            android:layout_height="81dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_tv"
+            app:srcCompat="@drawable/age1" />
 
-    <TextView
-        android:id="@+id/title_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="75dp"
-        android:text="@string/enterDetails"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_main" />
 
-    <TextView
-        android:id="@+id/ageTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="125dp"
-        android:layout_marginEnd="52dp"
-        android:text="@string/age"
-        app:layout_constraintEnd_toStartOf="@+id/ageInput"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="324dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="75dp"
+            android:layout_marginEnd="46dp"
+            android:text="@string/enterDetails"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/heightTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="40dp"
-        android:text="@string/height"
-        app:layout_constraintEnd_toStartOf="@+id/heightInput"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/ageTextView" />
+        <TextView
+            android:id="@+id/heightTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:text="@string/height"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/heightImageView" />
 
-    <TextView
-        android:id="@+id/weightTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="100dp"
-        android:text="@string/weight"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/heightTextView" />
+        <TextView
+            android:id="@+id/weightTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:text="@string/weight"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/weightImageView" />
 
-    <EditText
-        android:id="@+id/ageInput"
-        android:layout_width="131dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="124dp"
-        android:ems="10"
-        android:hint="@string/age"
-        android:importantForAutofill="no"
-        android:inputType="number"
-        app:layout_constraintStart_toEndOf="@+id/ageTextView"
-        app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/ageInput"
+            android:layout_width="231dp"
+            android:layout_height="87dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="46dp"
+            android:ems="10"
+            android:hint="@string/age"
+            android:textSize="20sp"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_tv" />
 
-    <EditText
-        android:id="@+id/heightInput"
-        android:layout_width="133dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="56dp"
-        android:ems="10"
-        android:hint="@string/height"
-        android:importantForAutofill="no"
-        android:inputType="numberDecimal"
-        app:layout_constraintStart_toEndOf="@+id/heightTextView"
-        app:layout_constraintTop_toBottomOf="@+id/ageInput" />
+        <EditText
+            android:id="@+id/heightInput"
+            android:layout_width="229dp"
+            android:layout_height="95dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="46dp"
+            android:ems="10"
+            android:hint="@string/height"
+            android:textSize="20sp"
+            android:importantForAutofill="no"
+            android:inputType="numberDecimal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ageInput" />
 
-    <EditText
-        android:id="@+id/weightInput"
-        android:layout_width="134dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="56dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/weight"
-        android:importantForAutofill="no"
-        android:inputType="number"
-        app:layout_constraintStart_toEndOf="@+id/weightTextView"
-        app:layout_constraintTop_toBottomOf="@+id/heightInput" />
+        <EditText
+            android:id="@+id/weightInput"
+            android:layout_width="229dp"
+            android:layout_height="89dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="46dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/weight"
+            android:textSize="20sp"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/heightInput" />
 
-    <Button
-        android:id="@+id/saveUserProfileButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="163dp"
-        android:layout_marginEnd="160dp"
-        android:layout_marginBottom="40dp"
-        android:onClick="onSaveUserProfile"
-        android:text="@string/save"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="OnClick" />
+        <Button
+            android:id="@+id/saveUserProfileButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="163dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="160dp"
+            android:onClick="onSaveUserProfile"
+            android:text="@string/save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.611"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/weightInput"
+            tools:ignore="OnClick" />
+
+        <ImageView
+            android:id="@+id/heightImageView"
+            android:layout_width="52dp"
+            android:layout_height="74dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="43dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ageImageView"
+            app:srcCompat="@drawable/height" />
+
+        <ImageView
+            android:id="@+id/weightImageView"
+            android:layout_width="52dp"
+            android:layout_height="68dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="45dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/heightTextView"
+            app:srcCompat="@drawable/weight" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/nav_view"
