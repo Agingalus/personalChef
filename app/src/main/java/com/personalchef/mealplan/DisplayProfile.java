@@ -1,5 +1,6 @@
 package com.personalchef.mealplan;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -10,34 +11,40 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.personalchef.mealplan.models.User;
 import com.personalchef.mealplan.models.Utilities;
 
-public class SetStepGoal extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class DisplayProfile extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    int goal;
     public DrawerLayout drawer;
     public ActionBarDrawerToggle toggle;
     public NavigationView navView;
-    public EditText stepGoalET;
-    public TextView stepGoalTV;
     public User user = Utilities.getUser();
+
+    private int weight;
+    private float height;
+    private int age;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_set_step_goal);
+        setContentView(R.layout.activity_display_profile);
+        if (savedInstanceState != null){
+            age = savedInstanceState.getInt("age");
+            height = savedInstanceState.getFloat("height");
+            weight = savedInstanceState.getInt("weight");
+        }
 
-        //Toolbar and Nav Drawer set up 
+        //Toolbar and Nav Drawer set up
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        drawer = findViewById(R.id.my_drawer_layout);
+        drawer = (DrawerLayout) findViewById(R.id.my_drawer_layout);
         navView = findViewById(R.id.nav_view);
         navView.setItemIconTintList(null);
         toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.nav_open, R.string.nav_close);
@@ -46,54 +53,39 @@ public class SetStepGoal extends AppCompatActivity implements NavigationView.OnN
         toggle.setDrawerIndicatorEnabled(true);
         navView.setNavigationItemSelectedListener(this);
         toggle.syncState();
-        navView.getMenu().getItem(2).setChecked(true);
+        navView.getMenu().getItem(1).setChecked(true);
 
-        stepGoalET = findViewById(R.id.stepGoal);
-        stepGoalTV = findViewById(R.id.goalTV);
-
-        if(user != null){
-            stepGoalTV.setText(String.valueOf(user.getGoal()));
-        }
-
+        populateTextViews();
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle savedInstanceState){
-        savedInstanceState.putInt("goal", goal);
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putInt("age", age);
+        savedInstanceState.putFloat("height", height);
+        savedInstanceState.putInt("weight", weight);
         super.onSaveInstanceState(savedInstanceState);
     }
 
-    public void stepGoalSubmitted(View view) {
-        int sGoal = 0;
-        boolean isValid = false;
-        try {
-            sGoal = Integer.parseInt(stepGoalET.getText().toString());
-            isValid = true;
-        } catch (NumberFormatException e) {
-            isValid = false;
-        }
+    private void populateTextViews(){
+        TextView ageDisplay = findViewById(R.id.ageDisplay);
+        TextView heightDisplay = findViewById(R.id.heightDisplay);
+        TextView weightDisplay = findViewById(R.id.weightDisplay);
 
-        //int validation
-        if(isValid){
-            if(user == null) {
-                user = IOHelper.loadUserFromFile(this);
-            }
-            user.setGoal(sGoal);
-            Utilities.setUser(user);
-            Utilities.goal = sGoal;
-            IOHelper.SaveUserToFile(this, user);
-            user = IOHelper.loadUserFromFile(this);
-            this.goal = sGoal;
 
-            Intent intent = new Intent(getApplicationContext(), StepCounterActivity.class);
-            startActivity(intent);
-        }else{
-            Toast.makeText(this, "Invalid value.", Toast.LENGTH_LONG).show();
-        }
+        //Set values to TextViews
+        ageDisplay.setText(String.valueOf(user.getAge()));
+        heightDisplay.setText(String.valueOf(user.getHeight()));
+        weightDisplay.setText(String.valueOf(user.getWeight()));
+        return;
+    }
+
+    public void onEditUserProfile(View view){
+        Intent intent = new Intent(getApplicationContext(), UserProfileActivity.class);
+        startActivity(intent);
     }
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         Intent intent = null;
 
@@ -103,9 +95,9 @@ public class SetStepGoal extends AppCompatActivity implements NavigationView.OnN
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 break;
             case R.id.userProfile:
-                intent = new Intent(getApplicationContext(), DisplayProfile.class);
                 break;
             case R.id.setStepGoal:
+                intent = new Intent(getApplicationContext(), SetStepGoal.class);
                 break;
             case R.id.stepCounter:
                 intent = new Intent(getApplicationContext(), StepCounterActivity.class);
@@ -119,7 +111,7 @@ public class SetStepGoal extends AppCompatActivity implements NavigationView.OnN
         }
 
         //Close drawer when user selects option
-        drawer = findViewById(R.id.my_drawer_layout);
+        drawer = (DrawerLayout) findViewById(R.id.my_drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         }

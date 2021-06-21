@@ -9,6 +9,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
-        android:src="@drawable/nav_header_img"
+        android:src="@drawable/nav_drawer_header"
         android:paddingTop="25dp" />
 </FrameLayout>

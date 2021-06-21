@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -70,25 +71,8 @@ public class UserProfileActivity extends AppCompatActivity implements Navigation
         navView.setNavigationItemSelectedListener(this);
         toggle.syncState();
 
-        //populateUserProfile();
+        navView.getMenu().getItem(1).setChecked(true);
     }
-
-/*
-
-    private void populateUserProfile(){
-        EditText age = findViewById(R.id.ageInput);
-        EditText height = findViewById(R.id.heightInput);
-        EditText weight = findViewById(R.id.weightInput);
-
-
-        age.setText(String.valueOf((user.getAge())));
-        height.setText(String.valueOf(user.getHeight()));
-        weight.setText(String.valueOf(user.getWeight()));
-
-        return;
-    }
-
-*/
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
@@ -151,6 +135,13 @@ public class UserProfileActivity extends AppCompatActivity implements Navigation
                 startActivity(intent);
                 // Remove UserProfile from the history
                 finish();
+            }else{
+                Intent intent = new Intent(getApplicationContext(), DisplayProfile.class);
+                /*Bundle extras = new Bundle();
+                extras.putInt("age", age);
+                extras.putFloat("height", height);
+                extras.putInt("weight", weight);*/
+                startActivity(intent);
             }
         }
     }

@@ -9,10 +9,10 @@
     tools:context=".StepCounterActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/stepCounter"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".StepCounterActivity"
-        android:id="@+id/stepCounter" >
+        tools:context=".StepCounterActivity">
 
         <include
             android:id="@+id/toolbar"
@@ -24,35 +24,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
             android:text="@string/cal"
-            android:textColor="@color/black"
+            android:textColor="@color/colorPrimary"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/textView17"
             app:layout_constraintTop_toBottomOf="@+id/textView17" />
-        <!--
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="35dp"
-            android:text="@string/userDetails"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="54dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/height"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
-        -->
-
 
         <TextView
             android:id="@+id/avgSteps"
@@ -61,7 +36,7 @@
             android:layout_marginTop="20dp"
             android:hint="Avg Steps"
             android:text="Avg Steps"
-            android:textColor="@color/black"
+            android:textColor="@color/colorPrimary"
             android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/tvMiles"
             app:layout_constraintHorizontal_bias="0.0"
@@ -83,11 +58,14 @@
             android:id="@+id/tvDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="19dp"
+            android:layout_marginStart="179dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="196dp"
             android:text="Date: "
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tvTodaysSteps"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
         <TextView
             android:id="@+id/textView8"
@@ -95,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/calburned"
-            android:textColor="@color/black"
+            android:textColor="@color/colorPrimary"
             android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/tvBurnedCals"
             app:layout_constraintHorizontal_bias="0.0"
@@ -109,7 +87,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="20dp"
             android:text="@string/totalCalIntake"
-            android:textColor="@color/black"
+            android:textColor="@color/colorPrimary"
             android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/tv_TotalCalsIntake"
             app:layout_constraintHorizontal_bias="0.0"
@@ -121,14 +99,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="83dp"
             android:text="@string/todaySteps"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/tvTodaysSteps"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
         <TextView
             android:id="@+id/textView9"
@@ -136,7 +114,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/stepsThisWeek"
-            android:textColor="@color/black"
+            android:textColor="@color/colorPrimary"
             android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/tv_TotalStepsThisWeek"
             app:layout_constraintHorizontal_bias="0.0"
@@ -196,7 +174,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/totalCalburned"
-            android:textColor="@color/black"
+            android:textColor="@color/colorPrimary"
             android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/tv_TotalCalsBurned"
             app:layout_constraintHorizontal_bias="0.0"
@@ -210,7 +188,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="20dp"
             android:text="@string/cal"
-            android:textColor="@color/black"
+            android:textColor="@color/colorPrimary"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/textView18"
             app:layout_constraintTop_toBottomOf="@+id/textView18" />
@@ -221,7 +199,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:text="@string/cal"
-            android:textColor="@color/black"
+            android:textColor="@color/colorPrimary"
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/tvBurnedCals"
             app:layout_constraintTop_toTopOf="@+id/tvBurnedCals" />
@@ -229,17 +207,6 @@
 
 
         <!-- Title above the chart -->
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Calories Burned vs. Calories Consumed"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
         <!-- Doughnut chart starts here -->
 
@@ -296,17 +263,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/background_progressbar" />
-    <!--
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="35dp"
-            android:layout_marginBottom="35dp"
-            android:onClick="onHomeClicked"
-            android:text="@string/home"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />-->
+
         <TextView
             android:id="@+id/percent"
             android:layout_width="40dp"

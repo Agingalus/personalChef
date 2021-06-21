@@ -7,91 +7,99 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/setStepGoal"
-    tools:context=".SetStepGoal"
-    android:theme="@style/AppTheme">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/setStepGoal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:theme="@style/AppTheme"
+        tools:context=".SetStepGoal">
 
-    <include
-        layout="@layout/toolbar_main"
-        android:id="@+id/toolbar"/>
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_main" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="148dp"
-        android:layout_height="200dp"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="130dp"
-        android:layout_marginBottom="100dp"
-        android:src="@drawable/check"
-        app:layout_constraintBottom_toTopOf="@+id/userProfileSubmittedText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="148dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="130dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="130dp"
+            android:src="@drawable/target"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/userProfileSubmittedText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="5dp"
-        android:text="@string/setGoalText"
-        android:textSize="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        <TextView
+            android:id="@+id/userProfileSubmittedText"
+            android:layout_width="332dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="29dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="24dp"
+            android:text="@string/setGoalText"
+            android:textSize="19dp"
+            app:layout_constraintBottom_toTopOf="@+id/stepGoal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-    <Button
-        android:id="@+id/stepGoalSubmitBtn"
-        android:layout_width="137dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="162dp"
-        android:layout_marginEnd="162dp"
-        android:layout_marginBottom="100dp"
-        android:text="@string/cont"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:onClick="stepGoalSubmitted"/>
+        <Button
+            style="@style/ButtonStyle"
+            android:id="@+id/stepGoalSubmitBtn"
+            android:layout_width="137dp"
+            android:layout_height="47dp"
+            android:layout_marginStart="162dp"
+            android:layout_marginEnd="162dp"
+            android:layout_marginBottom="100dp"
+            android:onClick="stepGoalSubmitted"
+            android:text="@string/cont"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/stepGoal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginTop="53dp"
-        android:layout_marginEnd="102dp"
-        android:layout_marginBottom="93dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/stepGoalSubmitBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userProfileSubmittedText" />
+        <EditText
+            android:id="@+id/stepGoal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="44dp"
+            android:layout_marginEnd="100dp"
+            android:ems="8"
+            android:inputType="number"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userProfileSubmittedText" />
 
-    <TextView
-        android:id="@+id/goalTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="166dp"
-        android:layout_marginTop="46dp"
-        android:layout_marginEnd="186dp"
-        android:layout_marginBottom="35dp"
-        app:layout_constraintBottom_toTopOf="@+id/userProfileSubmittedText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-        //android:text="TextView"
+        <TextView
+            android:id="@+id/goalTV"
+            android:layout_width="107dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="41dp"
+            android:layout_marginEnd="76dp"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/currentGoal"
+            app:layout_constraintTop_toBottomOf="@+id/stepGoal" />
+
+        <TextView
+            android:id="@+id/currentGoal"
+            android:layout_width="108dp"
+            android:layout_height="41dp"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="41dp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/currentGoal"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toStartOf="@+id/goalTV"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/stepGoal" />
 
 
-
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"

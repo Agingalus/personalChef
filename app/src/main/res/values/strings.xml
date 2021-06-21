@@ -1,54 +1,51 @@
 <resources>
+    <!--App-->
     <string name="app_name">Step It Up</string>
-    <string name="appTitle">Step It Up</string>
 
-    <!--Calorie & step tracker-->
+    <!--Step Counter Display-->
+    <string name="stepDetail">Step-Calorie Details</string>
     <string name="cal">Cal</string>
     <string name="calburned">You have burned: </string>
     <string name="stepsThisWeek">Total steps this week: </string>
     <string name="totalCalIntake">Total Calories intake: </string>
     <string name="totalCalburned">Total Calories burned: </string>
     <string name="todaySteps">Today Steps</string>
-    <string name="stepDetail">Step-Calorie Details</string>
 
     <!--Profile-->
     <string name="weight">Weight (lbs)</string>
     <string name="age">Age</string>
     <string name="height">Height (cm)</string>
-    <string name="enterDetails">Enter profile details</string>
-
-
-    <!--Foreground service-->
-    <string name="reset">Reset</string>
-    <string name="save">Save</string>
-    <string name="pause">Pause</string>
-
-    <!--Step goal-->
-    <string name="setGoalText">Great! Now let\'s set a daily goal. Don\'t worry this can be changed later.</string>
-
 
     <!--Menu Items-->
     <string name="home">Home</string>
     <string name="userProfile">Profile</string>
     <string name="stepGoal">Step Goal</string>
     <string name="summary">Summary</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="aboutUsTitle">About Us</string>
 
-    <!-- Navigation -->
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <!--Buttons -->
     <string name="nav_open">Open</string>
     <string name="nav_close">Close</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
     <string name="cont">Continue</string>
     <string name="submit">Submit</string>
+    <string name="reset">Reset</string>
+    <string name="save">Save</string>
+    <string name="pause">Pause</string>
+    <string name="edit">Edit</string>
 
-    <!--notification service -->
+    <!--Service-->
     <string name="notifChannelId">SC_ServiceChannel</string>
     <string name="notifChannel_name">SC Service Channel</string>
     <string name="notifChannel_description">SC_Ch_Desc</string>
 
-    <!--About Us-->
-    <string name="aboutUsTitle">About Us</string>
+    <!--Messages-->
+    <string name="setGoalText">Set a step goal. We\'ll notify you on your progress.</string>
+    <string name="enterDetails">Enter profile details</string>
+    <string name="currentGoal">Current Goal</string>
+
+    <!--About US-->
     <string name="aboutAppText1">\"Step It Up\" is your best friend when it comes to activity and calories tracking.</string>
     <string name="aboutAppText2">Designed with love by Bellevue College students, \"Step It Up\" is a handy app that brings you closer to your fitness goals.</string>
     <string name="version">Version: 1.0</string>

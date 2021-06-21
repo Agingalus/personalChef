@@ -102,45 +102,4 @@ public class IOHelper {
         return jokeText;
     }
 
-    /** StepCalorieDetails JSON read/write
-    // Load StepCalorieDetails from file
-    public static StepCalorieDetails loadStepDetails(Context context) {
-        String json;
-        StepCalorieDetails stepCalorieDetails = null;
-
-        try {
-            InputStream is = context.openFileInput(stepsFileName) ;
-            json = stringFromStream(is);
-            JSONObject obj = new JSONObject(json);
-
-            if (obj.length() > 0) {
-                stepCalorieDetails = new Gson().fromJson(obj.toString(), StepCalorieDetails.class);
-            }
-        } catch (IOException | JSONException e) {
-            Log.e("PC", "ERror while loading user - " + e.getMessage());
-            e.printStackTrace();
-        }
-
-        return stepCalorieDetails;
-    }
-
-    // Save StepCalorieDetails to file
-    public static void SaveStepCalorieToFile(Context context, StepCalorieDetails stepCalorieDetails) {
-        try {
-            String jsonStr = new Gson().toJson(stepCalorieDetails);
-
-            // Save to File
-            FileOutputStream fos = context.openFileOutput(stepsFileName, Context.MODE_PRIVATE);
-            fos.write(jsonStr.getBytes(), 0, jsonStr.length());
-            fos.close();
-            //Log.i("PC", "Saved to file ");
-        } catch (IOException e) {
-            Log.e("PC", "ERror while saving - " + e.getMessage());
-            e.printStackTrace();
-        }
-
-        return;
-    }
-*/
-
 }
