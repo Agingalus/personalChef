@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -25,7 +24,6 @@ public class SetStepGoal extends AppCompatActivity implements NavigationView.OnN
     public ActionBarDrawerToggle toggle;
     public NavigationView navView;
     public EditText stepGoalET;
-    public TextView stepGoalTV;
     public User user = Utilities.getUser();
 
     @Override
@@ -49,12 +47,10 @@ public class SetStepGoal extends AppCompatActivity implements NavigationView.OnN
         navView.getMenu().getItem(2).setChecked(true);
 
         stepGoalET = findViewById(R.id.stepGoal);
-        stepGoalTV = findViewById(R.id.goalTV);
 
         if(user != null){
-            stepGoalTV.setText(String.valueOf(user.getGoal()));
+            stepGoalET.setText(String.valueOf(user.getGoal()));
         }
-
     }
 
     @Override
@@ -103,7 +99,7 @@ public class SetStepGoal extends AppCompatActivity implements NavigationView.OnN
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 break;
             case R.id.userProfile:
-                intent = new Intent(getApplicationContext(), DisplayProfile.class);
+                intent = new Intent(getApplicationContext(), UserProfileActivity.class);
                 break;
             case R.id.setStepGoal:
                 break;

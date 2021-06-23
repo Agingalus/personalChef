@@ -3,14 +3,12 @@ package com.personalchef.mealplan.models;
 import java.io.Serializable;
 
 public class User implements Serializable {
-    public static String EXTRA_USEROBJ = "com.personalchef.mealplan.models.User";
-
+    //public static String EXTRA_USEROBJ = "com.personalchef.mealplan.models.User";
 
     private int weight;
     private float height;
     private int age;
     private int goal;
-
 
     public User(int weight, float height, int age) {
         this.weight = weight;
@@ -46,9 +44,6 @@ public class User implements Serializable {
     public void setGoal(int goal) {
         this.goal = goal;
     }
-
-
-
 
     public String toString() {
         return /*"UserName: " + this.userName + " Hash: " + this.hash +*/

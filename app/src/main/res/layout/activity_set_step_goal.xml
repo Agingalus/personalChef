@@ -46,18 +46,20 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
         <Button
-            style="@style/ButtonStyle"
             android:id="@+id/stepGoalSubmitBtn"
+            style="@style/ButtonStyle"
             android:layout_width="137dp"
             android:layout_height="47dp"
             android:layout_marginStart="162dp"
+            android:layout_marginTop="105dp"
             android:layout_marginEnd="162dp"
             android:layout_marginBottom="100dp"
             android:onClick="stepGoalSubmitted"
             android:text="@string/cont"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/stepGoal" />
 
         <EditText
             android:id="@+id/stepGoal"
@@ -72,31 +74,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/userProfileSubmittedText" />
-
-        <TextView
-            android:id="@+id/goalTV"
-            android:layout_width="107dp"
-            android:layout_height="43dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="41dp"
-            android:layout_marginEnd="76dp"
-            android:textSize="18dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/currentGoal"
-            app:layout_constraintTop_toBottomOf="@+id/stepGoal" />
-
-        <TextView
-            android:id="@+id/currentGoal"
-            android:layout_width="108dp"
-            android:layout_height="41dp"
-            android:layout_marginStart="76dp"
-            android:layout_marginTop="41dp"
-            android:layout_marginEnd="10dp"
-            android:text="@string/currentGoal"
-            android:textSize="18dp"
-            app:layout_constraintEnd_toStartOf="@+id/goalTV"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/stepGoal" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

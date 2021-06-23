@@ -4,16 +4,14 @@ import android.content.SharedPreferences;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.personalchef.mealplan.MainActivity;
-import com.personalchef.mealplan.StepCounterActivity;
-
 import java.util.Date;
 
 
 /***
  * StepCounter
  *
- * SensorAdapter updates the StepCount
+ * NOT USED
+ * PREVIOUSLY was handling the step counter sensors. Logic is now replaced with the StepsCalculatorService
  */
 public class StepCounter1 extends AppCompatActivity {
     private Date date;
@@ -23,8 +21,6 @@ public class StepCounter1 extends AppCompatActivity {
     private double caloriePerMile = weight*.57; //based on causal walking speed
     public double stepsPerMile = 5280/stepLength;
     private Integer caloriesBurned = 0;
-
-
 
     // Functionality
     public int GetStepCount() {

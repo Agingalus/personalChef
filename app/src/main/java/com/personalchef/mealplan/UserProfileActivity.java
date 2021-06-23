@@ -6,20 +6,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
-import com.personalchef.mealplan.models.StepCalorieDetails;
 import com.personalchef.mealplan.models.User;
 import com.personalchef.mealplan.models.Utilities;
 
@@ -31,6 +26,10 @@ public class UserProfileActivity extends AppCompatActivity implements Navigation
     private int weight;
     private float height;
     private int age;
+
+    private EditText ageInput;
+    private EditText heightInput;
+    private EditText weightInput;
 
     static String NEW_USER = "true";
     static String NOT_A_NEW_USER = "false";
@@ -51,10 +50,21 @@ public class UserProfileActivity extends AppCompatActivity implements Navigation
             weight = savedInstanceState.getInt("weight");
         }
 
+        ageInput = (EditText) findViewById(R.id.ageInput);
+        heightInput = (EditText) findViewById(R.id.heightInput);
+        weightInput = (EditText) findViewById(R.id.weightInput);
+
         Intent intent = getIntent();
         newUser = intent.getStringExtra(Utilities.EXTRA_TEXT);
         if (newUser == null) {
             newUser = NOT_A_NEW_USER;
+
+            User user = IOHelper.loadUserFromFile(this);
+
+            //Set values to TextViews
+            ageInput.setText(String.valueOf(user.getAge()));
+            heightInput.setText(String.valueOf(user.getHeight()));
+            weightInput.setText(String.valueOf(user.getWeight()));
         }
 
         //Toolbar and Nav Drawer set up
@@ -84,9 +94,6 @@ public class UserProfileActivity extends AppCompatActivity implements Navigation
 
     // Validates the inputs & displays appropriate error messages
     private boolean canSaveUser() {
-        EditText ageInput = (EditText) findViewById(R.id.ageInput);
-        EditText heightInput = (EditText) findViewById(R.id.heightInput);
-        EditText weightInput = (EditText) findViewById(R.id.weightInput);
 
         Integer val = null;
         if ((val = tryParseInt(ageInput.getText().toString())) != null) {
@@ -135,17 +142,9 @@ public class UserProfileActivity extends AppCompatActivity implements Navigation
                 startActivity(intent);
                 // Remove UserProfile from the history
                 finish();
-            }else{
-                Intent intent = new Intent(getApplicationContext(), DisplayProfile.class);
-                /*Bundle extras = new Bundle();
-                extras.putInt("age", age);
-                extras.putFloat("height", height);
-                extras.putInt("weight", weight);*/
-                startActivity(intent);
             }
         }
     }
-
 
     /**
      * Parses a String to Integer
