@@ -48,9 +48,11 @@ public class SetStepGoal extends AppCompatActivity implements NavigationView.OnN
 
         stepGoalET = findViewById(R.id.stepGoal);
 
+        stepGoalET.setText("0");
         if(user != null){
             stepGoalET.setText(String.valueOf(user.getGoal()));
         }
+
     }
 
     @Override

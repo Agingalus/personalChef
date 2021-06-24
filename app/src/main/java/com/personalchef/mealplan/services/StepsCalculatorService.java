@@ -177,7 +177,7 @@ public class StepsCalculatorService extends Service implements SensorEventListen
         //Log.i("TAG_FOREGROUND_SERVICE", "Into update");
 
         // Calculate Percentage of steps with goal
-        double d = (double)stepCount / goal * 100; //2000
+        double d = (double)stepCount / goal * 100; //2000  40/160 == 25
         while (d >= 100){ // this WHILE statement is for testing purposes so that the diagram is never stuck being full
             goal += 10;
             d = (double)stepCount / goal * 100;

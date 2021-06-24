@@ -118,7 +118,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             addToDb(6,0,0,0);
             addToDb(7,10,0,0);
             avgSteps++;
-            stepCalorieDetails = new StepCalorieDetails(-1,0,0,0,0, avgSteps);
+            stepCalorieDetails = new StepCalorieDetails(0,0,0,0,0, avgSteps);
         } else {
             totSteps = totSteps - array_list.get(0);
             totCalBurned = totCalBurned  - array_list.get(1);
