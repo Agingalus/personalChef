@@ -12,7 +12,7 @@ public class Utilities extends Application {
     // A string to update the notification text
     public static String NotificationString = "";
 
-    public static int goal = 102;
+    //public static int goal = 102;
 
     // Var to pass text within activities (in the intent.putExtra()
     public static final String EXTRA_TEXT = "Text";

@@ -86,13 +86,14 @@ public class StepCalorieDetails implements Serializable {
     }
 
     public void Calculate() {
-        // progress
-        double d = (double)this.totalSteps / Utilities.goal * 100;
-        this.progress = (int) d;
-
-        // miles walked
         User user = Utilities.getUser();
+
         if (user != null) {
+            // progress
+            double d = (double)this.totalSteps / user.getGoal() * 100;
+            this.progress = (int) d;
+
+            // miles walked
             double stepLength = user.getHeight() * 0.42 / 12;
             double stepsPerMile = 5280 / stepLength;
             double miles = this.totalSteps / stepsPerMile;

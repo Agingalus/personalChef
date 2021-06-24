@@ -45,12 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        DatabaseHelper helper = new DatabaseHelper(this);
-        scDetail = helper.getStepDetails();
-        scDetail.Calculate();
-        helper.close();
 
-        stepCount = scDetail.getTotalSteps();
         //Toolbar and Nav Drawer set up
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -70,6 +65,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Load user from file
         User u = IOHelper.loadUserFromFile(getApplicationContext()) ;
         Utilities.setUser(u);
+
+        DatabaseHelper helper = new DatabaseHelper(this);
+        scDetail = helper.getStepDetails();
+        scDetail.Calculate();
+        helper.close();
 
         // Start counting steps
         startStepsCalculatorService();
@@ -170,23 +170,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }catch (Exception ex) {}
     }
+
     public  void populateProgress(){
         User user = Utilities.getUser();
+        int stepCount = scDetail.getTotalSteps();
+
         // Retrieve Views
         TextView stepCountV = findViewById(R.id.number_of_calories);
         ProgressBar pieChart = findViewById(R.id.stats_progressbar);
         TextView percentV = findViewById(R.id.percent);
 
         int goal = user.getGoal();
-        double percent;
-
         int progress = scDetail.getProgress();
 
         pieChart.setProgress(progress);
 
         stepCountV.setText(stepCount + " / " + goal);
-        percent = (double)stepCount/(double)goal;
-        percentV.setText(percent + "%");
+        percentV.setText(progress + "%");
 
         return;
 

@@ -78,7 +78,7 @@ public class SetStepGoal extends AppCompatActivity implements NavigationView.OnN
             }
             user.setGoal(sGoal);
             Utilities.setUser(user);
-            Utilities.goal = sGoal;
+            //Utilities.goal = sGoal;
             IOHelper.SaveUserToFile(this, user);
             user = IOHelper.loadUserFromFile(this);
             this.goal = sGoal;

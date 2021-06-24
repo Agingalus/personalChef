@@ -55,7 +55,7 @@ public class StepsCalculatorService extends Service implements SensorEventListen
     private double MagnitudePrevious = 0;
     public int stepCount;
     private boolean saved = false;
-    private double goal = Utilities.goal;
+    private double goal;
     private double stepLength;
     private double caloriePerMile;
     private double stepsPerMile;
@@ -73,6 +73,7 @@ public class StepsCalculatorService extends Service implements SensorEventListen
         helper.close();
 
         user = Utilities.getUser();
+        goal = user.getGoal();
     }
 
     @Override
@@ -177,7 +178,7 @@ public class StepsCalculatorService extends Service implements SensorEventListen
         //Log.i("TAG_FOREGROUND_SERVICE", "Into update");
 
         // Calculate Percentage of steps with goal
-        double d = (double)stepCount / goal * 100; //2000  40/160 == 25
+        double d = (double)stepCount / goal * 100; //2000 
         while (d >= 100){ // this WHILE statement is for testing purposes so that the diagram is never stuck being full
             goal += 10;
             d = (double)stepCount / goal * 100;
@@ -199,7 +200,7 @@ public class StepsCalculatorService extends Service implements SensorEventListen
         scDetails.setMilesWalked(miles);
         scDetails.setAvgSteps(avg);
         scDetails.setCaloriesBurnt(CalculateCaloriesBurnt());
-        Log.i(TAG_FOREGROUND_SERVICE, "Progress: " + progress + ", Miles: " + miles + ", Avg: " + avg);
+        Log.i(TAG_FOREGROUND_SERVICE, "Progress: " + progress + " Steps: " + stepCount + ", Miles: " + miles + ", Avg: " + avg);
     }
 
     public void PrintStepCount() {
